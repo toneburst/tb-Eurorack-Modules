@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			function rand(range, offset) {
+				return Math.round(Math.random() * range) + offset;
+			}
+			function generate_nodes() {
+				var arr = "<pre>";
+				for(i = 0; i < 25; i++) {
+					arr += "var node_" + i + " = [<br />";
+					for(j = 0; j < 6; j++) {
+						arr += "    [";
+						for(k = 0; k < 16; k++) {
+							///////////////////////////////////////////////////////////
+							// Generate Notes in single octave (first note always 0) //
+							///////////////////////////////////////////////////////////
+							if(j == 0) {
+								if(k == 0) {
+									arr += "0";
+								} else {
+									// Write out random number for Accent/Slide
+									arr += rand(11, 0);
+								}
+							////////////////////////////////
+							// Note Transpose probability //
+							////////////////////////////////
+							} else if(j == 1) {
+								arr += rand(90, 30);
+							/////////////
+							// Octaves //
+							/////////////
+							} else if(j == 2) {
+								// First note always in middle octave
+								if(k == 0) {
+									arr += "1";
+								} else {
+									// Write out random number for Accent/Slide
+									// Weight so more 1s than 0s and 2s
+									var bias = 0.60;
+									if(Math.random() < bias) {
+										arr += 1;
+									} else {
+										// Random 0 or 2
+										arr += rand(1, 0) * 2;
+									}
+								}
+							//////////////////////////////////
+							// Octave Randomise Probability //
+							//////////////////////////////////
+							} else if(j == 3) {
+								arr += rand(50, 2);
+							////////////////////////
+							// Accent Probability //
+							////////////////////////
+							} else if(j == 4) {
+								// Write out random number for Accent/Slide
+								arr += rand(255, 0);
+							///////////////////////
+							// Slide Probability //
+							///////////////////////
+							} else {
+								if(k == 0)
+									arr += "0";
+								else
+									arr += rand(239, 16);
+							}
+							// Add comma unless last array item
+							if(k < 15)
+								arr += ",";
+						};
+						arr += "]";
+						if(j < 5)
+							arr+= ",";
+						arr += "<br />";
+					};
+					arr += "];<br />";
+				};
+				arr += "</pre>";
+				return arr;
+			}
+
+			function generate_1drandomarray(max, offs, len, varname) {
+				var arr = "var " + varname + " = [";
+				for(i = 0; i < len; i++) {
+					arr += rand(max, offs);
+					if(i < len - 1) {
+						arr += ",";
+					}
+				}
+				return arr + "];";
+			}
+
+			function generate_1drandomarray(max, offs, len, varname) {
+				var arr = "var " + varname + " = [";
+				for(i = 0; i < len; i++) {
+					arr += rand(max, offs);
+					if(i < len - 1) {
+						arr += ",";
+					}
+				}
+				return arr + "];";
+			}
+
+			function generate_linearlut(min, max, len, varname) {
+				var increment = (max - min) / len ;
+				var arr = "var " + varname + " = [";
+				for(i = 0; i < len; i++) {
+					arr += i * increment + min;
+					if(i < len - 1) {
+						arr += ",";
+					}
+				}
+				return arr + "];";
+			}
+
+			$(document).ready(function() {
+			    // Generate nodes and display result
+				$("#pattern_nodes").html(generate_nodes());
+				// Generate note random array and display result
+				$("#note_randomarray").html(generate_1drandomarray(11, 0, 16, "noterandomtable"));
+				// Generate octave random array and display result
+				$("#octave_randomarray").html(generate_1drandomarray(10, 0, 16, "octaverandomtable"));
+				// Generate note-length LUT
+				$("#notelength_lut").html(generate_linearlut(0.05, 0.5, 32, "notelengthtable"));
+			});
+		</script>
+	</head>
+	<body>
+		<h3>Pattern Nodes</h3>
+		<div id="pattern_nodes"></div>
+		<h3>Note/Octave Shift Arrays</h3>
+		<div id="note_randomarray"></div>
+		<div id="octave_randomarray"></div>
+		<h3>Other Lookup Tables</h3>
+		<div id="notelength_lut"></div>
+	</body>
+</html>

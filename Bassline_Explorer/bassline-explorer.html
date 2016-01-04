@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bassline Explorer Beta 0.0.1</title>
+
+        <script src="js/lib/jquery-2.1.4.min.js"></script>
+        <!--[if IE]><script type="text/javascript" src="js/lib/jquery-knob/excanvas.js"></script><![endif]-->
+        <script src="js/lib/jquery-knob/jquery.knob.min.js"></script>
+        <script src="js/lib/jzz/JZZ.js" charset="utf-8"></script>
+        <script src="js/tables.min.js" charset="utf-8"></script>
+        <script src="js/patterns.min.js" charset="utf-8"></script>
+        <script src="js/midi.min.js" charset="utf-8"></script>
+        <script src="js/controls.min.js" charset="utf-8"></script>
+        <script src="js/bassline-explorer.min.js" charset="utf-8"></script>
+        <script src="js/init.min.js" charset="utf-8"></script>
+
+        <link rel="stylesheet" type="text/css" href="styles.min.css">
+    </head>
+    <body>
+        <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
+            <object id="Jazz2" type="audio/x-jazz" class="hidden">
+                <p>This page requires <a href=http://jazz-soft.net>Jazz-Plugin</a> ...</p>
+          </object>
+        </object>
+        <div id=selectmididiv>
+            <p>Select MIDI Output:</p>
+            <p><select id="selectmidi"></select></p>
+        </div>
+        <p>
+            <button id="testmidi"> Test Output... </button>
+        </p>
+
+        <div class="control">
+            <p>X Position</p>
+            <input id="knob_x" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="0">
+        </div>
+        <div class="control">
+            <p>Y Position</p>
+            <input id="knob_y" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
+        </div>
+        <div class="control control_small clear">
+            <p>Note Transform</p>
+            <input id="knob_threshold_note" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+        </div>
+        <div class="control control_small clear">
+            <p>Accent Density</p>
+            <input id="knob_threshold_accent" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+        </div>
+        <div class="control control_small">
+            <p>Slide Density</p>
+            <input id="knob_threshold_slide" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+        </div>
+    </body>
+</html>
