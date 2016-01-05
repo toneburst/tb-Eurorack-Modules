@@ -5,45 +5,78 @@
 		<script src="easing.js" charset="utf-8"></script>
 		<script type="text/javascript">
 
+			///////////////////////
+			// Utility Functions //
+			///////////////////////
+
+			// (Mostly to work around JavaAcript's lack of native support for 8-bit numbers)
 			// Convert number to binary string of length length
 			function decbin(dec, length){
 				var out = "";
 				while(length--)
 					out += (dec >> length ) & 1;
 				return out;
-			}
+			};
 			// Convert binary string to number
 			function bindec(bin) {
 			    return parseInt(bin,2).toString(10);
-			}
+			};
 			// Cut 32-bit binary string to last 8 chars
 			function binto8(bin) {
 				return bin.substring(24, 32);
-			}
+			};
 			// Left-bit-shift number as if number were uint8
 			function leftshift8(dec, shift) {
 				var bin = decbin(dec << shift, 32);
 				return bindec(binto8(bin));
-			}
+			};
+
+			////////////////////
+			// LUT Generation //
+			////////////////////
+
+			// Generate array for POW curve
+			function pow(time, min, max, steps, exp) {
+				return Math.round();
+			};
 
 			// Easing functions (uses functions in easing.js)
-			function easing(title, varname, min, max, steps, easing) {
+			function easing(time, min, max, steps, easing) {
+				switch(easing) {
+				    case "easeInSine":
+				        return Math.round(ease.easeInSine(time, min, max, steps));
+				        break;
+				}
+			};
+
+			// NOT WORKING //
+
+			// Generic function to generate 1D array LUT of length steps
+			function LUT1D(title, varname, min, max, steps, func) {
 				var str = "// " + title + "<br />";
 				str += "var " + varname + " = [";
-				var steps = 256;
 				for(i = 0; i < steps; i++) {
 					if(i % 16 == 0)
 						str += "<br />    ";
-					str += Math.round(eval("ease." + easing + "(" + i + "," + min + "," + max + "," + steps + ")"));
+
+					// Construct string for function
+					var fn = func.replace("time", i);
+					fn = fn.replace("min", min);
+					fn = fn.replace("max", max);
+					fn = fn.replace("steps", steps);
+					str += eval(func);
+
 					if(i == steps - 1)
 						str += "<br />";
 					else
-						str += ","
-				}
+						str += ",";
+				};
 				str += "];";
 				return str;
 			};
 
+			// Generate 2D lookup table array for X/Y coordinates
+			// Each array index contains array of cell index, position within cell
 			function generate_coord_LUT_linear() {
 				var str = "";
 				str += "// Coordinate table for X/Y (cell index/position)<br />";
@@ -60,16 +93,19 @@
 						str += ",";
 					else
 						str += "<br>";
-				}
+				};
 				str += "];"
 				return str;
-			}
+			};
 
 			$(document).ready(function() {
 				var result = "<pre>";
+
 				result += generate_coord_LUT_linear();
 
-				result += "<br /><br />" + easing("Ease-In Sine lookup table", "easeinsine256", 0, 256, 256, "easeInSine");
+				//result += "<br /><br />" ;
+
+				//result += 1dLUT("Ease-In Sine lookup table", "easeinsine256", %, 256, 256, "func");
 
 				result += "</pre>";
 
