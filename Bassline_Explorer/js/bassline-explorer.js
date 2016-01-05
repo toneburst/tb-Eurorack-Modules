@@ -76,14 +76,11 @@ function playStep() {
     var note         = stepvals[0];
     var noteprob     = stepvals[1];
     var notethresh   = thresholds[0]
-
     var octave       = stepvals[2];
     var octaveprob   = stepvals[3];
     var octavethresh = thresholds[1]
-
     var accentprob   = stepvals[4];
     var accentthresh = thresholds[2]
-
     var slideprob    = stepvals[5];
     var slidethresh  = thresholds[3]
 
@@ -114,7 +111,7 @@ function playStep() {
     midi_notenum = scale[note] + (12 * octave) + transpose;
 
     // Set note-on velocity
-    var midi_velocity = (accentprob < accentthresh) ? midi_highvelocity : midi_lowvelocity;
+    var midi_velocity = (accentprob < easeinsine256[accentthresh]) ? midi_highvelocity : midi_lowvelocity;
 
     // Determine if note is tied (ie slide enabled and note number same as previous note)
     var tied = (slide && midi_notenum == midi_previousnotes[midi_previousnotes.length - 1]) ? true : false;
@@ -163,7 +160,7 @@ function getStepVals() {
     }
 
     // Determine if next note is slide
-    slide = (stepvals[5] < thresholds[3]) ? true : false;
+    slide = (stepvals[5] < easeinsine256[thresholds[3]]) ? true : false;
 
     if(slide) {
         // Send note-offs for all previously-playing notes except last

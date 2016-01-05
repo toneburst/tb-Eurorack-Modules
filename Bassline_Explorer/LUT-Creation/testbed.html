@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript Testbed</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="easing.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            /*function U8Mix(a, b, x) {
+                return (x == 255) ? b : x * b + (255 - x) * a >> 8;
+            }
+            var a = 0;
+            var b = 11;
+            $(document).ready(function() {
+                for(i = 0; i < 256; i++) {
+                    var mix = U8Mix(a, b, i);
+                    console.log(mix);
+                }
+            });*/
+
+
+
+            $(document).ready(function() {
+                function easing(varname, min, max, steps, easing) {
+                    var str = "ease.easeInSine(1,0,256,256)";
+
+                    var result = "var " + varname + " = [";
+                    var steps = 256;
+                    for(i = 0; i < steps; i++) {
+                        result += Math.round(eval("ease." + easing + "(" + i + "," + min + "," + max + "," + steps + ")"));
+                        if(i != steps - 1)
+                            result += ",";
+                    }
+                    result += "];";
+                    return result;
+                };
+                $(".result").html(easing("easeinsine256", 0, 256, 256, "easeInSine"));
+            });
+        </script>
+    </head>
+    <body>
+        <div class="result">
+
+        </div>
+    </body>
+</html>

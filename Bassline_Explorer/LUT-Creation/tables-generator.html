@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Bassline Explorer Lookup Tables</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script src="easing.js" charset="utf-8"></script>
+		<script type="text/javascript">
+
+			// Convert number to binary string of length length
+			function decbin(dec, length){
+				var out = "";
+				while(length--)
+					out += (dec >> length ) & 1;
+				return out;
+			}
+			// Convert binary string to number
+			function bindec(bin) {
+			    return parseInt(bin,2).toString(10);
+			}
+			// Cut 32-bit binary string to last 8 chars
+			function binto8(bin) {
+				return bin.substring(24, 32);
+			}
+			// Left-bit-shift number as if number were uint8
+			function leftshift8(dec, shift) {
+				var bin = decbin(dec << shift, 32);
+				return bindec(binto8(bin));
+			}
+
+			// Easing functions (uses functions in easing.js)
+			function easing(title, varname, min, max, steps, easing) {
+				var str = "// " + title + "<br />";
+				str += "var " + varname + " = [";
+				var steps = 256;
+				for(i = 0; i < steps; i++) {
+					if(i % 16 == 0)
+						str += "<br />    ";
+					str += Math.round(eval("ease." + easing + "(" + i + "," + min + "," + max + "," + steps + ")"));
+					if(i == steps - 1)
+						str += "<br />";
+					else
+						str += ","
+				}
+				str += "];";
+				return str;
+			};
+
+			function generate_coord_LUT_linear() {
+				var str = "";
+				str += "// Coordinate table for X/Y (cell index/position)<br />";
+				str += "var coordtableLinear = [";
+				for(i = 0; i < 256; i++) {
+					if(i % 16 == 0)
+						str += "<br />    ";
+					str += "[";
+					str += i >> 6;
+					str += ",";
+					str += leftshift8(i, 2);
+					str += "]";
+					if(i < 255)
+						str += ",";
+					else
+						str += "<br>";
+				}
+				str += "];"
+				return str;
+			}
+
+			$(document).ready(function() {
+				var result = "<pre>";
+				result += generate_coord_LUT_linear();
+
+				result += "<br /><br />" + easing("Ease-In Sine lookup table", "easeinsine256", 0, 256, 256, "easeInSine");
+
+				result += "</pre>";
+
+				// Display results
+				$("#result").html(result);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="result"></div>
+	</body>
+</html>
