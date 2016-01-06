@@ -177,18 +177,20 @@ function getStepVals() {
     };
 
     // Set note-length (halfstep value) from LUT if slide threshold is less the 32
-    if(thresholds[3] < 32) {
+    /*if(thresholds[3] < 32) {
         notelength = notelengthtable[thresholds[3]];
         halfstep = notelength * stepperiod;
-    }
+    }*/
 };
 
-function sequencer() {
-    // Step Function
-    setInterval(function() {
-        playStep();
-        setTimeout(function() {
+function clock() {
+    var metronome = new Metronome(bpm, 8);
+    metronome.start();
+    metronome.on("tick", function(e) {
+        if(e % 2 == 0) {
+            playStep();
+        } else {
             getStepVals();
-        }, halfstep);
-    }, stepperiod);
+        }
+    }, false);
 };

@@ -26,6 +26,24 @@ function setupcontrols() {
         }
     });
 
+    $("#length").knob({
+        width : 100,
+        height : 100,
+        lineCap : "round",
+        change : function (value) {
+            //valx = parseInt(value);
+        }
+    });
+
+    $("#shift").knob({
+        width : 100,
+        height : 100,
+        lineCap : "round",
+        change : function (value) {
+            //valy = parseInt(value);
+        }
+    });
+
     $("#knob_threshold_note").knob({
         width : 50,
         height : 50,

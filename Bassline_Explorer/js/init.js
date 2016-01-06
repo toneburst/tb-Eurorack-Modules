@@ -8,9 +8,7 @@
 // Global Variables //
 //////////////////////
 
-var stepperiod = 150;
-var notelength = 0.5;
-var halfstep = notelength * stepperiod;
+var bpm = 126;
 var masterstepcounter = 0;
 
 var valx = 127;
@@ -63,6 +61,6 @@ $(document).ready(function() {
     // Init MIDI
     setupmidi();
 
-    // Start sequencer
-    sequencer();
+    // Start clock
+    clock();
 });

@@ -3,7 +3,7 @@
     <head>
         <title>Bassline Explorer Beta 0.0.1</title>
 
-        <script src="js/lib/HackTimer/HackTimer.min.js" charset="utf-8"></script>
+        <script src="js/lib/Metronome.min.js" charset="utf-8"></script>
         <script src="js/lib/jquery-2.1.4.min.js"></script>
         <!--[if IE]><script type="text/javascript" src="js/lib/jquery-knob/excanvas.js"></script><![endif]-->
         <script src="js/lib/jquery-knob/jquery.knob.min.js"></script>
@@ -27,9 +27,6 @@
             <p>Select MIDI Output:</p>
             <p><select id="selectmidi"></select></p>
         </div>
-        <p>
-            <button id="testmidi"> Test Output... </button>
-        </p>
 
         <div class="control">
             <p>X Position</p>
@@ -39,6 +36,15 @@
             <p>Y Position</p>
             <input id="knob_y" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
         </div>
+        <div class="control clear">
+            <p>Length</p>
+            <input id="length" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="0">
+        </div>
+        <div class="control">
+            <p>Shift</p>
+            <input id="shift" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
+        </div>
+
         <div class="control control_small clear">
             <p>Note Transform</p>
             <input id="knob_threshold_note" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
