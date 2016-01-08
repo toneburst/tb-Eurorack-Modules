@@ -182,15 +182,3 @@ function getStepVals() {
         halfstep = notelength * stepperiod;
     }*/
 };
-
-function clock() {
-    var metronome = new Metronome(bpm, 8);
-    metronome.start();
-    metronome.on("tick", function(e) {
-        if(e % 2 == 0) {
-            playStep();
-        } else {
-            getStepVals();
-        }
-    }, false);
-};

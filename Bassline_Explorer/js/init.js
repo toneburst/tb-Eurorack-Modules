@@ -62,5 +62,6 @@ $(document).ready(function() {
     setupmidi();
 
     // Start clock
-    clock();
+    //chore();
+    start();
 });
