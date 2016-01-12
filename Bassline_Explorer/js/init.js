@@ -8,7 +8,7 @@
 // Global Variables //
 //////////////////////
 
-var bpm = 126;
+var bpm = 120.0;
 var masterstepcounter = 0;
 
 var valx = 127;
@@ -53,6 +53,9 @@ var slide = false;
 // Master transpose amount
 var transpose = 36;
 
+// Clock var
+var clock = new Metronome(bpm, 0.5);
+
 // Start Main Functions at page load
 $(document).ready(function() {
     // Setup controls
@@ -62,6 +65,13 @@ $(document).ready(function() {
     setupmidi();
 
     // Start clock
-    //chore();
-    start();
+    clock.init();
+    clock.play();
+    clock.bind('tick', function(count) {
+        masterstepcounter = count;
+        playStep();
+    });
+    clock.bind('note-off', function(e) {
+        getStepVals();
+    });
 });

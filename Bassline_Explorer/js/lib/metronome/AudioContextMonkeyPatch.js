@@ -45,7 +45,6 @@ This library does NOT patch the enumerated type changes, as it is
 recommended in the specification that implementations support both integer
 and string types for AudioPannerNode.panningModel, AudioPannerNode.distanceModel
 BiquadFilterNode.type and OscillatorNode.type.
-
 */
 (function (global, exports, perf) {
   'use strict';

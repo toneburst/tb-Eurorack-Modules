@@ -2,17 +2,19 @@
 <html>
     <head>
         <title>Bassline Explorer Beta 0.0.1</title>
-
         <script src="js/lib/jquery-2.1.4.min.js"></script>
         <!--[if IE]><script type="text/javascript" src="js/lib/jquery-knob/excanvas.js"></script><![endif]-->
         <script src="js/lib/jquery-knob/jquery.knob.min.js"></script>
         <script src="js/lib/jzz/JZZ.js" charset="utf-8"></script>
+        <script src="js/lib/microevent/microevent.min.js" charset="utf-8"></script>
+        <script src="js/lib/metronome/metronome.js" charset="utf-8"></script>
+        <script src="js/lib/metronome/AudioContextMonkeyPatch.min.js" charset="utf-8"></script>
         <script src="js/tables.min.js" charset="utf-8"></script>
         <script src="js/patterns.min.js" charset="utf-8"></script>
         <script src="js/midi.min.js" charset="utf-8"></script>
         <script src="js/controls.min.js" charset="utf-8"></script>
         <script src="js/bassline-explorer.min.js" charset="utf-8"></script>
-        <script src="js/init.min.js" charset="utf-8"></script>
+        <script src="js/init.js" charset="utf-8"></script>
 
         <link rel="stylesheet" type="text/css" href="styles.min.css">
     </head>
@@ -37,11 +39,11 @@
         </div>
         <div class="control clear">
             <p>Length</p>
-            <input id="length" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="0">
+            <input id="length" class="knob" data-min="1" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="16">
         </div>
         <div class="control">
             <p>Shift</p>
-            <input id="shift" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
+            <input id="shift" class="knob" data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
         </div>
 
         <div class="control control_small clear">

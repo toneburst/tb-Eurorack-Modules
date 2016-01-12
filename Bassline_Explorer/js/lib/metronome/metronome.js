@@ -1,102 +1,107 @@
-var audioContext = null;
-var isPlaying = false;			// Are we currently playing?
-var startTime;					// The start time of the entire sequence.
-var current16thNote;			// What note is currently last scheduled?
-var tempo = 120.0;				// tempo (in beats per minute)
-var lookahead = 25.0;			// How frequently to call scheduling function
-								//(in milliseconds)
-var scheduleAheadTime = 0.1;	// How far ahead to schedule audio (sec)
-								// This is calculated from lookahead, and overlaps
-								// with next interval (in case the timer is late)
-var nextNoteTime = 0.0;			// when the next note is due.
-var noteResolution = 0;			// 0 == 16th, 1 == 8th, 2 == quarter note
-var noteLength = 0.05;			// length of "beep" (in seconds)
-var notesInQueue = [];			// the notes that have been put into the web audio,
-								// and may or may not have played yet. {note, time}
-var timerWorker = null;			// The Web Worker used to fire timer messages
+/*
+ *
+ *
+ */
 
-function nextNote() {
-    // Advance current note and time by a 16th note...
-    var secondsPerBeat = 60.0 / tempo;		// Notice this picks up the CURRENT
-    										// tempo value to calculate beat length.
-    nextNoteTime += 0.25 * secondsPerBeat;	// Add beat length to last beat time
+// (now loosely) Based on
+// https://github.com/cwilso/metronome
+// By Chris Wilson
+// Requires Microevents.js
 
-    current16thNote++;						// Advance the beat number, wrap to zero
-    if (current16thNote == 16) {
-        current16thNote = 0;
-    }
-}
+//Copyright (c) 2010 Nicholas C. Zakas. All rights reserved.
+//MIT License
 
-function scheduleNote( beatNumber, time ) {
-    // Push the note on the queue, even if we're not playing.
-    notesInQueue.push( { note: beatNumber, time: time } );
+function Metronome(tempo, notelength) {
+    this.tempo = tempo;
+    this.audioContext = null;
+    this.isPlaying = false;         // Are we currently playing?
+    this.startTime;                 // The start time of the entire sequence.
+    this.lookahead = 5.0;			// How frequently to call scheduling function
+    this.scheduleAheadTime = 0.1;	// How far ahead to schedule audio (sec)
+    								// This is calculated from lookahead, and overlaps
+    								// with next interval (in case the timer is late)
+    this.nextNoteTime = 0.0;	    // when the next note is due.
+    this.notesCounter = 0;
+    this.timerWorker = null;
+    this.noteOn = 1;
+    this.secondsPerNote = 15.0 / this.tempo;
+    this.noteLength = notelength * this.secondsPerNote;
+};
 
-    if ( (noteResolution==1) && (beatNumber%2))
-        return; // We're not playing non-8th 16th notes
-    if ( (noteResolution==2) && (beatNumber%4))
-        return; // We're not playing non-quarter 8th notes
+// Mix in Microevent object from microevent.js so our Metronome object can emit events
+MicroEvent.mixin(Metronome);
 
-    // Create an oscillator
-    var osc = audioContext.createOscillator();
-    osc.connect( audioContext.destination );
-    if (beatNumber % 16 === 0)		// Beat 0 == low pitch
-        osc.frequency.value = 880.0;
-    else if (beatNumber % 4 === 0 )	// Quarter notes = medium pitch
-        osc.frequency.value = 440.0;
-    else							// Other 16th notes = high pitch
-        osc.frequency.value = 220.0;
+Metronome.prototype.setTempo = function(tempo) {
+    this.tempo = tempo;
+    this.secondsPerNote = 30.0 / this.tempo;
+};
 
-    osc.start( time );
-    osc.stop( time + noteLength );
-	
-	console.log("Tick!");
-}
+Metronome.prototype.setNoteLength = function(length) {
+    this.noteLength = Math.min(length, 0.9);
+};
 
-function scheduler() {
-    // While there are notes that will need to play before the next interval, 
-    // Schedule them and advance the pointer.
-    while (nextNoteTime < audioContext.currentTime + scheduleAheadTime ) {
-        scheduleNote( current16thNote, nextNoteTime );
-        nextNote();
-    }
-}
-
-function play() {
-    isPlaying = !isPlaying;
-
-    if (isPlaying) { // Start playing
-        current16thNote = 0;
-        nextNoteTime = audioContext.currentTime;
-        timerWorker.postMessage("start");
-        return "stop";
+Metronome.prototype.nextNote = function() {
+    if(this.noteOn === 1) {
+        // Schedule note-off to notelength from now
+        this.nextNoteTime += this.noteLength;
+        // Only increment counter on note-ons (every other pulse)
+        this.notesCounter++;
+        if(this.notesCounter === 256)
+            this.notesCounter = 0;
     } else {
-        timerWorker.postMessage("stop");
-        return "play";
+        // Schedule next note-on
+        this.nextNoteTime += this.secondsPerNote - this.noteLength;
     }
-}
+    this.noteOn = 1 - this.noteOn;
+};
 
-function init(){
+Metronome.prototype.scheduleNote = function(time) {
+    var self = this;
+    if(this.noteOn === 1)
+        self.trigger('tick', this.notesCounter);
+    else
+        self.trigger('note-off', "Note Off");
+};
+
+Metronome.prototype.scheduler = function() {
+    // While there are notes that will need to play before the next interval,
+    // Schedule them and advance the pointer.
+    while(this.nextNoteTime < this.audioContext.currentTime + this.scheduleAheadTime) {
+        this.scheduleNote(this.nextNoteTime);
+        this.nextNote();
+    };
+};
+
+Metronome.prototype.play = function() {
+    this.nextNoteTime = this.audioContext.currentTime;
+    this.notesCounter = 0;
+    this.timerWorker.postMessage("start");
+    console.log("Starting clock");
+    this.isPlaying = true;
+};
+
+Metronome.prototype.stop = function() {
+    this.timerWorker.postMessage("stop");
+    console.log("Stopping clock");
+    this.isPlaying = false;
+};
+
+Metronome.prototype.init = function() {
     // NOTE: THIS RELIES ON THE MONKEYPATCH LIBRARY BEING LOADED FROM
-    // http://cwilso.github.io/AudioContext-MonkeyPatch/AudioContextMonkeyPatch.js
+    // http://cwilso.github.io/metroAudioContext-MonkeyPatch/metroAudioContextMonkeyPatch.js
     // TO WORK ON CURRENT CHROME!!  But this means our code can be properly
     // spec-compliant, and work on Chrome, Safari and Firefox.
-
-    audioContext = new AudioContext();
-
-    // If we wanted to load audio files, etc., this is where we should do it.
-
-    timerWorker = new Worker("js/metronomeworker.js");
-
-    timerWorker.onmessage = function(e) {
+    var self = this;    // Handle to object instance context, used below.
+    this.audioContext = new AudioContext();
+    // Create an oscillator
+    // This seems to be necessary in order for audioContext to increment it's time property
+    var dummyosc = this.audioContext.createOscillator();
+    this.timerWorker = new Worker("js/lib/metronome/metronomeworker.min.js");
+    this.timerWorker.addEventListener('message', function(e) {
         if (e.data == "tick") {
-            // Console.log("tick!");
-            scheduler();
-        }
-        else
+            self.scheduler();
+        } else
             console.log("message: " + e.data);
-    };
-    timerWorker.postMessage({"interval":lookahead});
-}
-
-window.addEventListener("load", init );
-
+    }, false);
+    this.timerWorker.postMessage({"interval":this.lookahead});
+};
