@@ -29,7 +29,7 @@
 		<key>Color</key>
 		<data>
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWE
-		AWMChARmZmZmg3WTmD6D/tS4PoNSuN4+g83MTD+G
+		AWMChARmZmZmgwIrxz6DYOXQPoNSuN4+g83MTD+G
 		</data>
 		<key>Track Names</key>
 		<array>
@@ -40,14 +40,26 @@
 			<integer>1</integer>
 		</array>
 		<key>device ID</key>
-		<integer>50</integer>
+		<integer>38</integer>
 		<key>isCollapsed</key>
 		<false/>
 	</dict>
 	<key>Patches</key>
 	<array/>
 	<key>Send Bus Info</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Bus Name</key>
+			<string>Bus 1</string>
+			<key>Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmg32LED+DK1McP4Mv1wk/g83MTD+G
+			</data>
+			<key>isCollapsed</key>
+			<false/>
+		</dict>
+	</array>
 	<key>Session Data</key>
 	<dict>
 		<key>audio device used</key>
@@ -55,11 +67,11 @@
 			<key>audio device uid</key>
 			<string>AppleHDAEngineOutput:1B,0,1,2:0</string>
 			<key>device model uid</key>
-			<string>AppleHDA:9</string>
+			<string>AppleHDA:122</string>
 			<key>in channels</key>
 			<integer>0</integer>
 			<key>io num frames</key>
-			<integer>192</integer>
+			<integer>256</integer>
 			<key>name</key>
 			<string>Built-in Output</string>
 			<key>out channels</key>
@@ -131,6 +143,151 @@
 				<real>1</real>
 			</array>
 		</dict>
+		<key>return mixer</key>
+		<dict>
+			<key>strips</key>
+			<array>
+				<dict>
+					<key>active</key>
+					<integer>1</integer>
+					<key>effects</key>
+					<array>
+						<dict>
+							<key>aupreset</key>
+							<dict>
+								<key>data</key>
+								<data>
+								AAAAAAAAAAAA
+								AAARAAAAAELI
+								AAAAAAABQgwA
+								AAAAAAI8cZUD
+								AAAAAz17fpEA
+								AAAEPHSH/QAA
+								AAU6gxJvAAAA
+								Bj8nrhQAAAAH
+								Py4UewAAAAg/
+								FcKPAAAACT9A
+								AAAAAAAKPyP3
+								zwAAAAs+yoy9
+								AAAADD+dfJoA
+								AAANPszMzQAA
+								AA5ESAAAAAAA
+								D0BAAAAAAAAQ
+								AAAAAA==
+								</data>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Medium Hall 3</string>
+								<key>render-quality</key>
+								<integer>127</integer>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+								<key>version</key>
+								<integer>0</integer>
+							</dict>
+							<key>bypass</key>
+							<integer>0</integer>
+							<key>connections</key>
+							<array>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>1</integer>
+								</dict>
+								<dict>
+									<key>channel layout</key>
+									<dict>
+										<key>acl tag</key>
+										<integer>6619138</integer>
+									</dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>2</integer>
+								</dict>
+							</array>
+							<key>unit</key>
+							<dict>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Apple: AUMatrixReverb</string>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>mute</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string>Bus 1</string>
+					<key>output assignments</key>
+					<array>
+						<integer>1</integer>
+					</array>
+					<key>pan angle</key>
+					<real>1</real>
+					<key>pan azimuth</key>
+					<real>0.0</real>
+					<key>pan distance</key>
+					<real>1</real>
+					<key>pan elevation</key>
+					<real>0.0</real>
+					<key>pan mode</key>
+					<integer>4</integer>
+					<key>solo</key>
+					<integer>0</integer>
+					<key>source number channels</key>
+					<integer>2</integer>
+					<key>volume</key>
+					<real>1</real>
+				</dict>
+			</array>
+		</dict>
 		<key>synth list</key>
 		<array>
 			<dict>
@@ -154,26 +311,26 @@
 					bnY9MgojbXY9R2F0ZQojbXY9QURTUjEKI2Nt
 					PW1haW4KQ2NPcD0yMDAuMDAKI0NocnMxPTAK
 					I2NtPVBDb3JlCk1NVDE9VHlyZWxsOkZNRHB0
-					MQpNTVMxPTYKTU1EMT0zOC4wMApNTVZTMT0w
+					MQpNTVMxPTYKTU1EMT0zNC4wMApNTVZTMT0w
 					Ck1NVkQxPTIuMDAKTU1UMj1FTlYyOkRlYwpN
-					TVMyPTYKTU1EMj0tMzguMDAKTU1WUzI9MApN
+					TVMyPTYKTU1EMj0tNDYuMDAKTU1WUzI9MApN
 					TVZEMj0wLjAwClNCYXNlPTQKU3dpbmc9MC4w
 					MApTVHJpZz0xClBTb25nPTEKUEZvbGQ9MApQ
 					RmlsZT0xCkdGaWxlPTIKR1NjYWxlPTAKQ2hM
 					YXk9MApTdXJyTz0xClJldj0zMzA0CkxFRD0w
 					LjAwClBBR0U9MApQYWdlc09uPTAKQ29yZU49
-					MwpTbGljZT00ClVJX29wPTgKTWlkaUE9NQpN
+					MwpTbGljZT00ClVJX29wPTkKTWlkaUE9NQpN
 					aWRpUD02CiNjbT1WQ0MKVm9pY2luZz0xCk1v
-					ZGU9MgpQb3J0YU09MApQb3J0YT0zNC4wMApQ
+					ZGU9MgpQb3J0YU09MApQb3J0YT0zNi41MApQ
 					b3J0YTI9MC4wMApQUmFuZ2U9MTAwLjAwClBC
 					PTIKUEJEPTIKRHJmdD0xCk1UdW5TPTAKTVR1
-					bk49NwpNVHVuVD04ClRyc3A9LTEyClByaW9y
+					bk49NwpNVHVuVD04ClRyc3A9LTI0ClByaW9y
 					PTAKTXVDb3JlPTAKQ29udEVuPTEKUk5vdGU9
 					MApSVmVsPTAKI2NtPUVOVjEKQXRrPTAuMDAK
 					RGVjPTM5LjAwClN1cz0xMDAuMDAKRlI9MC4w
 					MApSZWw9MTYuNDAKVmVsPTM4LjUwClJNb2Q9
 					MC4wMApMYWJlbD05ClRyaWc9MAojY209RU5W
-					MgpBdGs9MC4wMApEZWM9ODcuODAKU3VzPTAu
+					MgpBdGs9MC4wMApEZWM9NzYuNDAKU3VzPTAu
 					MDAKRlI9MC4wMApSZWw9MjAuMDAKVmVsPTgy
 					LjUwClJNb2Q9MC4wMApMYWJlbD0xMApUcmln
 					PTAKI2NtPUxGTzEKU3luYz0yClRyaWc9MQpX
@@ -191,98 +348,98 @@
 					NgpEZXR1bmU9MC4wMApTeW5jPTAuMDAKVnRv
 					RD0wLjAwClJNaTE9MApSTWkyPTAKRkJpbj0w
 					Ck5vaXNlPTEuMDAKT3NjVm9sMT0wLjAwCk9z
-					Y1ZvbDI9LTIuNTAKU3ViVm9sPS00OC4wMApO
-					c2VWb2w9LTEwMC4wMApSTVZvbD0tMTAwLjAw
-					CkZCVm9sPS0xMDAuMDAKVkNGbW9kPTAKVkNG
-					UG9sPTEKQ3V0b2ZmPTMwLjAwCkZNU3JjMT0x
-					NApGTURwdDE9MTguMDAKRk1TcmMyPTE1CkZN
-					RHB0Mj0wLjAwCktleUZvbD05MC40MApSZXM9
-					OTAuNDAKTXhTcD0wLjAwCk14U3BTcmM9MApB
-					UlNyYz0wCkFSRGVzdD0wCkFSRHB0PTAuMDAK
-					QVJNb2Q9MAojY209VkNBMQpWQ0E9MApBdHRT
-					PTEKI2NtPUNocnMxClR5cGU9MApSYXRlPTUw
-					LjAwCkRlcHRoPTUwLjAwCldldD0zMC4wMAoK
-					Ci8vIFNlY3Rpb24gZm9yIHVnbHkgY29tcHJl
-					c3NlZCBiaW5hcnkgRGF0YQovLyBET04nVCBU
-					T1VDSCBUSElTCgokJCQkMTY1Mgo/Z2RnY2Vu
-					ZWI6b2FlamdlaGk6ZWlob2doa2Q6ZWFhYWFh
-					YWE6YWFhYmFhYWE6YWJhYWFhYWE6YWFhYWlh
-					ZHA6CmFhbGZobWFhOmFkYWFhYWFhOnBwYWFh
-					YWFhOmFhOmVjOmViOnBlOmVhOmxwOmNhOnBq
-					OmdwOmhhOmhpOmlhOmoKaTprZDpnYjpqazpk
-					YTpsYTpwaTphaTpiaTpmYTpnZjpoYzprYTpt
-					YSFxdUE3ZW1JZ2RPZ21BbmtqYnh5bW1TRApG
-					ZWdjZ29ramZ1enJRSERGc0xhb0ExVEhERkFt
-					bG9pamZzY2lIREZwbVNERk1samdhaGt5TFpJ
-					S1lVSUtRQTJKClVJS3BhaG1hcEEyZ2FLQTNK
-					VUlLeGZjTm5ramJLa29QTmJhYWJqbE5BMXBi
-					TWVpSERGZmkxcGJNQVJkZUFyZ2kKSERGY2Vv
-					bm9wTXJBUmRlQVZoalBOcjFSSlBObWlIREZt
-					Z2NwcGJNUkpQTnJvZWVqZ2VLZGpEcGNNckEz
-					YWdBNgpwcDdobW1nUE5WbWdQTmJwbGdqbGlo
-					QTJ1QVNIREZlbUEyYWdBMnF0QTdoZWdjR0JP
-					aGQxZ21namdvV0dlZktKCmdtSVhXWEdRZGJj
-					b2dpZGNKQXpyUUhERnNMYW9BMVRIREZBbWxv
-					aWpmc2NpSERGcXRBNzFxdEE3b25vb29wcGEK
-					cGJwY3BkRHBmcGdwaFNIcGtwbHBtcG5wb3Bw
-					QWFiYWNhZGFlYWZhZ2FoVGFqYWthbGFtYW5h
-					b2FwYmFiYmJjYgpkYmViZmJnYmhVYmpia2Js
-					Ym1ibmJvYnBHY2JjY2NkY2VjZmNnY2hjaWNq
-					Y2tjbGNtcWFlQTEwZWpuZ2ZqYWJxCnVBN2ho
-					MmNvZ29JZ2poZFdnZ09nZGhlSVhoamNvZ2VX
-					QTIzNnFMQTEwZmZnb0lnY09oZDFjbmRjR2Vv
-					ZWdjb2cKaWRjSkExMTFxdEE0M3dBMkVBMUUx
-					QTFMRUExWUVBMVpFQTFvYUVxQWFjQTV3QTN3
-					QTJFQTFFMUExTEVBMVlFQQoxWkVBMW9hdENB
-					MWJhQ0ExR0NBMVFDQTFFQ0ExVkNBMWdhQ0Ex
-					SkNBMUxDQTFpaUNBMWphQ0ExTUNBMVlDQTFr
-					CmlDQTFSQ0ExbGlDQTFaQ0ExbWlDQTFuYUNB
-					MW5pQ0Exb2FDQTFvaUNBMXBhQ0ExU0NBMkJB
-					MWFlQkExVEJBMWEKbUJBMWJhQkExYmVCQTFV
-					QkExYm1CQTFHQkExY2VCQTFjaUJBMWNtQkEx
-					UUJBMWRlQkExZGlCQTFkbUJBMUVCQQoxZWVC
-					QTFlaUJBMWVtQkExVkJBMWZlQkExZmlCQTFm
-					bUJBMWdhQkExZ2VCQTFnaUJBMWdtQkExSkJB
-					MWhlQkExCktCQTFobUJBMUxCQTFpY0JBMWll
-					QkExaWdCQTFpaUJBMWlrQkExaW1CQTFpb0JB
-					MWphQkExamNCQTFqZUJBMWoKZ0JBMU1CQTFQ
-					QkExam1CQTFqb0JBMVlCQTFrY0JBMWtlQkEx
-					a2dCQTFraUJBMWtrQkExa21CQTFrb0JBMVJC
-					QQoxbGNCQTFsZUJBMWxnQkExbGlCQTFsa0JB
-					MWxtQkExbG9CQTFaQkExbWNCQTFtZUJBMW1n
-					QkExbWlCQTFta0JBCjFtbUJBMW1vQkExbmFC
-					QTFuY0JBMW5lQkExbmdCQTFuaUJBMW5rQkEx
-					bm1CQTFub0JBMW9hQkExb2NCQTFvZUIKQTFv
-					Z0JBMW9pQkExb2tCQTFvbUJBMW9vQkExcGFC
-					QTFwY0JBMURCQTFwZ0JBMVNCQTFwa0JBMXBt
-					QkExcG9CcQpHQTEwQ2VlZmRmY0dkYkE4dUFk
-					bW9jbWpkbWFjQU9nZVdYZW5PcUdBMTBDZWVm
-					ZGZjR2RjQTh1QVRhZG1rZG1hCmNBWE9nb2hr
-					Vkk9MTIwMDIzCgAA
+					Y1ZvbDI9LTEwMC4wMApTdWJWb2w9LTEwMC4w
+					MApOc2VWb2w9LTEwMC4wMApSTVZvbD0tMTAw
+					LjAwCkZCVm9sPS0xMDAuMDAKVkNGbW9kPTAK
+					VkNGUG9sPTEKQ3V0b2ZmPTM0LjAwCkZNU3Jj
+					MT0xNApGTURwdDE9MTAuMDAKRk1TcmMyPTE1
+					CkZNRHB0Mj0wLjAwCktleUZvbD0wLjAwClJl
+					cz04MC44MApNeFNwPTAuMDAKTXhTcFNyYz0w
+					CkFSU3JjPTAKQVJEZXN0PTAKQVJEcHQ9MC4w
+					MApBUk1vZD0wCiNjbT1WQ0ExClZDQT0wCkF0
+					dFM9MQojY209Q2hyczEKVHlwZT0wClJhdGU9
+					NTAuMDAKRGVwdGg9NTAuMDAKV2V0PTMwLjAw
+					CgoKCgovLyBTZWN0aW9uIGZvciB1Z2x5IGNv
+					bXByZXNzZWQgYmluYXJ5IERhdGEKLy8gRE9O
+					J1QgVE9VQ0ggVEhJUwoKJCQkJDE2NTIKP2dk
+					Z2NlbmViOm9hZWpnZWhpOmVpaG9naGtkOmVh
+					YWFhYWFhOmFhYWJhYWFhOmFiYWFhYWFhOmFh
+					YWFpYWRwOgphYWxmaG1hYTphZGFhYWFhYTpw
+					cGFhYWFhYTphYTplYzplYjpwZTplYTpscDpj
+					YTpwajpncDpoYTpoaTppYTpqCmk6a2Q6Z2I6
+					ams6ZGE6bGE6cGk6YWk6Ymk6ZmE6Z2Y6aGM6
+					a2E6bWEhcXVBN2VtSWdkT2dtQW5ramJ4eW1t
+					U0QKRmVnY2dva2pmdXpyUUhERnNMYW9BMVRI
+					REZBbWxvaWpmc2NpSERGcG1TREZNbGpnYWhr
+					eUxaSUtZVUlLUUEySgpVSUtwYWhtYXBBMmdh
+					S0EzSlVJS3hmY05ua2piS2tvUE5iYWFiamxO
+					QTFwYk1laUhERmZpMXBiTUFSZGVBcmdpCkhE
+					RmNlb25vcE1yQVJkZUFWaGpQTnIxUkpQTm1p
+					SERGbWdjcHBiTVJKUE5yb2VlamdlS2RqRHBj
+					TXJBM2FnQTYKcHA3aG1tZ1BOVm1nUE5icGxn
+					amxpaEEydUFTSERGZW1BMmFnQTJxdEE3aGVn
+					Y0dCT2hkMWdtZ2pnb1dHZWZLSgpnbUlYV1hH
+					UWRiY29naWRjSkF6clFIREZzTGFvQTFUSERG
+					QW1sb2lqZnNjaUhERnF0QTcxcXRBN29ub29v
+					cHBhCnBicGNwZERwZnBncGhTSHBrcGxwbXBu
+					cG9wcEFhYmFjYWRhZWFmYWdhaFRhamFrYWxh
+					bWFuYW9hcGJhYmJiY2IKZGJlYmZiZ2JoVWJq
+					YmtibGJtYm5ib2JwR2NiY2NjZGNlY2ZjZ2No
+					Y2ljamNrY2xjbXFhZUExMGtqbmdoZGFicQp1
+					QTdoaDJjb2dvSWdqaGRXZ2dPZ2RoZUlYaGpj
+					b2dlV0EyMzZxTEExMGZmZ29JZ2NPaGQxY25k
+					Y0dlb2VnY29nCmlkY0pBMTExcXRBNDN3QTJF
+					QTFFMUExTEVBMVlFQTFaRUExb2FFcUFhY0E1
+					d0Ezd0EyRUExRTFBMUxFQTFZRUEKMVpFQTFv
+					YXRDQTFiYUNBMUdDQTFRQ0ExRUNBMVZDQTFn
+					YUNBMUpDQTFMQ0ExaWlDQTFqYUNBMU1DQTFZ
+					Q0ExawppQ0ExUkNBMWxpQ0ExWkNBMW1pQ0Ex
+					bmFDQTFuaUNBMW9hQ0Exb2lDQTFwYUNBMVND
+					QTJCQTFhZUJBMVRCQTFhCm1CQTFiYUJBMWJl
+					QkExVUJBMWJtQkExR0JBMWNlQkExY2lCQTFj
+					bUJBMVFCQTFkZUJBMWRpQkExZG1CQTFFQkEK
+					MWVlQkExZWlCQTFlbUJBMVZCQTFmZUJBMWZp
+					QkExZm1CQTFnYUJBMWdlQkExZ2lCQTFnbUJB
+					MUpCQTFoZUJBMQpLQkExaG1CQTFMQkExaWNC
+					QTFpZUJBMWlnQkExaWlCQTFpa0JBMWltQkEx
+					aW9CQTFqYUJBMWpjQkExamVCQTFqCmdCQTFN
+					QkExUEJBMWptQkExam9CQTFZQkExa2NCQTFr
+					ZUJBMWtnQkExa2lCQTFra0JBMWttQkExa29C
+					QTFSQkEKMWxjQkExbGVCQTFsZ0JBMWxpQkEx
+					bGtCQTFsbUJBMWxvQkExWkJBMW1jQkExbWVC
+					QTFtZ0JBMW1pQkExbWtCQQoxbW1CQTFtb0JB
+					MW5hQkExbmNCQTFuZUJBMW5nQkExbmlCQTFu
+					a0JBMW5tQkExbm9CQTFvYUJBMW9jQkExb2VC
+					CkExb2dCQTFvaUJBMW9rQkExb21CQTFvb0JB
+					MXBhQkExcGNCQTFEQkExcGdCQTFTQkExcGtC
+					QTFwbUJBMXBvQnEKR0ExMENlZWZkZmNHZGJB
+					OHVBZG1vY21qZG1hY0FPZ2VXWGVuT3FHQTEw
+					Q2VlZmRmY0dkY0E4dUFUYWRta2RtYQpjQVhP
+					Z29oa1ZJPTEyMDAyNQoAAA==
 					</data>
 					<key>data</key>
 					<data>
 					AAAAAAAAAAAAAABOAAAAAENIAAAAAAABQMAA
-					AAAAAAJCGAAAAAAAAwAAAAAAAAAEQAAAAAAA
-					AAVAwAAAAAAABsIYAAAAAAAHAAAAAAAAAAgA
+					AAAAAAJCCAAAAAAAAwAAAAAAAAAEQAAAAAAA
+					AAVAwAAAAAAABsI3//8AAAAHAAAAAAAAAAgA
 					AAAAAAAACT+AAAAAAAAKQAAAAAAAAAsAAAAA
-					AAAADEIIAAAAAAANAAAAAAAAAA5CyAAAAAAA
-					D0AAAAAAAAAQQAAAAAAAABHBQAAAAAAAEgAA
+					AAAADEISAAAAAAANAAAAAAAAAA5CyAAAAAAA
+					D0AAAAAAAAAQQAAAAAAAABHBwAAAAAAAEgAA
 					AAAAAAATQhwAAAAAABRCyAAAAAAAFQAAAAAA
 					AAAWQYMzMwAAABdCGgAAAAAAGAAAAAAAAAAZ
-					AAAAAAAAABoAAAAAAAAAG0KvmZkAAAAcAAAA
+					AAAAAAAAABoAAAAAAAAAG0KYzM0AAAAcAAAA
 					AAAAAB0AAAAAAAAAHkGgAAAAAAAfQqUAAAAA
 					ACAAAAAAAAAAIQAAAAAAAAAiQAAAAAAAACMA
 					AAAAAAAAJEBAAAAAAAAlAAAAAAAAACZAgAAA
 					AAAAJwAAAAAAAAAoAAAAAAAAAClAAAAAAAAA
 					KgAAAAAAAAArQXAAAAAAACxBYAAAAAAALQAA
-					AAAAAAAuQeMzNAAAAC9BgAAAAAAAMAAAAAAA
+					AAAAAAAuQeMzMwAAAC9BgAAAAAAAMAAAAAAA
 					AAAxAAAAAAAAADIAAAAAAAAAMwAAAAAAAAA0
-					AAAAAAAAADU/gAAAAAAANgAAAAAAAAA3wCAA
-					AAAAADjCQAAAAAAAOcLIAAAAAAA6wsgAAAAA
-					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5B
-					8AAAAAAAP0FgAAAAAABAQZAAAAAAAEFBcAAA
-					AAAAQgAAAAAAAABDQrTMzQAAAERCtMzNAAAA
+					AAAAAAAAADU/gAAAAAAANgAAAAAAAAA3wsgA
+					AAAAADjCyAAAAAAAOcLIAAAAAAA6wsgAAAAA
+					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5C
+					CAAAAAAAP0FgAAAAAABAQSAAAAAAAEFBcAAA
+					AAAAQgAAAAAAAABDAAAAAAAAAERCoZmaAAAA
 					RQAAAAAAAABGAAAAAAAAAEcAAAAAAAAASAAA
 					AAAAAABJAAAAAAAAAEoAAAAAAAAAS0JIAAAA
 					AABMQkgAAAAAAE1B8AAA
@@ -391,6 +548,19 @@
 					<real>0.0</real>
 					<key>pan mode</key>
 					<integer>4</integer>
+					<key>sends</key>
+					<array>
+						<dict>
+							<key>bus</key>
+							<integer>0</integer>
+							<key>mute</key>
+							<integer>0</integer>
+							<key>post fader</key>
+							<integer>1</integer>
+							<key>volume</key>
+							<real>0.2274610847234726</real>
+						</dict>
+					</array>
 					<key>solo</key>
 					<integer>0</integer>
 					<key>synth source</key>
@@ -423,11 +593,101 @@
 			<integer>1</integer>
 		</dict>
 		<key>Window Frame</key>
-		<string>{{78, 34}, {355, 577}}</string>
+		<string>{{226, 113}, {355, 577}}</string>
 		<key>Window Max</key>
 		<string>{2560, 1622}</string>
 		<key>Window Min</key>
 		<string>{360, 540}</string>
+		<key>kAUInspectorListKey</key>
+		<array>
+			<dict>
+				<key>kAUInspectorStateKey_BusIndex</key>
+				<integer>0</integer>
+				<key>kAUInspectorStateKey_BusType</key>
+				<string>kBusType_Input</string>
+				<key>kAUInspectorStateKey_Bypassed</key>
+				<false/>
+				<key>kAUInspectorStateKey_CurrentViewName</key>
+				<string>u-he Cocoa View</string>
+				<key>kAUInspectorStateKey_EffectIndex</key>
+				<integer>-1</integer>
+				<key>kAUInspectorStateKey_PresetDrawerExpandedItems</key>
+				<array>
+					<array>
+						<string>Local</string>
+						<true/>
+					</array>
+					<array>
+						<string>3ee</string>
+						<false/>
+					</array>
+					<array>
+						<string>BrontoScorpio</string>
+						<false/>
+					</array>
+					<array>
+						<string>BumBumBias</string>
+						<false/>
+					</array>
+					<array>
+						<string>DocM</string>
+						<false/>
+					</array>
+					<array>
+						<string>Howie</string>
+						<false/>
+					</array>
+					<array>
+						<string>Julian Ray</string>
+						<false/>
+					</array>
+					<array>
+						<string>MIDI Programs</string>
+						<false/>
+					</array>
+					<array>
+						<string>noisefactory</string>
+						<false/>
+					</array>
+					<array>
+						<string>PocVecem</string>
+						<false/>
+					</array>
+					<array>
+						<string>rsmus7</string>
+						<false/>
+					</array>
+					<array>
+						<string>RW-Presets</string>
+						<false/>
+					</array>
+					<array>
+						<string>Tasmodia</string>
+						<false/>
+					</array>
+					<array>
+						<string>The Unshushable Coktor</string>
+						<false/>
+					</array>
+					<array>
+						<string>Various</string>
+						<false/>
+					</array>
+					<array>
+						<string>User</string>
+						<true/>
+					</array>
+				</array>
+				<key>kAUInspectorStateKey_PresetDrawerShowing</key>
+				<false/>
+				<key>kAUInspectorStateKey_TrackIndex</key>
+				<integer>0</integer>
+				<key>kAUInspectorStateKey_WindowLevel</key>
+				<integer>2147483647</integer>
+				<key>kAUInspectorStateKey_WindowRect</key>
+				<string>{{631, 95}, {1200, 642}}</string>
+			</dict>
+		</array>
 	</dict>
 </dict>
 </plist>

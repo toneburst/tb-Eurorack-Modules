@@ -17,6 +17,7 @@
         <script src="js/init.js" charset="utf-8"></script>
 
         <link rel="stylesheet" type="text/css" href="styles.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
@@ -25,6 +26,9 @@
           </object>
         </object>
 
+        <h1>Bassline Explorer</h1>
+
+        <!-- Playback Controls -->
         <section id="playback">
             <div id=selectmididiv>
                 <p>Select MIDI Output:</p>
@@ -32,34 +36,50 @@
             </div>
         </section>
 
-        <div class="control">
-            <p>X Position</p>
-            <input id="knob_x" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="0">
-        </div>
-        <div class="control">
-            <p>Y Position</p>
-            <input id="knob_y" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
-        </div>
-        <div class="control clear">
-            <p>Length</p>
-            <input id="length" class="knob" data-min="1" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="16">
-        </div>
-        <div class="control">
-            <p>Shift</p>
-            <input id="shift" class="knob" data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
-        </div>
+        <!-- Coordinate Controls -->
+        <section>
+            <div class="control">
+                <p>X Position</p>
+                <input id="knob_x" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="0">
+            </div>
+            <div class="control">
+                <p>Y Position</p>
+                <input id="knob_y" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
+            </div>
+        </section>
 
-        <div class="control control_small clear">
-            <p>Note Transform</p>
-            <input id="knob_threshold_note" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
-        </div>
-        <div class="control control_small clear">
-            <p>Accent Density</p>
-            <input id="knob_threshold_accent" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
-        </div>
-        <div class="control control_small">
-            <p>Slide Density</p>
-            <input id="knob_threshold_slide" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
-        </div>
+        <!-- Length and Shift Controls -->
+        <section>
+            <form action="" class="clear">
+              <input type="radio" name="lnshft-function" value="0"> Note<br>
+              <input type="radio" name="lnshft-function" value="1"> Octave<br>
+              <input type="radio" name="lnshft-function" value="2"> Accent<br>
+              <input type="radio" name="lnshft-function" value="3"> Slide
+            </form>
+            <div class="control">
+                <p>Length</p>
+                <input id="length" class="knob" data-min="1" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ff0000" data-rotation="clockwise" value="16">
+            </div>
+            <div class="control">
+                <p>Shift</p>
+                <input id="shift" class="knob" data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8000ff" data-rotation="clockwise" value="0">
+            </div>
+        </section>
+
+        <!-- Density/Transform Controls -->
+        <section>
+            <div class="control control_small clear">
+                <p>Note Transform</p>
+                <input id="knob_threshold_note" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+            </div>
+            <div class="control control_small clear">
+                <p>Accent Density</p>
+                <input id="knob_threshold_accent" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+            </div>
+            <div class="control control_small">
+                <p>Slide Density</p>
+                <input id="knob_threshold_slide" class="knob" data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#66EE66" data-rotation="clockwise" value="127">
+            </div>
+        </section>
     </body>
 </html>

@@ -4,6 +4,9 @@
  *
  */
 
+h1 {
+    font-family: 'Monofett', cursive;
+}
 .control {
     width: 120px;
     float: left;
