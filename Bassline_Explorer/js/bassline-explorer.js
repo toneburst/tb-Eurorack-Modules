@@ -178,8 +178,8 @@ function getStepVals() {
     // Set note-length (halfstep value) from LUT if slide threshold is less the 32
     if(thresholds[3] < 32) {
         console.log(notelengthtable[thresholds[3]]);
-        clock.setNoteLength(notelengthtable[thresholds[3]]);
+        clock.setGateLength(notelengthtable[thresholds[3]]);
     } else {
-        clock.setNoteLength(0.5);
+        clock.setGateLength(0.5);
     }
 };
