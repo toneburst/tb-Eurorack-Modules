@@ -14,6 +14,8 @@ var masterstepcounter = 0;
 var valx = 127;
 var valy = 127;
 
+var lnshiftchannel = 0;
+
 // Theshold values
 // Updated in controls.js
 // Note and Octave Threshold values are currently set to same value
