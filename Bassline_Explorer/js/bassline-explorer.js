@@ -163,10 +163,9 @@ function getStepVals() {
     slide = (stepvals[5] < easeinsine256[thresholds[3]]) ? true : false;
 
     if(slide) {
-        // Send note-offs for all previously-playing notes except last
-        /*for(i = 0; i < midi_previousnotes.length - 1; i++) {
-            Jazz.MidiOut(0x80,midi_previousnotes[i],0);
-        };*/
+        // Ensure max 2 notes playing
+        if(midi_previousnotes.length > 2)
+            Jazz.MidiOut(0x80,midi_previousnotes.shift());
     } else {
     // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
