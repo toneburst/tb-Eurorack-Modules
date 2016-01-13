@@ -54,7 +54,7 @@ var slide = false;
 var transpose = 36;
 
 // Clock var
-var clock = new Metronome(bpm, 0.5);
+var clock = new Clock(bpm, 0.5);
 
 // Start Main Functions at page load
 $(document).ready(function() {

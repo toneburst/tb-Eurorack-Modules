@@ -38,7 +38,7 @@ Clock.prototype.setTempo = function(newtempo) {
 };
 
 Clock.prototype.setGateLength = function(length) {
-    this.newGateLength = Math.min(length, 0.9) * this.secondsPerNote;
+    this.newGateLength = Math.min(length, 0.9);
 };
 
 Clock.prototype.nextNote = function() {
@@ -58,7 +58,7 @@ Clock.prototype.nextNote = function() {
             this.secondsPerNote = 15.0 / this.tempo;
         }
         if(this.gateLength != this.newGateLength) {
-            this.gateLength = this.newGateLength;
+            this.gateLength = this.newGateLength  * this.secondsPerNote;
         }
     }
     this.noteOn = 1 - this.noteOn;
@@ -105,7 +105,7 @@ Clock.prototype.init = function() {
     // Create an oscillator
     // This seems to be necessary in order for audioContext to increment it's time property
     var dummyosc = this.audioContext.createOscillator();
-    this.timerWorker = new Worker("js/lib/Clock/clockworker.min.js");
+    this.timerWorker = new Worker("js/lib/clock/clockworker.min.js");
     this.timerWorker.addEventListener('message', function(e) {
         if (e.data == "tick") {
             self.scheduler();
