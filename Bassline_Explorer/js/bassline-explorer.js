@@ -125,7 +125,8 @@ function playStep() {
             octave = (octave + octaverandomtable[rtableindex]) % 2;
         }
     }
-    midi_notenum = scale[note] + (12 * octave) + transpose;
+    // Calculate MIDO note-number (looking up note number from scale table)
+    var midi_notenum = scale[note] + (12 * octave) + transpose;
 
     // Set note-on velocity
     var midi_velocity = midi_lowvelocity;

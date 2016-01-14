@@ -34,8 +34,8 @@ var coordtable = [
 
 var noterandomtable = [8,7,6,5,6,3,1,0,8,10,6,9,8,2,7,3];
 var octaverandomtable = [5,1,8,4,5,4,9,10,8,8,9,3,9,7,1,1];
-var accentrandomtable = [1,0,1,1,1,0,1,0,1,0,0,1,1,0,0,0];
-var sliderandomtable = [1,0,0,0,1,1,0,1,0,1,1,1,0,0,1,0];
+var accentrandomtable = [0,0,1,1,1,0,1,0,1,0,0,1,1,0,0,0];
+var sliderandomtable = [0,0,0,0,1,1,0,1,0,1,1,1,0,0,1,0];
 
 // Note-length table
 var notelengthtable = [
@@ -45,14 +45,6 @@ var notelengthtable = [
 /////////////////
 // Note Scales //
 /////////////////
-
-var scales = Array();
-// Chromatic
-scales[0] = [0,1,2,3,4,5,6,7,8,9,10,11];
-// Major
-scales[1] = [0,0,2,2,4,5,5,7,7,9,9,11];
-// Minor
-scales[2] = [0,0,2,3,3,5,5,7,8,8,10,10];
 
 // Scales from Mutable Instruments MIDIPal firmware
 // Olivier Gillet
@@ -82,6 +74,15 @@ mpscales[20] = ["Folkish",[0,1,1,3,4,5,5,7,8,8,10,10]];
 mpscales[21] = ["Japanese",[0,1,1,1,5,5,5,7,8,8,8,8]];
 mpscales[22] = ["Gamelan",[0,1,1,3,3,3,7,7,8,8,8,8]];
 mpscales[23] = ["Whole Tones",[0,0,2,2,4,4,6,6,8,8,10,10]];
+
+var resetperiodtable = [
+    ["1 Bar",16],
+    ["2 Bars",32],
+    ["4 Bars",64],
+    ["8 Bars",128],
+    ["18 Bars",256],
+    ["Off",0]
+];
 
 ////////////////////////
 // Control LUT curves //

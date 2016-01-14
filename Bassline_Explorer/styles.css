@@ -6,11 +6,15 @@
 
 body {
     font-family: 'Exo', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    color: #333;
 }
 h1 {
     font-family: 'Monofett', cursive;
     font-size: 50px;
-    color: #666;
+    line-height: 40px;
+    color: #333;
 }
 h4 {
 

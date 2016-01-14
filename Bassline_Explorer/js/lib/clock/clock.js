@@ -29,10 +29,15 @@ function Clock(tempo, gateLength) {
     this.newGateLength = this.gateLength;
     this.newTempo = this.tempo;
     this.resetPeriod = 15;
+    this.autoReset = false;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
 MicroEvent.mixin(Clock);
+
+Clock.prototype.log = function(message) {
+    console.log(message);
+}
 
 Clock.prototype.setTempo = function(newtempo) {
     this.newTempo = newtempo;
@@ -43,7 +48,12 @@ Clock.prototype.setGateLength = function(length) {
 };
 
 Clock.prototype.setResetPeriod = function(steps) {
-    this.resetPeriod = Math.round(steps);
+    if(steps !== "0") {
+        this.resetPeriod = Math.round(steps);
+        this.autoReset = true;
+    } else {
+        autoReset = false;
+    };
 }
 
 Clock.prototype.isRunning = function() {
@@ -58,8 +68,9 @@ Clock.prototype.nextNote = function() {
         this.nextNoteTime += this.gateLength;
         // Only increment counter on note-ons (every other pulse)
         this.notesCounter++;
-        if(this.resetPeriod !== 0 && this.notesCounter === this.resetPeriod) {
+        if(this.autoReset && (this.notesCounter % this.resetPeriod) === 0) {
             this.notesCounter = 0;
+            // Emit reset tick
             self.trigger('reset');
         };
     // Note-Off
@@ -74,16 +85,22 @@ Clock.prototype.nextNote = function() {
         if(this.gateLength != this.newGateLength) {
             this.gateLength = this.newGateLength  * this.secondsPerNote;
         }
-    }
+    };
     this.noteOn = 1 - this.noteOn;
 };
 
 Clock.prototype.scheduleNote = function(time) {
     var self = this;
-    if(this.noteOn === 1)
+    if(this.noteOn === 1) {
+        // Send note-on tick
         self.trigger('tick', this.notesCounter);
-    else
+        // Emit event on new bar
+        if(self.notesCounter % 16 === 0)
+            self.trigger('bar');
+    } else {
+        // Emit note-off tick
         self.trigger('note-off', "Note Off");
+    };
 };
 
 Clock.prototype.scheduler = function() {
