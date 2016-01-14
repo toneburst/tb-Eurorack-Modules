@@ -54,6 +54,35 @@ scales[1] = [0,0,2,2,4,5,5,7,7,9,9,11];
 // Minor
 scales[2] = [0,0,2,3,3,5,5,7,8,8,10,10];
 
+// Scales from Mutable Instruments MIDIPal firmware
+// Olivier Gillet
+// NAMES MAY BE WRONG!
+var mpscales = Array();
+mpscales[0]  = ["Chromatic",[0,1,2,3,4,5,6,7,8,9,10,11]];
+mpscales[1]  = ["Ionian",[0,0,2,2,4,5,5,7,7,9,9,11]];
+mpscales[2]  = ["Dorian",[0,0,2,3,3,5,5,7,7,10,10]];
+mpscales[3]  = ["Phrygian",[0,1,1,3,3,5,5,7,8,8,10,10]];
+mpscales[4]  = ["Lydian",[0,0,2,2,4,4,6,7,7,9,11]];
+mpscales[5]  = ["Mixolydian",[0,0,2,2,4,5,5,7,7,9,10,10]];
+mpscales[6]  = ["Aeolian Minor",[0,0,2,3,3,5,5,7,8,8,10,10]];
+mpscales[7]  = ["Locrian",[0,1,1,3,3,5,6,6,8,8,10,10]];
+mpscales[8]  = ["Blues Major",[0,0,3,3,4,4,7,7,7,9,10,10]];
+mpscales[9]  = ["Blues Minor",[0,0,3,3,3,5,6,7,7,10,10,10]];
+mpscales[10] = ["Pentatonic Major",[0,0,2,2,4,4,7,7,7,9,9,9]];
+mpscales[11] = ["Pentatonic Minor",[0,0,3,3,3,5,5,7,7,10,10,10]];
+mpscales[12] = ["Raga Bhiarav",[0,1,1,4,4,5,5,7,8,8,11,11]];
+mpscales[13] = ["Raga Shri",[0,1,1,4,4,4,6,7,8,8,11,11]];
+mpscales[14] = ["Raga Rupatavi",[0,1,1,3,3,5,5,7,7,10,10,11]];
+mpscales[15] = ["Raga Todi",[0,1,1,3,3,6,6,7,8,8,11,11]];
+mpscales[16] = ["Raga Kaafi",[0,0,2,2,4,5,5,5,9,9,10,11]];
+mpscales[17] = ["Raga Meg",[0,0,2,2,5,5,5,7,7,9,9,9]];
+mpscales[18] = ["Raga Malkauns",[0,0,3,3,3,5,5,8,8,8,10,10]];
+mpscales[19] = ["Raga Deepak",[0,0,3,3,4,4,6,6,8,8,10,10]];
+mpscales[20] = ["Folkish",[0,1,1,3,4,5,5,7,8,8,10,10]];
+mpscales[21] = ["Japanese",[0,1,1,1,5,5,5,7,8,8,8,8]];
+mpscales[22] = ["Gamelan",[0,1,1,3,3,3,7,7,8,8,8,8]];
+mpscales[23] = ["Whole Tones",[0,0,2,2,4,4,6,6,8,8,10,10]];
+
 ////////////////////////
 // Control LUT curves //
 ////////////////////////

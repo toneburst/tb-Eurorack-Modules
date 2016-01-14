@@ -68,7 +68,6 @@ $(document).ready(function() {
 
     // Start clock
     clock.init();
-    clock.play();
     clock.bind('tick', function(count) {
         masterstepcounter = count;
         playStep();
@@ -76,4 +75,7 @@ $(document).ready(function() {
     clock.bind('note-off', function(e) {
         getStepVals();
     });
+    /*clock.bind('reset', function() {
+
+    });*/
 });

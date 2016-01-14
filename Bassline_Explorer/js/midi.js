@@ -7,9 +7,9 @@
 // MIDI output variables
 var midi_channel = 0;
 var Jazz;
-var midi_lowvelocity = 100;
+var midi_lowvelocity = 64;
 var midi_highvelocity = 127;
-var scale = scales[1];
+var scale = mpscales[0][1];
 
 // Previous note number(s)
 // Required to prevent retrigger of slide notes when new and previous note-numbers are same (ie tied notes))
@@ -34,8 +34,8 @@ function setupmidi() {
             Jazz.MidiOutOpen($select.val());
         });
 
-        $("#testmidi").mousedown(function() {
-            Jazz.MidiOut(0x90,60,100);
+        $("button#testmidibutton").mousedown(function() {
+            Jazz.MidiOut(0x90,60,127);
         }).mouseup(function() {
             Jazz.MidiOut(0x80,60,0);
         });

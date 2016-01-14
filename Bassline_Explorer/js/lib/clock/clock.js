@@ -28,6 +28,7 @@ function Clock(tempo, gateLength) {
     this.gateLength = gateLength * this.secondsPerNote;
     this.newGateLength = this.gateLength;
     this.newTempo = this.tempo;
+    this.resetPeriod = 15;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
@@ -41,14 +42,27 @@ Clock.prototype.setGateLength = function(length) {
     this.newGateLength = Math.min(length, 0.9);
 };
 
+Clock.prototype.setResetPeriod = function(steps) {
+    this.resetPeriod = Math.round(steps);
+}
+
+Clock.prototype.isRunning = function() {
+    return this.isPlaying;
+}
+
 Clock.prototype.nextNote = function() {
+    // Note-On
+    var self = this;
     if(this.noteOn === 1) {
         // Schedule note-off to gateLength from now
         this.nextNoteTime += this.gateLength;
         // Only increment counter on note-ons (every other pulse)
         this.notesCounter++;
-        if(this.notesCounter === 256)
+        if(this.resetPeriod !== 0 && this.notesCounter === this.resetPeriod) {
             this.notesCounter = 0;
+            self.trigger('reset');
+        };
+    // Note-Off
     } else {
         // Schedule next note-on
         this.nextNoteTime += this.secondsPerNote - this.gateLength;

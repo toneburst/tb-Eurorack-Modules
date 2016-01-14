@@ -9,6 +9,36 @@
 function setupcontrols() {
     var controlcolors = ['#ff0000','#ff00ff','#00ff00','#0000ff','#666'];
 
+    /////////////////
+    // Scales Menu //
+    /////////////////
+
+    $scalesmenu = $("#selectscale");
+    for(var i = 0; i < mpscales.length; i++) {
+        $scalesmenu.append($('<option>', {
+            value: i,
+            text : mpscales[i][0]
+        }));
+    };
+
+    $scalesmenu.change(function() {
+        scale = mpscales[parseInt($scalesmenu.val())][1];
+    });
+
+    /////////////////
+    // Play Button //
+    /////////////////
+
+    $("button#playbutton").click(function() {
+        if(clock.isPlaying == false) {
+            $(this).text("Stop sequencer");
+            clock.play();
+        } else {
+            $(this).text("Start sequencer");
+            clock.stop();
+        }
+    });
+
     /////////////////////////////////
     // X and Y Navigation controls //
     /////////////////////////////////
