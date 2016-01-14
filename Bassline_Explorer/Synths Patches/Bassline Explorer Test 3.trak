@@ -136,11 +136,104 @@
 			</array>
 			<key>strips</key>
 			<array>
-				<dict/>
+				<dict>
+					<key>effects</key>
+					<array>
+						<dict>
+							<key>aupreset</key>
+							<dict>
+								<key>data</key>
+								<data>
+								AAAAAAAAAAAA
+								AAAEAAAAADrO
+								8g0AAAABO6PX
+								CgAAAAJBBmZv
+								AAAD6AAAAAA=
+								</data>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Untitled</string>
+								<key>subtype</key>
+								<integer>1819112562</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+								<key>version</key>
+								<integer>0</integer>
+							</dict>
+							<key>bypass</key>
+							<integer>0</integer>
+							<key>connections</key>
+							<array>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>1</integer>
+								</dict>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>2</integer>
+								</dict>
+							</array>
+							<key>unit</key>
+							<dict>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Apple: AUPeakLimiter</string>
+								<key>subtype</key>
+								<integer>1819112562</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+							</dict>
+						</dict>
+					</array>
+				</dict>
 			</array>
 			<key>volume</key>
 			<array>
-				<real>1</real>
+				<real>0.84558230638504028</real>
 			</array>
 		</dict>
 		<key>return mixer</key>
@@ -311,9 +404,9 @@
 					bnY9MgojbXY9R2F0ZQojbXY9QURTUjEKI2Nt
 					PW1haW4KQ2NPcD0yMDAuMDAKI0NocnMxPTAK
 					I2NtPVBDb3JlCk1NVDE9VHlyZWxsOkZNRHB0
-					MQpNTVMxPTYKTU1EMT00NC4wMApNTVZTMT0w
+					MQpNTVMxPTYKTU1EMT00MC4wMApNTVZTMT0w
 					Ck1NVkQxPTIuMDAKTU1UMj1FTlYyOkRlYwpN
-					TVMyPTYKTU1EMj0tNDguMDAKTU1WUzI9MApN
+					TVMyPTYKTU1EMj0tNTQuMDAKTU1WUzI9MApN
 					TVZEMj0wLjAwClNCYXNlPTQKU3dpbmc9MC4w
 					MApTVHJpZz0xClBTb25nPTEKUEZvbGQ9MApQ
 					RmlsZT0xCkdGaWxlPTIKR1NjYWxlPTAKQ2hM
@@ -330,36 +423,36 @@
 					CkRlYz0zOS4wMApTdXM9MTAwLjAwCkZSPTAu
 					MDAKUmVsPTE2LjQwClZlbD0zOC41MApSTW9k
 					PTAuMDAKTGFiZWw9OQpUcmlnPTAKI2NtPUVO
-					VjIKQXRrPTAuMDAKRGVjPTg5LjIwClN1cz0w
-					LjAwCkZSPTAuMDAKUmVsPTIwLjAwClZlbD04
-					Mi41MApSTW9kPTAuMDAKTGFiZWw9MTAKVHJp
-					Zz0wCiNjbT1MRk8xClN5bmM9MgpUcmlnPTEK
-					V2F2ZT0xClBoc2U9MC4wMApQb2xhcj0wCkRs
-					eT0wLjAwCkRNUzE9MQpETUQxPTEwMC4wMApS
-					YXRlPTAuMjAKRk1TMT0wCkZNRDE9MC4wMAoj
-					Y209TEZPMgpTeW5jPTMKVHJpZz0zCldhdmU9
-					MQpQaHNlPTAuMDAKUG9sYXI9MApEbHk9MC4w
-					MApETVMxPTEKRE1EMT0wLjAwClJhdGU9LTMu
-					OTAKRk1TMT0wCkZNRDE9MC4wMAojY209VHly
-					ZWxsClNocDE9NC4wMApUTVNyYzE9MApUTURw
-					dDE9MC4wMApTaHAyPTIuMDAKVHVuZTI9MC4w
-					MApGaW5lMj0xMC41MApUTVNyYzI9MTQKVE1E
-					cHQyPTAuMDAKUFdEcHQ9MjguNDAKUFdTcmM9
-					MTYKRGV0dW5lPTAuMDAKU3luYz0wLjAwClZ0
-					b0Q9MC4wMApSTWkxPTAKUk1pMj0wCkZCaW49
-					MApOb2lzZT0xLjQwCk9zY1ZvbDE9MC4wMApP
-					c2NWb2wyPS0xLjAwClN1YlZvbD0tMTAwLjAw
-					Ck5zZVZvbD0tMTAwLjAwClJNVm9sPS0xMDAu
-					MDAKRkJWb2w9LTEwMC4wMApWQ0Ztb2Q9MApW
-					Q0ZQb2w9MQpDdXRvZmY9MzAuMDAKRk1TcmMx
-					PTE0CkZNRHB0MT0zMC4wMApGTVNyYzI9MTUK
-					Rk1EcHQyPTAuMDAKS2V5Rm9sPTE2LjAwClJl
-					cz04Ni40MApNeFNwPTAuMDAKTXhTcFNyYz0w
-					CkFSU3JjPTAKQVJEZXN0PTAKQVJEcHQ9MC4w
-					MApBUk1vZD0wCiNjbT1WQ0ExClZDQT0wCkF0
-					dFM9MQojY209Q2hyczEKVHlwZT0wClJhdGU9
-					NTAuMDAKRGVwdGg9NTAuMDAKV2V0PTMwLjAw
-					CgoKCgovLyBTZWN0aW9uIGZvciB1Z2x5IGNv
+					VjIKQXRrPTAuMDAKRGVjPTEwMC4wMApTdXM9
+					MC4wMApGUj0wLjAwClJlbD0yMC4wMApWZWw9
+					ODIuNTAKUk1vZD0wLjAwCkxhYmVsPTEwClRy
+					aWc9MAojY209TEZPMQpTeW5jPTIKVHJpZz0x
+					CldhdmU9MQpQaHNlPTAuMDAKUG9sYXI9MApE
+					bHk9MC4wMApETVMxPTEKRE1EMT0xMDAuMDAK
+					UmF0ZT0wLjIwCkZNUzE9MApGTUQxPTAuMDAK
+					I2NtPUxGTzIKU3luYz0zClRyaWc9MwpXYXZl
+					PTEKUGhzZT0wLjAwClBvbGFyPTAKRGx5PTAu
+					MDAKRE1TMT0xCkRNRDE9MC4wMApSYXRlPS0z
+					LjkwCkZNUzE9MApGTUQxPTAuMDAKI2NtPVR5
+					cmVsbApTaHAxPTQuMDAKVE1TcmMxPTAKVE1E
+					cHQxPTAuMDAKU2hwMj0yLjAwClR1bmUyPTAu
+					MDAKRmluZTI9MTAuNTAKVE1TcmMyPTE0ClRN
+					RHB0Mj0wLjAwClBXRHB0PTI4LjQwClBXU3Jj
+					PTE2CkRldHVuZT0wLjAwClN5bmM9MC4wMApW
+					dG9EPTAuMDAKUk1pMT0wClJNaTI9MApGQmlu
+					PTAKTm9pc2U9MS40MApPc2NWb2wxPTAuMDAK
+					T3NjVm9sMj0tMS4wMApTdWJWb2w9LTEwMC4w
+					MApOc2VWb2w9LTEwMC4wMApSTVZvbD0tMTAw
+					LjAwCkZCVm9sPS0xMDAuMDAKVkNGbW9kPTAK
+					VkNGUG9sPTEKQ3V0b2ZmPTMwLjAwCkZNU3Jj
+					MT0xNApGTURwdDE9MzIuMDAKRk1TcmMyPTE1
+					CkZNRHB0Mj0wLjAwCktleUZvbD0xNi4wMApS
+					ZXM9NzUuNjAKTXhTcD0wLjAwCk14U3BTcmM9
+					MApBUlNyYz0wCkFSRGVzdD0wCkFSRHB0PTAu
+					MDAKQVJNb2Q9MAojY209VkNBMQpWQ0E9MApB
+					dHRTPTEKI2NtPUNocnMxClR5cGU9MApSYXRl
+					PTUwLjAwCkRlcHRoPTUwLjAwCldldD0zMC4w
+					MAoKCgovLyBTZWN0aW9uIGZvciB1Z2x5IGNv
 					bXByZXNzZWQgYmluYXJ5IERhdGEKLy8gRE9O
 					J1QgVE9VQ0ggVEhJUwoKJCQkJDE2NTIKP2dk
 					Z2NlbmViOm9hZWpnZWhpOmVpaG9naGtkOmVh
@@ -385,49 +478,49 @@
 					cG9wcEFhYmFjYWRhZWFmYWdhaFRhamFrYWxh
 					bWFuYW9hcGJhYmJiY2IKZGJlYmZiZ2JoVWJq
 					YmtibGJtYm5ib2JwR2NiY2NjZGNlY2ZjZ2No
-					Y2ljamNrY2xjbXFhZUExMGNiaGhsb2FicQp1
-					QTdoaDJjb2dvSWdqaGRXZ2dPZ2RoZUlYaGpj
-					b2dlV0EyMzZxTEExMGZmZ29JZ2NPaGQxY25k
-					Y0dlb2VnY29nCmlkY0pBMTExcXRBNDN3QTJF
-					QTFFMUExTEVBMVlFQTFaRUExb2FFcUFhY0E1
-					d0Ezd0EyRUExRTFBMUxFQTFZRUEKMVpFQTFv
-					YXRDQTFiYUNBMUdDQTFRQ0ExRUNBMVZDQTFn
-					YUNBMUpDQTFMQ0ExaWlDQTFqYUNBMU1DQTFZ
-					Q0ExawppQ0ExUkNBMWxpQ0ExWkNBMW1pQ0Ex
-					bmFDQTFuaUNBMW9hQ0Exb2lDQTFwYUNBMVND
-					QTJCQTFhZUJBMVRCQTFhCm1CQTFiYUJBMWJl
-					QkExVUJBMWJtQkExR0JBMWNlQkExY2lCQTFj
-					bUJBMVFCQTFkZUJBMWRpQkExZG1CQTFFQkEK
-					MWVlQkExZWlCQTFlbUJBMVZCQTFmZUJBMWZp
-					QkExZm1CQTFnYUJBMWdlQkExZ2lCQTFnbUJB
-					MUpCQTFoZUJBMQpLQkExaG1CQTFMQkExaWNC
-					QTFpZUJBMWlnQkExaWlCQTFpa0JBMWltQkEx
-					aW9CQTFqYUJBMWpjQkExamVCQTFqCmdCQTFN
-					QkExUEJBMWptQkExam9CQTFZQkExa2NCQTFr
-					ZUJBMWtnQkExa2lCQTFra0JBMWttQkExa29C
-					QTFSQkEKMWxjQkExbGVCQTFsZ0JBMWxpQkEx
-					bGtCQTFsbUJBMWxvQkExWkJBMW1jQkExbWVC
-					QTFtZ0JBMW1pQkExbWtCQQoxbW1CQTFtb0JB
-					MW5hQkExbmNCQTFuZUJBMW5nQkExbmlCQTFu
-					a0JBMW5tQkExbm9CQTFvYUJBMW9jQkExb2VC
-					CkExb2dCQTFvaUJBMW9rQkExb21CQTFvb0JB
-					MXBhQkExcGNCQTFEQkExcGdCQTFTQkExcGtC
-					QTFwbUJBMXBvQnEKR0ExMENlZWZkZmNHZGJB
-					OHVBZG1vY21qZG1hY0FPZ2VXWGVuT3FHQTEw
-					Q2VlZmRmY0dkY0E4dUFUYWRta2RtYQpjQVhP
-					Z29oa1ZJPTEyMDAxOQoAAA==
+					Y2ljamNrY2xjbXFhZUExMENpbG5pYWJxdQpB
+					N2hoMmNvZ29JZ2poZFdnZ09nZGhlSVhoamNv
+					Z2VXQTIzNnFMQTEwZmZnb0lnY09oZDFjbmRj
+					R2VvZWdjb2dpCmRjSkExMTFxdEE0M3dBMkVB
+					MUUxQTFMRUExWUVBMVpFQTFvYUVxQWFjQTV3
+					QTN3QTJFQTFFMUExTEVBMVlFQTEKWkVBMW9h
+					dENBMWJhQ0ExR0NBMVFDQTFFQ0ExVkNBMWdh
+					Q0ExSkNBMUxDQTFpaUNBMWphQ0ExTUNBMVlD
+					QTFraQpDQTFSQ0ExbGlDQTFaQ0ExbWlDQTFu
+					YUNBMW5pQ0Exb2FDQTFvaUNBMXBhQ0ExU0NB
+					MkJBMWFlQkExVEJBMWFtCkJBMWJhQkExYmVC
+					QTFVQkExYm1CQTFHQkExY2VCQTFjaUJBMWNt
+					QkExUUJBMWRlQkExZGlCQTFkbUJBMUVCQTEK
+					ZWVCQTFlaUJBMWVtQkExVkJBMWZlQkExZmlC
+					QTFmbUJBMWdhQkExZ2VCQTFnaUJBMWdtQkEx
+					SkJBMWhlQkExSwpCQTFobUJBMUxCQTFpY0JB
+					MWllQkExaWdCQTFpaUJBMWlrQkExaW1CQTFp
+					b0JBMWphQkExamNCQTFqZUJBMWpnCkJBMU1C
+					QTFQQkExam1CQTFqb0JBMVlCQTFrY0JBMWtl
+					QkExa2dCQTFraUJBMWtrQkExa21CQTFrb0JB
+					MVJCQTEKbGNCQTFsZUJBMWxnQkExbGlCQTFs
+					a0JBMWxtQkExbG9CQTFaQkExbWNCQTFtZUJB
+					MW1nQkExbWlCQTFta0JBMQptbUJBMW1vQkEx
+					bmFCQTFuY0JBMW5lQkExbmdCQTFuaUJBMW5r
+					QkExbm1CQTFub0JBMW9hQkExb2NCQTFvZUJB
+					CjFvZ0JBMW9pQkExb2tCQTFvbUJBMW9vQkEx
+					cGFCQTFwY0JBMURCQTFwZ0JBMVNCQTFwa0JB
+					MXBtQkExcG9CcUcKQTEwQ2VlZmRmY0dkYkE4
+					dUFkbW9jbWpkbWFjQU9nZVdYZW5PcUdBMTBD
+					ZWVmZGZjR2RjQTh1QVRhZG1rZG1hYwpBWE9n
+					b2hrVkk9MTE5ODkwCgAA
 					</data>
 					<key>data</key>
 					<data>
 					AAAAAAAAAAAAAABOAAAAAENIAAAAAAABQMAA
-					AAAAAAJCMAAAAAAAAwAAAAAAAAAEQAAAAAAA
-					AAVAwAAAAAAABsJAAAAAAAAHAAAAAAAAAAgA
+					AAAAAAJCIAAAAAAAAwAAAAAAAAAEQAAAAAAA
+					AAVAwAAAAAAABsJYAAAAAAAHAAAAAAAAAAgA
 					AAAAAAAACT+AAAAAAAAKQAAAAAAAAAsAAAAA
 					AAAADEISAAAAAAANAAAAAAAAAA5CyAAAAAAA
 					D0AAAAAAAAAQQAAAAAAAABHBwAAAAAAAEgAA
 					AAAAAAATQhwAAAAAABRCyAAAAAAAFQAAAAAA
 					AAAWQYMzMwAAABdCGgAAAAAAGAAAAAAAAAAZ
-					AAAAAAAAABoAAAAAAAAAG0KyZmcAAAAcAAAA
+					AAAAAAAAABoAAAAAAAAAG0LIAAAAAAAcAAAA
 					AAAAAB0AAAAAAAAAHkGgAAAAAAAfQqUAAAAA
 					ACAAAAAAAAAAIQAAAAAAAAAiQAAAAAAAACMA
 					AAAAAAAAJEBAAAAAAAAlAAAAAAAAACZAgAAA
@@ -438,8 +531,8 @@
 					AAAAAAAAADU/szMzAAAANgAAAAAAAAA3v4AA
 					AAAAADjCyAAAAAAAOcLIAAAAAAA6wsgAAAAA
 					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5B
-					8AAAAAAAP0FgAAAAAABAQfAAAAAAAEFBcAAA
-					AAAAQgAAAAAAAABDQYAAAAAAAERCrMzNAAAA
+					8AAAAAAAP0FgAAAAAABAQgAAAAAAAEFBcAAA
+					AAAAQgAAAAAAAABDQYAAAAAAAERClzMzAAAA
 					RQAAAAAAAABGAAAAAAAAAEcAAAAAAAAASAAA
 					AAAAAABJAAAAAAAAAEoAAAAAAAAAS0JIAAAA
 					AABMQkgAAAAAAE1B8AAA
@@ -681,7 +774,7 @@
 						<string>MIDI 0 0</string>
 					</dict>
 					<key>volume</key>
-					<real>1.5001475811004639</real>
+					<real>0.84626370668411255</real>
 				</dict>
 			</array>
 		</dict>
@@ -690,19 +783,9 @@
 	<dict>
 		<key>View Settings</key>
 		<dict>
-			<key>Active Tab Identifier</key>
-			<string>patches</string>
-			<key>Doc Drawer Open</key>
-			<false/>
 			<key>Filter flags</key>
 			<integer>1</integer>
 		</dict>
-		<key>Window Frame</key>
-		<string>{{226, 113}, {355, 577}}</string>
-		<key>Window Max</key>
-		<string>{2560, 1622}</string>
-		<key>Window Min</key>
-		<string>{360, 540}</string>
 		<key>kAUInspectorListKey</key>
 		<array>
 			<dict>

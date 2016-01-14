@@ -26,7 +26,7 @@
 							// Note Transpose probability //
 							////////////////////////////////
 							} else if(j == 1) {
-								arr += rand(90, 30);
+								arr += rand(127, 0);
 							/////////////
 							// Octaves //
 							/////////////
@@ -49,13 +49,13 @@
 							// Octave Randomise Probability //
 							//////////////////////////////////
 							} else if(j == 3) {
-								arr += rand(50, 2);
+								arr += rand(127, 0);
 							////////////////////////
 							// Accent Probability //
 							////////////////////////
 							} else if(j == 4) {
 								// Write out random number for Accent/Slide
-								arr += rand(255, 0);
+								arr += rand(192, 0);
 							///////////////////////
 							// Slide Probability //
 							///////////////////////
@@ -63,7 +63,7 @@
 								if(k == 0)
 									arr += "0";
 								else
-									arr += rand(239, 16);
+									arr += rand(192, 0);
 							}
 							// Add comma unless last array item
 							if(k < 15)
@@ -117,10 +117,19 @@
 			$(document).ready(function() {
 			    // Generate nodes and display result
 				$("#pattern_nodes").html(generate_nodes());
+
 				// Generate note random array and display result
 				$("#note_randomarray").html(generate_1drandomarray(11, 0, 16, "noterandomtable"));
+
 				// Generate octave random array and display result
 				$("#octave_randomarray").html(generate_1drandomarray(10, 0, 16, "octaverandomtable"));
+
+				// Generate accent random array and display result
+				$("#accent_randomarray").html(generate_1drandomarray(1, 0, 16, "accentrandomtable"));
+
+				// Generate slide random array and display result
+				$("#slide_randomarray").html(generate_1drandomarray(1, 0, 16, "sliderandomtable"));
+
 				// Generate note-length LUT
 				$("#notelength_lut").html(generate_linearlut(0.05, 0.5, 32, "notelengthtable"));
 			});
@@ -129,9 +138,13 @@
 	<body>
 		<h3>Pattern Nodes</h3>
 		<div id="pattern_nodes"></div>
-		<h3>Note/Octave Shift Arrays</h3>
+
+		<h3>Note/Octave/Accent/Slide Shift Arrays</h3>
 		<div id="note_randomarray"></div>
 		<div id="octave_randomarray"></div>
+		<div id="accent_randomarray"></div>
+		<div id="slide_randomarray"></div>
+
 		<h3>Other Lookup Tables</h3>
 		<div id="notelength_lut"></div>
 	</body>

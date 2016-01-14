@@ -4,9 +4,16 @@
  *
  */
 
+body {
+    font-family: 'Exo', sans-serif;
+}
 h1 {
     font-family: 'Monofett', cursive;
+    font-size: 50px;
     color: #666;
+}
+h4 {
+
 }
 .control {
     width: 120px;

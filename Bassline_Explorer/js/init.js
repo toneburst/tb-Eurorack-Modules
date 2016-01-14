@@ -20,8 +20,8 @@ var lnshiftchannel = 0;
 // Updated in controls.js
 // Note and Octave Threshold values are currently set to same value
 var thresholds = new Array();
-thresholds[0] = 127;    // Note Randomisation Threshold
-thresholds[1] = 127;    // Octave Randomisation Threshold
+thresholds[0] = 127;    // Note Threshold
+thresholds[1] = 127;    // Octave Threshold
 thresholds[2] = 127;    // Accent Threshold
 thresholds[3] = 127;    // Slide Threshold
 

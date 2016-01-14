@@ -79,21 +79,32 @@ function setupcontrols() {
     ////////////////////////
 
     $("#knob_threshold_note").knob({
-        width : 50,
-        height : 50,
+        width : 100,
+        height : 100,
         lineCap : "round",
         fgColor : controlcolors[0],
         inputColor : controlcolors[0],
         change : function (value) {
             intval = parseInt(value)
             thresholds[0] = intval;
+        }
+    });
+
+    $("#knob_threshold_octave").knob({
+        width : 100,
+        height : 100,
+        lineCap : "round",
+        fgColor : controlcolors[1],
+        inputColor : controlcolors[1],
+        change : function (value) {
+            intval = parseInt(value)
             thresholds[1] = intval;
         }
     });
 
     $("#knob_threshold_accent").knob({
-        width : 50,
-        height : 50,
+        width : 100,
+        height : 100,
         fgColor : controlcolors[2],
         inputColor : controlcolors[2],
         lineCap : "round",
@@ -103,8 +114,8 @@ function setupcontrols() {
     });
 
     $("#knob_threshold_slide").knob({
-        width : 50,
-        height : 50,
+        width : 100,
+        height : 100,
         fgColor : controlcolors[3],
         inputColor : controlcolors[3],
         lineCap : "round",
