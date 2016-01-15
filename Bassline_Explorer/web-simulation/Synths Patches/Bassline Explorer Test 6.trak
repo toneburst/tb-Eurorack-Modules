@@ -1,0 +1,1395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Active Patch</key>
+	<integer>0</integer>
+	<key>DocumentMaxChannelsKey</key>
+	<integer>2</integer>
+	<key>DocumentVersionCompatibilityKey</key>
+	<real>1</real>
+	<key>Input Bus Info</key>
+	<array>
+		<dict>
+			<key>Bus Name</key>
+			<string>Midi Device</string>
+			<key>Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmg3N/iT6DjnDiPoPPaSU/g83MTD+G
+			</data>
+			<key>isCollapsed</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Bus Name</key>
+			<string>Midi Device</string>
+			<key>Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmgy4lKD+DeOUkPwABhg==
+			</data>
+			<key>isCollapsed</key>
+			<false/>
+		</dict>
+	</array>
+	<key>Output Bus Info</key>
+	<dict>
+		<key>Bus Name</key>
+		<string>Master Out</string>
+		<key>Color</key>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWE
+		AWMChARmZmZmg3WTmD6D/tS4PoNSuN4+g83MTD+G
+		</data>
+		<key>Track Names</key>
+		<array>
+			<string>Output 1</string>
+		</array>
+		<key>Track Types</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>device ID</key>
+		<integer>50</integer>
+		<key>isCollapsed</key>
+		<false/>
+	</dict>
+	<key>Patches</key>
+	<array/>
+	<key>Send Bus Info</key>
+	<array>
+		<dict>
+			<key>Bus Name</key>
+			<string>Reverb</string>
+			<key>Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmg32LED+DK1McP4Mv1wk/g83MTD+G
+			</data>
+			<key>isCollapsed</key>
+			<false/>
+		</dict>
+	</array>
+	<key>Session Data</key>
+	<dict>
+		<key>audio device used</key>
+		<dict>
+			<key>audio device uid</key>
+			<string>AppleHDAEngineOutput:1B,0,1,2:0</string>
+			<key>device model uid</key>
+			<string>AppleHDA:9</string>
+			<key>in channels</key>
+			<integer>0</integer>
+			<key>io num frames</key>
+			<integer>192</integer>
+			<key>name</key>
+			<string>Built-in Output</string>
+			<key>out channels</key>
+			<integer>2</integer>
+			<key>out channels map</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<key>output stage</key>
+		<dict>
+			<key>au layout tags</key>
+			<array>
+				<integer>0</integer>
+			</array>
+			<key>channels</key>
+			<array>
+				<integer>2</integer>
+			</array>
+			<key>constrained</key>
+			<array>
+				<integer>1</integer>
+			</array>
+			<key>layouts</key>
+			<array>
+				<dict>
+					<key>acl tag</key>
+					<integer>6619138</integer>
+					<key>descriptions</key>
+					<array>
+						<dict>
+							<key>coords 0</key>
+							<real>-30</real>
+							<key>coords 1</key>
+							<real>0.0</real>
+							<key>coords 2</key>
+							<real>1</real>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>label</key>
+							<integer>1</integer>
+						</dict>
+						<dict>
+							<key>coords 0</key>
+							<real>30</real>
+							<key>coords 1</key>
+							<real>0.0</real>
+							<key>coords 2</key>
+							<real>1</real>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>label</key>
+							<integer>2</integer>
+						</dict>
+					</array>
+				</dict>
+			</array>
+			<key>mute</key>
+			<array>
+				<integer>0</integer>
+			</array>
+			<key>strips</key>
+			<array>
+				<dict>
+					<key>effects</key>
+					<array>
+						<dict>
+							<key>aupreset</key>
+							<dict>
+								<key>data</key>
+								<data>
+								AAAAAAAAAAAA
+								AAAEAAAAADpD
+								L8gAAAABO6PX
+								CgAAAAJBBmZv
+								AAAD6AAAAAA=
+								</data>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Untitled</string>
+								<key>subtype</key>
+								<integer>1819112562</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+								<key>version</key>
+								<integer>0</integer>
+							</dict>
+							<key>bypass</key>
+							<integer>0</integer>
+							<key>connections</key>
+							<array>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>1</integer>
+								</dict>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>2</integer>
+								</dict>
+							</array>
+							<key>unit</key>
+							<dict>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Apple: AUPeakLimiter</string>
+								<key>subtype</key>
+								<integer>1819112562</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+							</dict>
+						</dict>
+					</array>
+				</dict>
+			</array>
+			<key>volume</key>
+			<array>
+				<real>0.84558230638504028</real>
+			</array>
+		</dict>
+		<key>return mixer</key>
+		<dict>
+			<key>strips</key>
+			<array>
+				<dict>
+					<key>active</key>
+					<integer>1</integer>
+					<key>effects</key>
+					<array>
+						<dict>
+							<key>aupreset</key>
+							<dict>
+								<key>data</key>
+								<data>
+								AAAAAAAAAAAA
+								AAARAAAAAELI
+								AAAAAAABQgwA
+								AAAAAAI8cZUD
+								AAAAAz17fpEA
+								AAAEPHSH/QAA
+								AAU6gxJvAAAA
+								Bj8nrhQAAAAH
+								Py4UewAAAAg/
+								FcKPAAAACT9A
+								AAAAAAAKPyP3
+								zwAAAAs+yoy9
+								AAAADD+dfJoA
+								AAANPszMzQAA
+								AA5ESAAAAAAA
+								D0BAAAAAAAAQ
+								AAAAAA==
+								</data>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Medium Hall 3</string>
+								<key>render-quality</key>
+								<integer>127</integer>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+								<key>version</key>
+								<integer>0</integer>
+							</dict>
+							<key>bypass</key>
+							<integer>0</integer>
+							<key>connections</key>
+							<array>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>1</integer>
+								</dict>
+								<dict>
+									<key>channel layout</key>
+									<dict>
+										<key>acl tag</key>
+										<integer>6619138</integer>
+									</dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>2</integer>
+								</dict>
+							</array>
+							<key>unit</key>
+							<dict>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Apple: AUMatrixReverb</string>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>mute</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string>Reverb</string>
+					<key>output assignments</key>
+					<array>
+						<integer>1</integer>
+					</array>
+					<key>pan angle</key>
+					<real>1</real>
+					<key>pan azimuth</key>
+					<real>0.0</real>
+					<key>pan distance</key>
+					<real>1</real>
+					<key>pan elevation</key>
+					<real>0.0</real>
+					<key>pan mode</key>
+					<integer>4</integer>
+					<key>solo</key>
+					<integer>0</integer>
+					<key>source number channels</key>
+					<integer>2</integer>
+					<key>volume</key>
+					<real>1</real>
+				</dict>
+			</array>
+		</dict>
+		<key>synth list</key>
+		<array>
+			<dict>
+				<key>aupreset</key>
+				<dict>
+					<key>AM_STATE</key>
+					<data>
+					LypAbWV0YQoKQXV0aG9yOgondG9uZWJ1cnN0
+					JwoKRGVzY3JpcHRpb246CidUZXN0IHBhdGNo
+					IGZvciB0YiBCYXNzbGluZSBFeHBsb3Jlcgkn
+					CgpVc2FnZToKJ0Jhc3MsIEFjaWQnCgoqLwoK
+					I0FNPVR5cmVsbE42CiNWZXJzPTEwMDEwCiNF
+					bmRpYW49bGl0dGxlCiNubT0xNwojbXM9bm9u
+					ZQojbXM9TW9kV2hsCiNtcz1QaXRjaFcKI21z
+					PUJyZWF0aAojbXM9WHByZXNzCiNtcz1HYXRl
+					CiNtcz1WZWxvY2l0eQojbXM9UHJlc3N1cmUK
+					I21zPUtleUZvbGxvdwojbXM9S2V5Rm9sbG93
+					MgojbXM9QWx0ZXJuYXRlCiNtcz1SYW5kb20K
+					I21zPVN0YWNrVm9pY2UKI21zPUFEU1IxCiNt
+					cz1BRFNSMgojbXM9TEZPMQojbXM9TEZPMgoj
+					bnY9MgojbXY9R2F0ZQojbXY9QURTUjEKI2Nt
+					PW1haW4KQ2NPcD0yMDAuMDAKI0NocnMxPTAK
+					I2NtPVBDb3JlCk1NVDE9VHlyZWxsOkZNRHB0
+					MQpNTVMxPTYKTU1EMT0xNi4wMApNTVZTMT0w
+					Ck1NVkQxPTIuMDAKTU1UMj1FTlYyOkRlYwpN
+					TVMyPTYKTU1EMj0tNDQuMDAKTU1WUzI9MApN
+					TVZEMj0wLjAwClNCYXNlPTQKU3dpbmc9MC4w
+					MApTVHJpZz0xClBTb25nPTEKUEZvbGQ9MApQ
+					RmlsZT0xCkdGaWxlPTIKR1NjYWxlPTAKQ2hM
+					YXk9MApTdXJyTz0xClJldj0zMzA0CkxFRD0w
+					LjAwClBBR0U9MApQYWdlc09uPTAKQ29yZU49
+					MwpTbGljZT00ClVJX29wPTEyCk1pZGlBPTUK
+					TWlkaVA9NgojY209VkNDClZvaWNpbmc9MQpN
+					b2RlPTIKUG9ydGFNPTAKUG9ydGE9MjguMDAK
+					UG9ydGEyPTAuMDAKUFJhbmdlPTEwMC4wMApQ
+					Qj0yClBCRD0yCkRyZnQ9MApNVHVuUz0wCk1U
+					dW5OPTcKTVR1blQ9OApUcnNwPTAKUHJpb3I9
+					MApNdUNvcmU9MApDb250RW49MQpSTm90ZT0w
+					ClJWZWw9MAojY209RU5WMQpBdGs9MC4wMApE
+					ZWM9MC4wMApTdXM9MTAwLjAwCkZSPTAuMDAK
+					UmVsPTI4LjAwClZlbD0zMS4wMApSTW9kPTAu
+					MDAKTGFiZWw9OQpUcmlnPTAKI2NtPUVOVjIK
+					QXRrPTAuMDAKRGVjPTcwLjgwClN1cz0wLjAw
+					CkZSPTAuMDAKUmVsPTIwLjAwClZlbD04Mi41
+					MApSTW9kPTAuMDAKTGFiZWw9MTAKVHJpZz0w
+					CiNjbT1MRk8xClN5bmM9MgpUcmlnPTEKV2F2
+					ZT0xClBoc2U9MC4wMApQb2xhcj0wCkRseT0w
+					LjAwCkRNUzE9MQpETUQxPTEwMC4wMApSYXRl
+					PTAuMjAKRk1TMT0wCkZNRDE9MC4wMAojY209
+					TEZPMgpTeW5jPTMKVHJpZz0zCldhdmU9MQpQ
+					aHNlPTAuMDAKUG9sYXI9MApEbHk9MC4wMApE
+					TVMxPTEKRE1EMT0wLjAwClJhdGU9LTMuOTAK
+					Rk1TMT0wCkZNRDE9MC4wMAojY209VHlyZWxs
+					ClNocDE9NC4wMApUTVNyYzE9MApUTURwdDE9
+					MC4wMApTaHAyPTIuMDAKVHVuZTI9MC4wMApG
+					aW5lMj05LjUwClRNU3JjMj0xNApUTURwdDI9
+					MC4wMApQV0RwdD0yOC40MApQV1NyYz0xNgpE
+					ZXR1bmU9MC4wMApTeW5jPTAuMDAKVnRvRD0w
+					LjAwClJNaTE9MApSTWkyPTAKRkJpbj0wCk5v
+					aXNlPTEuNDAKT3NjVm9sMT0wLjAwCk9zY1Zv
+					bDI9LTEuMDAKU3ViVm9sPS0xMDAuMDAKTnNl
+					Vm9sPS0xMDAuMDAKUk1Wb2w9LTEwMC4wMApG
+					QlZvbD0tMTAwLjAwClZDRm1vZD0wClZDRlBv
+					bD0xCkN1dG9mZj02My41MApGTVNyYzE9MTQK
+					Rk1EcHQxPTcyLjAwCkZNU3JjMj0xNQpGTURw
+					dDI9MC4wMApLZXlGb2w9MTYuMDAKUmVzPTgy
+					LjAwCk14U3A9MC4wMApNeFNwU3JjPTAKQVJT
+					cmM9MApBUkRlc3Q9MApBUkRwdD0wLjAwCkFS
+					TW9kPTAKI2NtPVZDQTEKVkNBPTAKQXR0Uz0x
+					CiNjbT1DaHJzMQpUeXBlPTAKUmF0ZT01MC4w
+					MApEZXB0aD01MC4wMApXZXQ9MzAuMDAKCgoK
+					Ci8vIFNlY3Rpb24gZm9yIHVnbHkgY29tcHJl
+					c3NlZCBiaW5hcnkgRGF0YQovLyBET04nVCBU
+					T1VDSCBUSElTCgokJCQkMTY1Mgo/Z2RnY2Vu
+					ZWI6b2FlamdlaGk6ZWlob2doa2Q6ZWFhYWFh
+					YWE6YWFhYmFhYWE6YWJhYWFhYWE6YWFhYWlh
+					ZHA6CmFhbGZobWFhOmFkYWFhYWFhOnBwYWFh
+					YWFhOmFhOmVjOmViOnBlOmVhOmxwOmNhOnBq
+					OmdwOmhhOmhpOmlhOmoKaTprZDpnYjpqazpk
+					YTpsYTpwaTphYzphaTpiaTpmYTpnZjpoYzpr
+					YSFxdUE3ZW1JZ2RPZ21BbmtqYnh5bW1TRApG
+					ZWdjZ29ramZ1enJRSERGc0xhb0ExVUhERkFt
+					bG9pamZzY2lIREZwbVNERk1samdhaGt5TG1h
+					SUtaVklLUUEyCkpWSUtwYWhtYXBBMmdhS0Ez
+					SlZJS3hmY05ua2piS2tvUE5iYWFiamxOQTFw
+					Yk1laUhERmZpMXBiTUFSZGVBcmcKaUhERmNl
+					b25vcE1yQVJkZUFXaGpQTnIxUkpQTm1pSERG
+					bWdjcHBiTVJKUE5yb2VlamdlS2RqRHBjTXJB
+					M2FnQQo2cHA3aG1tZ1BOV21nUE5icGxnamxp
+					aEEydUFTSERGZW1BMmFnQTJxdEE3aGVnY0dC
+					T2hkMWdtZ2pnb1hHZWZLCkpnbUlZWFlHUWRi
+					Y29naWRjSkF6clFIREZzTGFvQTFVSERGQW1s
+					b2lqZnNjaUhERnF0QTcxcXRBN29ub29vcHAK
+					YXBicGNwZERwZnBncGhTSHBrcGxwbXBucG9w
+					cEFhYlRhZGFlYWZhZ2FoVWFqYWthbGFtYW5h
+					b2FwYmFiYmJjYgpkYmViZmJnYmhWYmpia2Js
+					Ym1ibmJvYnBHY2JjY2NkY2VjZmNnY2hjaWNq
+					Y2tjbGNtcWFlQTEwamZsYmZlVHF1CkE3aGgy
+					Y29nb0lnamhkWGdnT2dkaGVJWWhqY29nZVhB
+					MjM2cUxBMTBmZmdvSWdjT2hkMWNuZGNHZW9l
+					Z2NvZ2kKZGNKQTExMXF0QTQzd0EyRUExRTFB
+					MUxFQTFaRUExbWFFQTFvYUVxQVRBNXdBM3dB
+					MkVBMUUxQTFMRUExWkVBMQptYUVBMW9hdENB
+					MWJhQ0ExR0NBMVFDQTFFQ0ExV0NBMWdhQ0Ex
+					SkNBMUxDQTFpaUNBMWphQ0ExTUNBMVpDQTFr
+					CmlDQTFSQ0ExbGlDQTFtYUNBMW1pQ0ExbmFD
+					QTFuaUNBMW9hQ0Exb2lDQTFwYUNBMVNDQTJC
+					QTFhZUJBMVVCQTEKYW1CQTFiYUJBMWJlQkEx
+					VkJBMWJtQkExR0JBMWNlQkExY2lCQTFjbUJB
+					MVFCQTFkZUJBMWRpQkExZG1CQTFFQgpBMWVl
+					QkExZWlCQTFlbUJBMVdCQTFmZUJBMWZpQkEx
+					Zm1CQTFnYUJBMWdlQkExZ2lCQTFnbUJBMUpC
+					QTFoZUJBCjFLQkExaG1CQTFMQkExaWNCQTFp
+					ZUJBMWlnQkExaWlCQTFpa0JBMWltQkExaW9C
+					QTFqYUJBMWpjQkExamVCQTEKamdCQTFNQkEx
+					UEJBMWptQkExam9CQTFaQkExa2NCQTFrZUJB
+					MWtnQkExa2lCQTFra0JBMWttQkExa29CQTFS
+					QgpBMWxjQkExbGVCQTFsZ0JBMWxpQkExbGtC
+					QTFsbUJBMWxvQkExbWFCQTFtY0JBMW1lQkEx
+					bWdCQTFtaUJBMW1rCkJBMW1tQkExbW9CQTFu
+					YUJBMW5jQkExbmVCQTFuZ0JBMW5pQkExbmtC
+					QTFubUJBMW5vQkExb2FCQTFvY0JBMW8KZUJB
+					MW9nQkExb2lCQTFva0JBMW9tQkExb29CQTFw
+					YUJBMXBjQkExREJBMXBnQkExU0JBMXBrQkEx
+					cG1CQTFwbwpCcUdBMTBDZWVmZGZjR2RiQTh1
+					QWRtb2NtamRtVEFPZ2VYWWVuT3FHQTEwQ2Vl
+					ZmRmY0dkY0E4dUFVYWRta2RtClRBWU9nb2hr
+					V0k9MTIwMDUzCgAA
+					</data>
+					<key>data</key>
+					<data>
+					AAAAAAAAAAAAAABOAAAAAENIAAAAAAABQMAA
+					AAAAAAJBgAAAAAAAAwAAAAAAAAAEQAAAAAAA
+					AAVAwAAAAAAABsIwAAAAAAAHAAAAAAAAAAgA
+					AAAAAAAACT+AAAAAAAAKQAAAAAAAAAsAAAAA
+					AAAADEHgAAAAAAANAAAAAAAAAA5CyAAAAAAA
+					D0AAAAAAAAAQQAAAAAAAABEAAAAAAAAAEgAA
+					AAAAAAATAAAAAAAAABRCyAAAAAAAFQAAAAAA
+					AAAWQeAAAAAAABdB+AAAAAAAGAAAAAAAAAAZ
+					AAAAAAAAABoAAAAAAAAAG0KNmZoAAAAcAAAA
+					AAAAAB0AAAAAAAAAHkGgAAAAAAAfQqUAAAAA
+					ACAAAAAAAAAAIQAAAAAAAAAiQAAAAAAAACMA
+					AAAAAAAAJEBAAAAAAAAlAAAAAAAAACZAgAAA
+					AAAAJwAAAAAAAAAoAAAAAAAAAClAAAAAAAAA
+					KgAAAAAAAAArQRgABAAAACxBYAAAAAAALQAA
+					AAAAAAAuQeMzMwAAAC9BgAAAAAAAMAAAAAAA
+					AAAxAAAAAAAAADIAAAAAAAAAMwAAAAAAAAA0
+					AAAAAAAAADU/szMzAAAANgAAAAAAAAA3v4AA
+					AAAAADjCyAAAAAAAOcLIAAAAAAA6wsgAAAAA
+					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5C
+					fgAAAAAAP0FgAAAAAABAQpAAAAAAAEFBcAAA
+					AAAAQgAAAAAAAABDQYAAAAAAAERCo//+AAAA
+					RQAAAAAAAABGAAAAAAAAAEcAAAAAAAAASAAA
+					AAAAAABJAAAAAAAAAEoAAAAAAAAAS0JIAAAA
+					AABMQkgAAAAAAE1B8AAA
+					</data>
+					<key>manufacturer</key>
+					<integer>1430808152</integer>
+					<key>name</key>
+					<string>tb Bassline Explorer 01</string>
+					<key>subtype</key>
+					<integer>1952017974</integer>
+					<key>type</key>
+					<integer>1635085685</integer>
+					<key>version</key>
+					<integer>0</integer>
+				</dict>
+				<key>connections</key>
+				<array>
+					<dict>
+						<key>element ID</key>
+						<integer>0</integer>
+						<key>format</key>
+						<dict>
+							<key>channel bits</key>
+							<integer>32</integer>
+							<key>format</key>
+							<integer>1819304813</integer>
+							<key>format flags</key>
+							<integer>41</integer>
+							<key>frame bytes</key>
+							<integer>4</integer>
+							<key>frame channels</key>
+							<integer>2</integer>
+							<key>frame packets</key>
+							<integer>1</integer>
+							<key>packet bytes</key>
+							<integer>4</integer>
+							<key>sample rate</key>
+							<real>44100</real>
+						</dict>
+						<key>scope</key>
+						<integer>2</integer>
+					</dict>
+				</array>
+				<key>midi</key>
+				<dict>
+					<key>midi thru connection</key>
+					<dict>
+						<key>midi thru data</key>
+						<data>
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAA////////
+						////////////AAAAfwAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAABgAAAAAAAAAAAAAAAAAHAAAA
+						AAAAAAEAAAAAAAAABAAAAAAAAAAD
+						AAAAAAAAAAsAAAAAAAAAQAAAAAAA
+						</data>
+						<key>name</key>
+						<string>Midi Device</string>
+					</dict>
+					<key>name</key>
+					<string>none midi source</string>
+				</dict>
+				<key>name</key>
+				<string>Midi Device</string>
+				<key>unit</key>
+				<dict>
+					<key>manufacturer</key>
+					<integer>1430808152</integer>
+					<key>name</key>
+					<string>u-he: TyrellN6</string>
+					<key>subtype</key>
+					<integer>1952017974</integer>
+					<key>type</key>
+					<integer>1635085685</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>aupreset</key>
+				<dict>
+					<key>AU version</key>
+					<real>1</real>
+					<key>Instrument</key>
+					<dict>
+						<key>Layers</key>
+						<array>
+							<dict>
+								<key>Amplifier</key>
+								<dict>
+									<key>ID</key>
+									<integer>0</integer>
+									<key>enabled</key>
+									<true/>
+								</dict>
+								<key>Connections</key>
+								<array>
+									<dict>
+										<key>ID</key>
+										<integer>0</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>816840704</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<false/>
+										<key>scale</key>
+										<real>12800</real>
+										<key>source</key>
+										<integer>300</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>1</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>1343225856</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<true/>
+										<key>scale</key>
+										<real>-96</real>
+										<key>source</key>
+										<integer>301</integer>
+										<key>transform</key>
+										<integer>2</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>2</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>1343225856</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<true/>
+										<key>scale</key>
+										<real>-96</real>
+										<key>source</key>
+										<integer>7</integer>
+										<key>transform</key>
+										<integer>2</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>3</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>1343225856</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<true/>
+										<key>scale</key>
+										<real>-96</real>
+										<key>source</key>
+										<integer>11</integer>
+										<key>transform</key>
+										<integer>2</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>4</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>1344274432</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<false/>
+										<key>max value</key>
+										<real>0.50800001621246338</real>
+										<key>min value</key>
+										<real>-0.50800001621246338</real>
+										<key>source</key>
+										<integer>10</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>7</integer>
+										<key>control</key>
+										<integer>241</integer>
+										<key>destination</key>
+										<integer>816840704</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<false/>
+										<key>max value</key>
+										<real>12800</real>
+										<key>min value</key>
+										<real>-12800</real>
+										<key>source</key>
+										<integer>224</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>8</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>816840704</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<false/>
+										<key>max value</key>
+										<real>100</real>
+										<key>min value</key>
+										<real>-100</real>
+										<key>source</key>
+										<integer>242</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>6</integer>
+										<key>control</key>
+										<integer>1</integer>
+										<key>destination</key>
+										<integer>816840704</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<false/>
+										<key>max value</key>
+										<real>50</real>
+										<key>min value</key>
+										<real>-50</real>
+										<key>source</key>
+										<integer>268435456</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>5</integer>
+										<key>control</key>
+										<integer>0</integer>
+										<key>destination</key>
+										<integer>1343225856</integer>
+										<key>enabled</key>
+										<true/>
+										<key>inverse</key>
+										<true/>
+										<key>scale</key>
+										<real>-96</real>
+										<key>source</key>
+										<integer>536870912</integer>
+										<key>transform</key>
+										<integer>1</integer>
+									</dict>
+								</array>
+								<key>Envelopes</key>
+								<array>
+									<dict>
+										<key>ID</key>
+										<integer>0</integer>
+										<key>Stages</key>
+										<array>
+											<dict>
+												<key>curve</key>
+												<integer>20</integer>
+												<key>stage</key>
+												<integer>0</integer>
+												<key>time</key>
+												<real>0.0</real>
+											</dict>
+											<dict>
+												<key>curve</key>
+												<integer>22</integer>
+												<key>stage</key>
+												<integer>1</integer>
+												<key>time</key>
+												<real>0.0</real>
+											</dict>
+											<dict>
+												<key>curve</key>
+												<integer>20</integer>
+												<key>stage</key>
+												<integer>2</integer>
+												<key>time</key>
+												<real>0.0</real>
+											</dict>
+											<dict>
+												<key>curve</key>
+												<integer>20</integer>
+												<key>stage</key>
+												<integer>3</integer>
+												<key>time</key>
+												<real>0.0</real>
+											</dict>
+											<dict>
+												<key>level</key>
+												<real>1</real>
+												<key>stage</key>
+												<integer>4</integer>
+											</dict>
+											<dict>
+												<key>curve</key>
+												<integer>20</integer>
+												<key>stage</key>
+												<integer>5</integer>
+												<key>time</key>
+												<real>0.0</real>
+											</dict>
+											<dict>
+												<key>curve</key>
+												<integer>20</integer>
+												<key>stage</key>
+												<integer>6</integer>
+												<key>time</key>
+												<real>0.004999999888241291</real>
+											</dict>
+										</array>
+										<key>enabled</key>
+										<true/>
+									</dict>
+								</array>
+								<key>Filters</key>
+								<dict>
+									<key>ID</key>
+									<integer>0</integer>
+									<key>cutoff</key>
+									<real>20000</real>
+									<key>enabled</key>
+									<false/>
+									<key>resonance</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>40</integer>
+								</dict>
+								<key>ID</key>
+								<integer>0</integer>
+								<key>LFOs</key>
+								<array>
+									<dict>
+										<key>ID</key>
+										<integer>0</integer>
+										<key>enabled</key>
+										<true/>
+									</dict>
+								</array>
+								<key>Oscillator</key>
+								<dict>
+									<key>ID</key>
+									<integer>0</integer>
+									<key>enabled</key>
+									<true/>
+								</dict>
+								<key>Zones</key>
+								<array>
+									<dict>
+										<key>ID</key>
+										<integer>6</integer>
+										<key>enabled</key>
+										<true/>
+										<key>gain</key>
+										<real>-13.499995231628418</real>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>25</integer>
+										<key>min key</key>
+										<integer>25</integer>
+										<key>root key</key>
+										<integer>25</integer>
+										<key>waveform</key>
+										<integer>268435462</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>1</integer>
+										<key>enabled</key>
+										<true/>
+										<key>gain</key>
+										<real>-0.54000002145767212</real>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>24</integer>
+										<key>min key</key>
+										<integer>24</integer>
+										<key>pitch tracking</key>
+										<false/>
+										<key>root key</key>
+										<integer>24</integer>
+										<key>waveform</key>
+										<integer>268435457</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>5</integer>
+										<key>enabled</key>
+										<true/>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>26</integer>
+										<key>min key</key>
+										<integer>26</integer>
+										<key>root key</key>
+										<integer>26</integer>
+										<key>waveform</key>
+										<integer>268435461</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>2</integer>
+										<key>enabled</key>
+										<true/>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>27</integer>
+										<key>min key</key>
+										<integer>27</integer>
+										<key>pitch tracking</key>
+										<false/>
+										<key>root key</key>
+										<integer>27</integer>
+										<key>waveform</key>
+										<integer>268435458</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>3</integer>
+										<key>enabled</key>
+										<true/>
+										<key>gain</key>
+										<real>-12.41997241973877</real>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>30</integer>
+										<key>min key</key>
+										<integer>30</integer>
+										<key>pan</key>
+										<real>-16</real>
+										<key>pitch tracking</key>
+										<false/>
+										<key>root key</key>
+										<integer>30</integer>
+										<key>waveform</key>
+										<integer>268435459</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>4</integer>
+										<key>enabled</key>
+										<true/>
+										<key>gain</key>
+										<real>-11.340000152587891</real>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>34</integer>
+										<key>min key</key>
+										<integer>34</integer>
+										<key>pan</key>
+										<real>14</real>
+										<key>root key</key>
+										<integer>34</integer>
+										<key>waveform</key>
+										<integer>268435460</integer>
+									</dict>
+								</array>
+								<key>name</key>
+								<string>909</string>
+							</dict>
+						</array>
+						<key>name</key>
+						<string>Default Instrument</string>
+					</dict>
+					<key>coarse tune</key>
+					<integer>0</integer>
+					<key>data</key>
+					<data>
+					AAAAAAAAAAAAAAAEAAADhAAAAAAAAAOFAAAA
+					AAAAA4YAAAAAAAADhwAAAAA=
+					</data>
+					<key>file-references</key>
+					<dict>
+						<key>Sample:268435457</key>
+						<string>/Users/alex/Library/Audio/Sounds/BT7A0D3.WAV</string>
+						<key>Sample:268435458</key>
+						<string>/Users/alex/Library/Audio/Sounds/HANDCLP1.WAV</string>
+						<key>Sample:268435459</key>
+						<string>/Users/alex/Library/Audio/Sounds/HHCD0.WAV</string>
+						<key>Sample:268435460</key>
+						<string>/Users/alex/Library/Audio/Sounds/HHOD4.WAV</string>
+						<key>Sample:268435461</key>
+						<string>/Users/alex/Library/Audio/Sounds/ST0T0S3.WAV</string>
+						<key>Sample:268435462</key>
+						<string>/Users/alex/Library/Audio/Sounds/RIM127.WAV</string>
+					</dict>
+					<key>fine tune</key>
+					<real>0.0</real>
+					<key>gain</key>
+					<real>0.0</real>
+					<key>manufacturer</key>
+					<integer>1634758764</integer>
+					<key>name</key>
+					<string>Untitled</string>
+					<key>output</key>
+					<integer>0</integer>
+					<key>pan</key>
+					<real>0.0</real>
+					<key>subtype</key>
+					<integer>1935764848</integer>
+					<key>type</key>
+					<integer>1635085685</integer>
+					<key>version</key>
+					<integer>0</integer>
+					<key>voice count</key>
+					<integer>64</integer>
+				</dict>
+				<key>connections</key>
+				<array>
+					<dict>
+						<key>element ID</key>
+						<integer>0</integer>
+						<key>format</key>
+						<dict>
+							<key>channel bits</key>
+							<integer>32</integer>
+							<key>format</key>
+							<integer>1819304813</integer>
+							<key>format flags</key>
+							<integer>41</integer>
+							<key>frame bytes</key>
+							<integer>4</integer>
+							<key>frame channels</key>
+							<integer>2</integer>
+							<key>frame packets</key>
+							<integer>1</integer>
+							<key>packet bytes</key>
+							<integer>4</integer>
+							<key>sample rate</key>
+							<real>44100</real>
+						</dict>
+						<key>scope</key>
+						<integer>2</integer>
+					</dict>
+				</array>
+				<key>midi</key>
+				<dict>
+					<key>midi thru connection</key>
+					<dict>
+						<key>midi thru data</key>
+						<data>
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAA////////
+						////////////AAAAfwAAAAAAAAAA
+						AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						AAAABgAAAAAAAAAAAAAAAAAHAAAA
+						AAAAAAEAAAAAAAAABAAAAAAAAAAD
+						AAAAAAAAAAsAAAAAAAAAQAAAAAAA
+						</data>
+						<key>name</key>
+						<string>Untitled</string>
+					</dict>
+					<key>name</key>
+					<string>any midi source</string>
+				</dict>
+				<key>name</key>
+				<string>Midi Device</string>
+				<key>unit</key>
+				<dict>
+					<key>manufacturer</key>
+					<integer>1634758764</integer>
+					<key>name</key>
+					<string>Apple: AUSampler</string>
+					<key>subtype</key>
+					<integer>1935764848</integer>
+					<key>type</key>
+					<integer>1635085685</integer>
+				</dict>
+			</dict>
+		</array>
+		<key>track mixer</key>
+		<dict>
+			<key>strips</key>
+			<array>
+				<dict>
+					<key>active</key>
+					<integer>1</integer>
+					<key>mute</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string>Instrument 1</string>
+					<key>output assignments</key>
+					<array>
+						<integer>1</integer>
+					</array>
+					<key>pan angle</key>
+					<real>1</real>
+					<key>pan azimuth</key>
+					<real>0.0</real>
+					<key>pan distance</key>
+					<real>1</real>
+					<key>pan elevation</key>
+					<real>0.0</real>
+					<key>pan mode</key>
+					<integer>4</integer>
+					<key>sends</key>
+					<array>
+						<dict>
+							<key>bus</key>
+							<integer>0</integer>
+							<key>mute</key>
+							<integer>0</integer>
+							<key>post fader</key>
+							<integer>1</integer>
+							<key>volume</key>
+							<real>0.025938317179679871</real>
+						</dict>
+					</array>
+					<key>solo</key>
+					<integer>0</integer>
+					<key>synth source</key>
+					<dict>
+						<key>source elementID</key>
+						<integer>0</integer>
+						<key>source index</key>
+						<integer>0</integer>
+					</dict>
+					<key>user data</key>
+					<dict>
+						<key>Track Identifier</key>
+						<string>MIDI 0 0</string>
+					</dict>
+					<key>volume</key>
+					<real>0.099555060267448425</real>
+				</dict>
+				<dict>
+					<key>active</key>
+					<integer>1</integer>
+					<key>mute</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string>909</string>
+					<key>output assignments</key>
+					<array>
+						<integer>1</integer>
+					</array>
+					<key>pan angle</key>
+					<real>1</real>
+					<key>pan azimuth</key>
+					<real>0.0</real>
+					<key>pan distance</key>
+					<real>1</real>
+					<key>pan elevation</key>
+					<real>0.0</real>
+					<key>pan mode</key>
+					<integer>4</integer>
+					<key>sends</key>
+					<array>
+						<dict>
+							<key>bus</key>
+							<integer>0</integer>
+							<key>mute</key>
+							<integer>0</integer>
+							<key>post fader</key>
+							<integer>1</integer>
+							<key>volume</key>
+							<real>0.066095829010009766</real>
+						</dict>
+					</array>
+					<key>solo</key>
+					<integer>0</integer>
+					<key>synth source</key>
+					<dict>
+						<key>source elementID</key>
+						<integer>0</integer>
+						<key>source index</key>
+						<integer>1</integer>
+					</dict>
+					<key>user data</key>
+					<dict>
+						<key>Track Identifier</key>
+						<string>MIDI 1 0</string>
+					</dict>
+					<key>volume</key>
+					<real>1.7147592306137085</real>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>User Data</key>
+	<dict>
+		<key>View Settings</key>
+		<dict>
+			<key>Active Tab Identifier</key>
+			<string>patches</string>
+			<key>Doc Drawer Open</key>
+			<false/>
+			<key>Filter flags</key>
+			<integer>1</integer>
+		</dict>
+		<key>Window Frame</key>
+		<string>{{0, 23}, {355, 585}}</string>
+		<key>Window Max</key>
+		<string>{2560, 1622}</string>
+		<key>Window Min</key>
+		<string>{360, 540}</string>
+		<key>kAUInspectorListKey</key>
+		<array>
+			<dict>
+				<key>kAUInspectorStateKey_BusIndex</key>
+				<integer>0</integer>
+				<key>kAUInspectorStateKey_BusType</key>
+				<string>kBusType_Input</string>
+				<key>kAUInspectorStateKey_Bypassed</key>
+				<false/>
+				<key>kAUInspectorStateKey_CurrentViewName</key>
+				<string>u-he Cocoa View</string>
+				<key>kAUInspectorStateKey_EffectIndex</key>
+				<integer>-1</integer>
+				<key>kAUInspectorStateKey_PresetDrawerExpandedItems</key>
+				<array>
+					<array>
+						<string>Local</string>
+						<true/>
+					</array>
+					<array>
+						<string>3ee</string>
+						<false/>
+					</array>
+					<array>
+						<string>BrontoScorpio</string>
+						<false/>
+					</array>
+					<array>
+						<string>BumBumBias</string>
+						<false/>
+					</array>
+					<array>
+						<string>DocM</string>
+						<false/>
+					</array>
+					<array>
+						<string>Howie</string>
+						<false/>
+					</array>
+					<array>
+						<string>Julian Ray</string>
+						<false/>
+					</array>
+					<array>
+						<string>MIDI Programs</string>
+						<false/>
+					</array>
+					<array>
+						<string>noisefactory</string>
+						<false/>
+					</array>
+					<array>
+						<string>PocVecem</string>
+						<false/>
+					</array>
+					<array>
+						<string>rsmus7</string>
+						<false/>
+					</array>
+					<array>
+						<string>RW-Presets</string>
+						<false/>
+					</array>
+					<array>
+						<string>Tasmodia</string>
+						<false/>
+					</array>
+					<array>
+						<string>The Unshushable Coktor</string>
+						<false/>
+					</array>
+					<array>
+						<string>Various</string>
+						<false/>
+					</array>
+					<array>
+						<string>User</string>
+						<true/>
+					</array>
+					<array>
+						<string>tb Bassline Explorer 01</string>
+						<false/>
+					</array>
+				</array>
+				<key>kAUInspectorStateKey_PresetDrawerShowing</key>
+				<false/>
+				<key>kAUInspectorStateKey_TrackIndex</key>
+				<integer>0</integer>
+				<key>kAUInspectorStateKey_WindowLevel</key>
+				<integer>2147483647</integer>
+				<key>kAUInspectorStateKey_WindowRect</key>
+				<string>{{631, 95}, {1200, 642}}</string>
+			</dict>
+			<dict>
+				<key>kAUInspectorStateKey_BusIndex</key>
+				<integer>1</integer>
+				<key>kAUInspectorStateKey_BusType</key>
+				<string>kBusType_Input</string>
+				<key>kAUInspectorStateKey_Bypassed</key>
+				<false/>
+				<key>kAUInspectorStateKey_CurrentViewName</key>
+				<string>Apple Sample Playback Synth</string>
+				<key>kAUInspectorStateKey_EffectIndex</key>
+				<integer>-1</integer>
+				<key>kAUInspectorStateKey_PresetDrawerExpandedItems</key>
+				<array/>
+				<key>kAUInspectorStateKey_PresetDrawerShowing</key>
+				<false/>
+				<key>kAUInspectorStateKey_TrackIndex</key>
+				<integer>0</integer>
+				<key>kAUInspectorStateKey_WindowLevel</key>
+				<integer>2147483647</integer>
+				<key>kAUInspectorStateKey_WindowRect</key>
+				<string>{{398, 35}, {790, 618}}</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

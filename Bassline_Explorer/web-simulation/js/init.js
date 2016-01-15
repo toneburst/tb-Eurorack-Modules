@@ -59,7 +59,7 @@ channelstepcount[3] = [16, 0, 0, 0];   // Slide channel
 
 // Phase-accumulator and random offset number for random note/octave tables
 var randomtablecounter = 0;
-var randomtablerandomoffset = Math.round(Math.random() * 31);
+var randomtablerandomincrement = Math.round(Math.random() * 31);
 
 // Next note is/isn't slide
 var slide = false;

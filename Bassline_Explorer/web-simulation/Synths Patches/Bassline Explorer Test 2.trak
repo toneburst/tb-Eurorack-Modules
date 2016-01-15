@@ -47,7 +47,19 @@
 	<key>Patches</key>
 	<array/>
 	<key>Send Bus Info</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Bus Name</key>
+			<string>Bus 1</string>
+			<key>Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmgw87AD+DehQdP4No4t4+g83MTD+G
+			</data>
+			<key>isCollapsed</key>
+			<false/>
+		</dict>
+	</array>
 	<key>Session Data</key>
 	<dict>
 		<key>audio device used</key>
@@ -131,6 +143,151 @@
 				<real>1</real>
 			</array>
 		</dict>
+		<key>return mixer</key>
+		<dict>
+			<key>strips</key>
+			<array>
+				<dict>
+					<key>active</key>
+					<integer>1</integer>
+					<key>effects</key>
+					<array>
+						<dict>
+							<key>aupreset</key>
+							<dict>
+								<key>data</key>
+								<data>
+								AAAAAAAAAAAA
+								AAARAAAAAELI
+								AAAAAAABQqsA
+								AAAAAAI85ylv
+								AAAAAz29pRIA
+								AAAEPHSH/QAA
+								AAU6gxJvAAAA
+								Bj79cKQAAAAH
+								P3//WAAAAAg+
+								3Cj2AAAACT9y
+								sCEAAAAKPsSb
+								pgAAAAs/HYnf
+								AAAADD9etgcA
+								AAANP0AAAAAA
+								AA5ESAAAAAAA
+								D0BAAAAAAAAQ
+								AAAAAA==
+								</data>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Cathedral</string>
+								<key>render-quality</key>
+								<integer>127</integer>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+								<key>version</key>
+								<integer>0</integer>
+							</dict>
+							<key>bypass</key>
+							<integer>0</integer>
+							<key>connections</key>
+							<array>
+								<dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>1</integer>
+								</dict>
+								<dict>
+									<key>channel layout</key>
+									<dict>
+										<key>acl tag</key>
+										<integer>6619138</integer>
+									</dict>
+									<key>element ID</key>
+									<integer>0</integer>
+									<key>format</key>
+									<dict>
+										<key>channel bits</key>
+										<integer>32</integer>
+										<key>format</key>
+										<integer>1819304813</integer>
+										<key>format flags</key>
+										<integer>41</integer>
+										<key>frame bytes</key>
+										<integer>4</integer>
+										<key>frame channels</key>
+										<integer>2</integer>
+										<key>frame packets</key>
+										<integer>1</integer>
+										<key>packet bytes</key>
+										<integer>4</integer>
+										<key>sample rate</key>
+										<real>44100</real>
+									</dict>
+									<key>scope</key>
+									<integer>2</integer>
+								</dict>
+							</array>
+							<key>unit</key>
+							<dict>
+								<key>manufacturer</key>
+								<integer>1634758764</integer>
+								<key>name</key>
+								<string>Apple: AUMatrixReverb</string>
+								<key>subtype</key>
+								<integer>1836213622</integer>
+								<key>type</key>
+								<integer>1635083896</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>mute</key>
+					<integer>0</integer>
+					<key>name</key>
+					<string>Bus 1</string>
+					<key>output assignments</key>
+					<array>
+						<integer>1</integer>
+					</array>
+					<key>pan angle</key>
+					<real>1</real>
+					<key>pan azimuth</key>
+					<real>0.0</real>
+					<key>pan distance</key>
+					<real>1</real>
+					<key>pan elevation</key>
+					<real>0.0</real>
+					<key>pan mode</key>
+					<integer>4</integer>
+					<key>solo</key>
+					<integer>0</integer>
+					<key>source number channels</key>
+					<integer>2</integer>
+					<key>volume</key>
+					<real>1</real>
+				</dict>
+			</array>
+		</dict>
 		<key>synth list</key>
 		<array>
 			<dict>
@@ -163,119 +320,119 @@
 					dj0yCiNtdj1HYXRlCiNtdj1BRFNSMQojY209
 					bWFpbgpDY09wPTE0Mi4wMAojQ2hyczE9MQoj
 					Y209UENvcmUKTU1UMT1FTlYyOkF0awpNTVMx
-					PTEKTU1EMT0tMTAuMDAKTU1WUzE9MApNTVZE
-					MT0wLjAwCk1NVDI9bm9uZTphc3NpZ25lZApN
-					TVMyPTAKTU1EMj0wLjAwCk1NVlMyPTAKTU1W
-					RDI9MC4wMApTQmFzZT00ClN3aW5nPTAuMDAK
-					U1RyaWc9MQpQU29uZz0wClBGb2xkPTAKUEZp
-					bGU9MQpHRmlsZT0yCkdTY2FsZT0wCkNoTGF5
-					PTAKU3Vyck89MQpSZXY9MzMwNApMRUQ9MC4w
-					MApQQUdFPTAKUGFnZXNPbj0wCkNvcmVOPTMK
-					U2xpY2U9NApVSV9vcD04Ck1pZGlBPTUKTWlk
-					aVA9NgojY209VkNDClZvaWNpbmc9MQpNb2Rl
-					PTAKUG9ydGFNPTAKUG9ydGE9MTEuNTAKUG9y
-					dGEyPTAuMDAKUFJhbmdlPTEwMC4wMApQQj0y
-					ClBCRD0yCkRyZnQ9MQpNVHVuUz0wCk1UdW5O
-					PTcKTVR1blQ9OApUcnNwPTAKUHJpb3I9MApN
-					dUNvcmU9MApDb250RW49MQpSTm90ZT0wClJW
-					ZWw9MAojY209RU5WMQpBdGs9OS4wMApEZWM9
-					NTAuMDAKU3VzPTEwMC4wMApGUj0wLjAwClJl
-					bD00Mi4wMApWZWw9MzAuMDAKUk1vZD0wLjAw
-					CkxhYmVsPTkKVHJpZz0wCiNjbT1FTlYyCkF0
-					az0wLjAwCkRlYz01Ny4wMApTdXM9NDQuMDAK
-					RlI9MC4wMApSZWw9NjQuMDAKVmVsPTg2LjUw
-					ClJNb2Q9MC4wMApMYWJlbD0xMApUcmlnPTAK
-					I2NtPUxGTzEKU3luYz0yClRyaWc9MQpXYXZl
-					PTEKUGhzZT0wLjAwClBvbGFyPTAKRGx5PTAu
-					MDAKRE1TMT0xCkRNRDE9NTguMDAKUmF0ZT0t
-					MC44MApGTVMxPTAKRk1EMT0wLjAwCiNjbT1M
-					Rk8yClN5bmM9NgpUcmlnPTEKV2F2ZT0xClBo
-					c2U9MC4wMApQb2xhcj0wCkRseT0wLjAwCkRN
-					UzE9MQpETUQxPTAuMDAKUmF0ZT0wLjMwCkZN
-					UzE9NwpGTUQxPTMuODAKI2NtPVR5cmVsbApT
-					aHAxPTMuMDAKVE1TcmMxPTE1ClRNRHB0MT0w
-					LjIwClNocDI9Mi4wMApUdW5lMj0wLjAwCkZp
-					bmUyPTQuMDAKVE1TcmMyPTE1ClRNRHB0Mj0t
-					MC4yMApQV0RwdD0zMS4wMApQV1NyYz0xNgpE
-					ZXR1bmU9LTQuMDAKU3luYz0wLjAwClZ0b0Q9
-					MC4wMApSTWkxPTAKUk1pMj0wCkZCaW49MApO
-					b2lzZT0xLjAwCk9zY1ZvbDE9LTI1LjAwCk9z
-					Y1ZvbDI9LTQxLjAwClN1YlZvbD0tMTAwLjAw
-					Ck5zZVZvbD0tMTAwLjAwClJNVm9sPS0xMDAu
-					MDAKRkJWb2w9LTEwMC4wMApWQ0Ztb2Q9MApW
-					Q0ZQb2w9MQpDdXRvZmY9NDYuNTAKRk1TcmMx
-					PTE0CkZNRHB0MT04MC4wMApGTVNyYzI9MTYK
-					Rk1EcHQyPTYuMDAKS2V5Rm9sPTIwLjAwClJl
-					cz0yOC4yMApNeFNwPTAuMDAKTXhTcFNyYz0w
-					CkFSU3JjPTAKQVJEZXN0PTAKQVJEcHQ9MC4w
-					MApBUk1vZD0wCiNjbT1WQ0ExClZDQT0xCkF0
-					dFM9MQojY209Q2hyczEKVHlwZT0wClJhdGU9
-					NjIuNTAKRGVwdGg9MTIuNTAKV2V0PTIyLjAw
-					CgoKCgoKLy8gU2VjdGlvbiBmb3IgdWdseSBj
-					b21wcmVzc2VkIGJpbmFyeSBEYXRhCi8vIERP
-					TidUIFRPVUNIIFRISVMKCiQkJCQxNjUyCj9n
-					ZGdjZW5lYjppYmFhYWFhYTpqYWxvcGFscDph
-					YW5hY2NoajphYWFhaWJhYTplYWFhYWFhYTpv
-					YWRnb3BoaToKYWFhYWlhZHA6YWFhYmFhYWE6
-					Ymlsb3BhbHA6YWE6ZWM6ZWI6cGE6Y2E6ZWE6
-					bG86bHA6YWY6Z2k6aWE6b2k6cApnOmthOm5h
-					OmFtOmJhOmNpOmRhOmVtOmdiOmdtOmhpOmhq
-					OmptOmxpIXF5QTdUZ3BnZFVWQWNqSU9MTVdv
-					ZUxNCldwaWxuREhLR0RIdHJ6c3RyUkdESHBu
-					ZGVjbElzd2VpR0RIdXRyZmlHREhsZk9kaFlz
-					d3JuaGRwa2NqZkExdTEKQTV1QTNKR0RITW1w
-					ZGhZdXNaR0RIcG1kamxiamZzTkdESEExbGRo
-					a2dnUEEyYmVJQWdnUEExU09sZGhrQTRRYQpn
-					QXBtY2dvbFhBN2NoMUExdVpHREhpbm1nZGZJ
-					Y2gxQTFub1hja0lMR0RIYWtobGNrSWxib2Rk
-					ZklUb25NV0xHCkRIWW5jZGZJU2Nnb2xYQTNx
-					dkE3ZmVmZmVkRWNuRWVkVlVoZDFnamdkRWZk
-					WGdvaGVKRVRnZlVnZUVkYmNvSmQKY2hhQTF6
-					c3RyUkdESHBuZGVjbElzd3F2QTcxcXZBN29u
-					b29vcERwYnBjcGRwZXBmTXBocGlwanBrcGxw
-					bXBucApvcHBBYWJhY2FkYWVJYWdhaGFpYWph
-					a2FsUGFuYW9hcFFiYmJjYmRiZWJmYmdiaGJp
-					Ympia2JsYm1ibmJvYnBFCmNiY2NjZGNlY2Zj
-					Z2NoUmNqY2tjbGNtcWFlQTEwa2Zvb2VmYWhx
-					eUE3ZmVKZ2ZFZmZnb2hkSmhmaGRKVWdjVmcK
-					ZkVlZGdwZ2xoZWdwaGNBMjMzcUtBMTM4cXZB
-					NDN4QTJGQTFGMUExS0ZBMU5GQTFtYUZBMW9h
-					RnFBYWNBNXhBMwp4QTJGQTFGMUExS0ZBMU5G
-					QTFtYUZBMW9hdkNBMVFDQTFFQ0ExU0NBMUZD
-					QTFmYUNBMWdhQ0ExaGFDQTFLQ0ExCmlpQ0Ex
-					amFDQTFqaUNBMU5DQTFraUNBMWxhQ0ExWkNB
-					MW1hQ0ExbWlDQTFPQ0ExbmlDQTFvYUNBMUxD
-					QTFEQ0EKMXBpQ0EyQkExYWVCQTFhaUJBMVBC
-					QTFRQkExYmVCQTFiaUJBMWJtQkExRUJBMWNl
-					QkExUkJBMWNtQkExU0JBMQpkZUJBMWRpQkEx
-					ZG1CQTFGQkExZWVCQTFlaUJBMVRCQTFmYUJB
-					MWZlQkExZmlCQTFmbUJBMWdhQkExZ2VCQTFK
-					CkJBMVZCQTFoYUJBMWhlQkExV0JBMWhtQkEx
-					S0JBMWljQkExaWVCQTFpZ0JBMWlpQkExaWtC
-					QTFpbUJBMWlvQkEKMWphQkExamNCQTFqZUJB
-					MWpnQkExamlCQTFqa0JBMVlCQTFqb0JBMU5C
-					QTFrY0JBMWtlQkExa2dCQTFraUJBMQpra0JB
-					MWttQkExa29CQTFsYUJBMWxjQkExbGVCQTFs
-					Z0JBMVpCQTFsa0JBMWxtQkExR0JBMW1hQkEx
-					bWNCQTFtCmVCQTFtZ0JBMW1pQkExbWtCQTFt
-					bUJBMW1vQkExT0JBMW5jQkExbmVCQTFuZ0JB
-					MW5pQkExbmtCQTFubUJBMW4Kb0JBMW9hQkEx
-					b2NCQTFvZUJBMW9nQkExTEJBMW9rQkExb21C
-					QTFvb0JBMURCQTFwY0JBMXBlQkExTUJBMXBp
-					QgpBMXBrQkExcG1CQTFwb0JxRUExMENlZWZk
-					ZmNFZGJBMjVxRUExMENlZWZkZmNFZGNBMjU9
-					MTEyMTU1CgAA
+					PTEKTU1EMT0xNC4wMApNTVZTMT0wCk1NVkQx
+					PTAuMDAKTU1UMj1ub25lOmFzc2lnbmVkCk1N
+					UzI9MApNTUQyPTAuMDAKTU1WUzI9MApNTVZE
+					Mj0wLjAwClNCYXNlPTQKU3dpbmc9MC4wMApT
+					VHJpZz0xClBTb25nPTAKUEZvbGQ9MApQRmls
+					ZT0xCkdGaWxlPTIKR1NjYWxlPTAKQ2hMYXk9
+					MApTdXJyTz0xClJldj0zMzA0CkxFRD0wLjAw
+					ClBBR0U9MApQYWdlc09uPTAKQ29yZU49MwpT
+					bGljZT00ClVJX29wPTkKTWlkaUE9NQpNaWRp
+					UD02CiNjbT1WQ0MKVm9pY2luZz0xCk1vZGU9
+					MApQb3J0YU09MApQb3J0YT0xNS4wMApQb3J0
+					YTI9MC4wMApQUmFuZ2U9MTAwLjAwClBCPTIK
+					UEJEPTIKRHJmdD0xCk1UdW5TPTAKTVR1bk49
+					NwpNVHVuVD04ClRyc3A9MApQcmlvcj0wCk11
+					Q29yZT0wCkNvbnRFbj0xClJOb3RlPTAKUlZl
+					bD0wCiNjbT1FTlYxCkF0az05LjAwCkRlYz01
+					MC4wMApTdXM9MTAwLjAwCkZSPTAuMDAKUmVs
+					PTQyLjAwClZlbD0xMC4wMApSTW9kPTAuMDAK
+					TGFiZWw9OQpUcmlnPTAKI2NtPUVOVjIKQXRr
+					PTAuMDAKRGVjPTU3LjAwClN1cz00NC4wMApG
+					Uj0wLjAwClJlbD02NC4wMApWZWw9ODYuNTAK
+					Uk1vZD0wLjAwCkxhYmVsPTEwClRyaWc9MAoj
+					Y209TEZPMQpTeW5jPTIKVHJpZz0xCldhdmU9
+					MQpQaHNlPTAuMDAKUG9sYXI9MApEbHk9MC4w
+					MApETVMxPTEKRE1EMT01OC4wMApSYXRlPS0w
+					LjgwCkZNUzE9MApGTUQxPTAuMDAKI2NtPUxG
+					TzIKU3luYz02ClRyaWc9MQpXYXZlPTEKUGhz
+					ZT0wLjAwClBvbGFyPTAKRGx5PTAuMDAKRE1T
+					MT0xCkRNRDE9MC4wMApSYXRlPTAuMzAKRk1T
+					MT03CkZNRDE9My44MAojY209VHlyZWxsClNo
+					cDE9My4wMApUTVNyYzE9MTUKVE1EcHQxPTAu
+					MjAKU2hwMj0yLjAwClR1bmUyPTAuMDAKRmlu
+					ZTI9NC4wMApUTVNyYzI9MTUKVE1EcHQyPS0w
+					LjIwClBXRHB0PTMxLjAwClBXU3JjPTE2CkRl
+					dHVuZT0tNC4wMApTeW5jPTAuMDAKVnRvRD0w
+					LjAwClJNaTE9MApSTWkyPTAKRkJpbj0wCk5v
+					aXNlPTEuMDAKT3NjVm9sMT0tMjUuMDAKT3Nj
+					Vm9sMj0tNDEuMDAKU3ViVm9sPS0xMDAuMDAK
+					TnNlVm9sPS0xMDAuMDAKUk1Wb2w9LTEwMC4w
+					MApGQlZvbD0tMTAwLjAwClZDRm1vZD0wClZD
+					RlBvbD0xCkN1dG9mZj01My41MApGTVNyYzE9
+					MTQKRk1EcHQxPTgwLjAwCkZNU3JjMj0xNgpG
+					TURwdDI9Ni4wMApLZXlGb2w9MjAuMDAKUmVz
+					PTI4LjIwCk14U3A9MC4wMApNeFNwU3JjPTAK
+					QVJTcmM9MApBUkRlc3Q9MApBUkRwdD0wLjAw
+					CkFSTW9kPTAKI2NtPVZDQTEKVkNBPTEKQXR0
+					Uz0xCiNjbT1DaHJzMQpUeXBlPTAKUmF0ZT02
+					Mi41MApEZXB0aD0xMi41MApXZXQ9MjIuMDAK
+					CgovLyBTZWN0aW9uIGZvciB1Z2x5IGNvbXBy
+					ZXNzZWQgYmluYXJ5IERhdGEKLy8gRE9OJ1Qg
+					VE9VQ0ggVEhJUwoKJCQkJDE2NTIKP2dkZ2Nl
+					bmViOmliYWFhYWFhOmphbG9wYWxwOmFhbmFj
+					Y2hqOmFhYWFpYmFhOmVhYWFhYWFhOm9hZGdv
+					cGhpOgphYWFhaWFkcDphYWFiYWFhYTpiaWxv
+					cGFscDphYTplYzplYjpwYTpjYTplYTpsbzps
+					cDphZjpnaTppYTpvaTpwCmc6ZW06a2E6bmE6
+					YW06YmE6Y2k6ZGE6Z2I6Z206aGk6aGo6am06
+					bGkhcXlBN05ncGdkVVZBY2pJUExNV29lTE0K
+					V3BpbG5ESEtHREh0cnpzdHJTR0RIcG5kZWNs
+					SXN3ZWlHREh1dHJmaUdESGxmUGRoWXN3cm5o
+					ZHBrY2pmQTF1MQpBNXVBM0pHREhNbXBkaFl1
+					c1pHREhwbWRqbGJqZnNPR0RIQTFsZGhrZ2dR
+					QTJiZUlBZ2dRQTFUUGxkaGtBNFJhCmdBcG1j
+					Z29sWEE3Y2gxQTF1WkdESGlubWdkZkljaDFB
+					MW5vWGNrSUxHREhha2hsY2tJbGJvZGRmSU5v
+					bk1XTEcKREhZbmNkZklUY2dvbFhBM3F2QTdm
+					ZWZmZWRFY25FZWRWVWhkMWdqZ2RFZmRYZ29o
+					ZUpFTmdmVWdlRWRiY29KZApjaGFBMXpzdHJT
+					R0RIcG5kZWNsSXN3cXZBNzFxdkE3b25vb29w
+					RHBicGNwZHBlcGZNcGhwaXBqcGtwbHBtcG5w
+					Cm9wcEFhYmFjYWRhZUlhZ2FoYWlhamFrYWxR
+					YW5hb2FwUmJiYmNiZGJlYmZiZ2JoYmliamJr
+					YmxibWJuYm9icEUKY2JjY2NkY2VjZmNnY2hT
+					Y2pja2NsY21xYWVBMTBkbmhoTmFocXlBN2Zl
+					SmdmRWZmZ29oZEpoZmhkSlVnY1ZnZgpFZWRn
+					cGdsaGVncGhjQTIzM3FLQTEzOHF2QTQzeEEy
+					RkExRjFBMUtGQTFPRkExbWFGQTFvYUZxQWFj
+					QTV4QTN4CkEyRkExRjFBMUtGQTFPRkExbWFG
+					QTFvYXZDQTFSQ0ExRUNBMVRDQTFGQ0ExZmFD
+					QTFnYUNBMWhhQ0ExS0NBMWkKaUNBMWphQ0Ex
+					amlDQTFPQ0Exa2lDQTFsYUNBMVpDQTFtYUNB
+					MW1pQ0ExUENBMW5pQ0Exb2FDQTFMQ0ExRENB
+					MQpwaUNBMkJBMWFlQkExYWlCQTFRQkExUkJB
+					MWJlQkExYmlCQTFibUJBMUVCQTFjZUJBMVNC
+					QTFjbUJBMVRCQTFkCmVCQTFkaUJBMWRtQkEx
+					RkJBMWVlQkExZWlCQTFOQkExZmFCQTFmZUJB
+					MWZpQkExZm1CQTFnYUJBMWdlQkExSkIKQTFW
+					QkExaGFCQTFoZUJBMVdCQTFobUJBMUtCQTFp
+					Y0JBMWllQkExaWdCQTFpaUJBMWlrQkExaW1C
+					QTFpb0JBMQpqYUJBMWpjQkExamVCQTFqZ0JB
+					MWppQkExamtCQTFZQkExam9CQTFPQkExa2NC
+					QTFrZUJBMWtnQkExa2lCQTFrCmtCQTFrbUJB
+					MWtvQkExbGFCQTFsY0JBMWxlQkExbGdCQTFa
+					QkExbGtCQTFsbUJBMUdCQTFtYUJBMW1jQkEx
+					bWUKQkExbWdCQTFtaUJBMW1rQkExbW1CQTFt
+					b0JBMVBCQTFuY0JBMW5lQkExbmdCQTFuaUJB
+					MW5rQkExbm1CQTFubwpCQTFvYUJBMW9jQkEx
+					b2VCQTFvZ0JBMUxCQTFva0JBMW9tQkExb29C
+					QTFEQkExcGNCQTFwZUJBMU1CQTFwaUJBCjFw
+					a0JBMXBtQkExcG9CcUVBMTBDZWVmZGZjRWRi
+					QTI1cUVBMTBDZWVmZGZjRWRjQTI1PTExMjAx
+					OQoAAA==
 					</data>
 					<key>data</key>
 					<data>
 					AAAAAAAAAAAAAABOAAAAAEMOAAAAAAABP4AA
-					AAAAAALBIAAAAAAAAwAAAAAAAAAEAAAAAAAA
+					AAAAAAJBYAAAAAAAAwAAAAAAAAAEAAAAAAAA
 					AAUAAAAAAAAABgAAAAAAAAAHAAAAAAAAAAgA
 					AAAAAAAACT+AAAAAAAAKAAAAAAAAAAsAAAAA
-					AAAADEE4AAAAAAANAAAAAAAAAA5CyAAAAAAA
+					AAAADEFwAAEAAAANAAAAAAAAAA5CyAAAAAAA
 					D0AAAAAAAAAQQAAAAAAAABEAAAAAAAAAEkEQ
 					AAAAAAATQkgAAAAAABRCyAAAAAAAFQAAAAAA
-					AAAWQigAAAAAABdB8AAAAAAAGAAAAAAAAAAZ
+					AAAWQigAAAAAABdBIAAAAAAAGAAAAAAAAAAZ
 					AAAAAAAAABoAAAAAAAAAG0JkAAAAAAAcQjAA
 					AAAAAB0AAAAAAAAAHkKAAAAAAAAfQq0AAAAA
 					ACAAAAAAAAAAIQAAAAAAAAAiQAAAAAAAACMA
@@ -287,8 +444,8 @@
 					AAAAAAAAADU/gAAAAAAANsHIAAAAAAA3wiQA
 					AAAAADjCyAAAAAAAOcLIAAAAAAA6wsgAAAAA
 					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5C
-					OgAAAAAAP0FgAAAAAABAQqAAAAAAAEFBgAAA
-					AAAAQkDAAAAAAABDQaAAAAAAAERB4ZmYAAAA
+					VgAAAAAAP0FgAAAAAABAQqAAAAAAAEFBgAAA
+					AAAAQkDAAAAAAABDQaAAAAAAAERB4ZmaAAAA
 					RQAAAAAAAABGAAAAAAAAAEcAAAAAAAAASAAA
 					AAAAAABJAAAAAAAAAEoAAAAAAAAAS0J6AAAA
 					AABMQUgAAAAAAE1BsAAA
@@ -397,6 +554,19 @@
 					<real>0.0</real>
 					<key>pan mode</key>
 					<integer>4</integer>
+					<key>sends</key>
+					<array>
+						<dict>
+							<key>bus</key>
+							<integer>0</integer>
+							<key>mute</key>
+							<integer>0</integer>
+							<key>post fader</key>
+							<integer>1</integer>
+							<key>volume</key>
+							<real>0.4954032301902771</real>
+						</dict>
+					</array>
 					<key>solo</key>
 					<integer>0</integer>
 					<key>synth source</key>
@@ -512,6 +682,10 @@
 					<array>
 						<string>User</string>
 						<true/>
+					</array>
+					<array>
+						<string>tb Bassline Explorer 01</string>
+						<false/>
 					</array>
 				</array>
 				<key>kAUInspectorStateKey_PresetDrawerShowing</key>

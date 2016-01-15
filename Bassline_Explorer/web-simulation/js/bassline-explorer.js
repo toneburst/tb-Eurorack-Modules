@@ -68,6 +68,25 @@ function cornerswitch(pat, ch, x, y, stp) {
     return U8Switch(U8Switch(corners[0], corners[1], pos[0]), U8Switch(corners[2], corners[3], pos[0]), pos[1]);
 }
 
+//////////////////////////////////////
+// Randomise Trigger (Accent/Slide) //
+//////////////////////////////////////
+
+function randomisetrigger(chan, prob, thresh, randincr) {
+    var result = (prob < thresh) ? 1 : 0;
+    if(thresh > 191) {
+        if((prob >> 2) < (thresh - 192)) {
+            // Calculate lookup index for random accent/slide arrays, wrap to array length
+            var rtableindex = (channelstepcount[chan][3]) % (randomtable[chan].length - 1);
+            // If note randomisation threshold is high, randomise random table counter increment
+            channelstepcount[chan][3] += (thresh > 238) ? randincr : 1;
+            // Return 0 if looked up value is 0
+            result = randomtable[chan][rtableindex];
+        };
+    };
+    return result;
+};
+
 ////////////////////////
 ////////////////////////
 //// Step Functions ////
@@ -86,11 +105,9 @@ function playStep() {
     var octaveprob   = stepvals[3];
     var octavethresh = thresholds[1]
     var accentprob   = stepvals[4];
-    var accentthresh = thresholds[2]
-    var slideprob    = stepvals[5];
-    var slidethresh  = thresholds[3]
+    var accentthresh = thresholds[2];
 
-    // Calculate note-number based on theshold and probability values
+    // Calculate note-number based on threshold and probability values
     // and conditionally apply random offset
     if(notethresh < 127) {
         if(noteprob > notethresh)
@@ -101,10 +118,10 @@ function playStep() {
             var rtableindex = (channelstepcount[0][2] + randomtablecounter);
             // If note randomisation threshold is high, add random offset to lookup index
             if(notethresh < 250)
-                rtableindex += randomtablerandomoffset;
+                rtableindex += randomtablerandomincrement;
             // Wrap index to table length
-            rtableindex = rtableindex % (noterandomtable.length - 1);
-            note = (note + noterandomtable[rtableindex]) % 11;
+            rtableindex = rtableindex % (randomtable[0].length - 1);
+            note = (note + randomtable[0][rtableindex]) % 11;
         }
     }
 
@@ -119,35 +136,18 @@ function playStep() {
             var rtableindex = (channelstepcount[1][2] + randomtablecounter);
             // If octave randomisation threshold is high, add random offset to lookup index
             if(octavethresh < 250)
-                rtableindex += randomtablerandomoffset;
+                rtableindex += randomtablerandomincrement;
             // Wrap index to table length
-            rtableindex = rtableindex % (octaverandomtable.length - 1);
-            octave = (octave + octaverandomtable[rtableindex]) % 2;
+            rtableindex = rtableindex % (randomtable[1].length - 1);
+            octave = (octave + randomtable[1][rtableindex]) % 2;
         }
     }
-    // Calculate MIDO note-number (looking up note number from scale table)
+    // Calculate MIDI note-number (looking up note number from scale table)
     var midi_notenum = scale[note] + (12 * octave) + transpose;
 
     // Set note-on velocity
-    var midi_velocity = midi_lowvelocity;
+    var midi_velocity = (randomisetrigger(2, accentprob, accentthresh, randomtablerandomincrement) === 0) ? midi_lowvelocity : midi_highvelocity;
 
-    if(accentprob < accentthresh) {
-        midi_velocity = midi_highvelocity;
-    };
-    if(accentthresh >= 192) {
-        if((accentprob >> 2) < (accentthresh - 192)) {
-            // Calculate lookup index for random note/octave tables
-            var rtableindex = (channelstepcount[2][2] + randomtablecounter);
-            // If note randomisation threshold is high, add random offset to lookup index
-            if(accentthresh > 250)
-                rtableindex += randomtablerandomoffset;
-            // Wrap index to table length
-            rtableindex = rtableindex % (accentrandomtable.length - 1);
-
-            if(accentrandomtable[rtableindex] === 0)
-                midi_velocity = midi_lowvelocity;
-        };
-    };
 
     // Determine if note is tied (ie slide enabled and note number same as previous note)
     var tied = (slide && midi_notenum == midi_previousnotes[midi_previousnotes.length - 1]) ? true : false;
@@ -173,7 +173,7 @@ function playStep() {
         // Increment/reset random table counter
         randomtablecounter = (randomtablecounter < (channelstepcount[0][0] - 1)) ? randomtablecounter + 1 : 0;
         // Generate new random offset
-        randomtablerandomoffset = getrandom(noterandomtable.length -1, 0);
+        randomtablerandomincrement = getrandom(7, 0);
     };
 
 };
@@ -185,21 +185,8 @@ function playStep() {
 
 function getStepVals() {
 
-    // Calculate interpolated values for next step
-    // Note | Note probability | Octave | Octave probability | Accent probability | Slide probability
-    var counterchs = [0, 0, 1, 1, 2, 3];
-    for(i = 0; i < stepvals.length; i++) {
-        var ctc = counterchs[i];
-        if(i == 2) {
-            stepvals[i] = cornerswitch(patterns, i, valx, valy, channelstepcount[ctc][2]);
-        } else {
-            stepvals[i] = bilinear(patterns, i, valx, valy, channelstepcount[ctc][2]);
-        };
-    };
-
     // Determine if next note is slide
-    // TODO: Add randomness to this as Accent
-    slide = (stepvals[5] < easeinsine256[thresholds[3]]) ? true : false;
+    slide = (randomisetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
     if(slide) {
         // Ensure max 2 notes playing
@@ -212,5 +199,17 @@ function getStepVals() {
         };
         // Clear previous notes array
         midi_previousnotes = [];
+    };
+
+    // Calculate interpolated values for next step
+    // Note | Note probability | Octave | Octave probability | Accent probability | Slide probability
+    var counterchs = [0, 0, 1, 1, 2, 3];
+    for(i = 0; i < stepvals.length; i++) {
+        var ctc = counterchs[i];
+        if(i == 2) {
+            stepvals[i] = cornerswitch(patterns, i, valx, valy, channelstepcount[ctc][2]);
+        } else {
+            stepvals[i] = bilinear(patterns, i, valx, valy, channelstepcount[ctc][2]);
+        };
     };
 };

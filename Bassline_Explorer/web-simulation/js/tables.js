@@ -32,10 +32,14 @@ var coordtable = [
 // Tables for Note/Octave-randomisation //
 //////////////////////////////////////////
 
-var noterandomtable = [8,7,6,5,6,3,1,0,8,10,6,9,8,2,7,3];
-var octaverandomtable = [5,1,8,4,5,4,9,10,8,8,9,3,9,7,1,1];
-var accentrandomtable = [0,0,1,1,1,0,1,0,1,0,0,1,1,0,0,0];
-var sliderandomtable = [0,0,0,0,1,1,0,1,0,1,1,1,0,0,1,0];
+// Table of random arrays
+// Note | Octave | Accent | Slide
+var randomtable = [
+    [8,7,6,5,6,3,1,0,8,10,6,9,8,2,7,3],
+    [5,1,8,4,5,4,9,10,8,8,9,3,9,7,1,1],
+    [0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,1,0],
+    [0,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,0]
+];
 
 // Note-length table
 var notelengthtable = [
