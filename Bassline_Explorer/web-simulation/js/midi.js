@@ -46,3 +46,11 @@ function setupmidi() {
 //////////////////////////////////
 // ADD MIDI PLAY/STOP FUNCTIONS //
 //////////////////////////////////
+
+function midi_noteon(channel, note, velocity) {
+
+};
+
+function midi_noteoff(channel, note, velocity) {
+
+};
