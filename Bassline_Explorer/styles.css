@@ -14,10 +14,14 @@ h1 {
     font-family: 'Monofett', cursive;
     font-size: 50px;
     line-height: 40px;
-    color: #333;
+    color: #eee;
 }
 h4 {
 
+}
+section {
+    width: 400px;
+    margin: auto;
 }
 .control {
     width: 120px;

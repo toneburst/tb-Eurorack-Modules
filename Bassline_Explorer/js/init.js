@@ -65,7 +65,7 @@ var randomtablerandomoffset = Math.round(Math.random() * 31);
 var slide = false;
 
 // Clock var (instance of Clock object)
-var bpm = 122;
+var bpm = 120;
 var clock = new Clock(bpm, 0.5);
 
 

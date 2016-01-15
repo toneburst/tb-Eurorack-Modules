@@ -75,6 +75,17 @@ function setupplaybackcontrols() {
             clock.stop();
         }
     });
+
+    ///////////////////
+    // Tempo Control //
+    ///////////////////
+
+    var $slider_tempo = $("#slider_tempo");
+    $slider_tempo.val(bpm);
+    $slider_tempo.on('change', function() {
+        bpm = parseInt($(this).val());
+        clock.setTempo(bpm);
+    });
 };
 
 //////////////////////////////////

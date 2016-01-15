@@ -32,10 +32,10 @@
         <!-- Playback Controls -->
         <section id="playback">
 
-            <p>MIDI Output:</p>
+            <p>MIDI Output</p>
             <p><select id="selectmidi"></select></p>
 
-            <p>MIDI Channel:</p>
+            <p>MIDI Channel</p>
             <p><select id="selectmidichannel">
                 <option value="0">1</option>
                 <option value="1">2</option>
@@ -57,10 +57,10 @@
 
             <p><button type="button" id="testmidibutton">test MIDI</button></p>
 
-            <p>Scale:</p>
+            <p>Scale</p>
             <p><select id="selectscale"></select></p>
 
-            <p>Transpose:</p>
+            <p>Transpose</p>
             <p><select id="selecttranspose">
                 <option value="0">-12</option>
                 <option value="1">-11</option>
@@ -89,7 +89,10 @@
                 <option value="24">12</option>
             </select></p>
 
-            <p>Auto-Reset Clock:</p>
+            <p>Tempo</p>
+            <p><input id="slider_tempo" type="range" min="60.0" max="150.0" step="1" value="120" style="height: 20px; width: 100px"></p>
+
+            <p>Auto-Reset Clock</p>
             <p><select id="selectautoreset"></select></p>
 
             <p><button type="button" id="playbutton">Start sequencer</button></p>

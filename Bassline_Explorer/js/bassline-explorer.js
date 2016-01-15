@@ -161,7 +161,7 @@ function playStep() {
     midi_previousnotes.push(midi_notenum);
 
     // Update channel step-counters
-    // Add offset and mod channel length with master step counter
+    // Add offset and % (mod) channel length with master step counter to get channel step-count
     for(i = 0; i < channelstepcount.length; i++) {
         var length = channelstepcount[i][0];
         var offset = channelstepcount[i][1];
@@ -198,6 +198,7 @@ function getStepVals() {
     };
 
     // Determine if next note is slide
+    // TODO: Add randomness to this as Accent
     slide = (stepvals[5] < easeinsine256[thresholds[3]]) ? true : false;
 
     if(slide) {
