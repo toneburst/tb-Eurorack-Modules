@@ -33,9 +33,9 @@ function setupmidi() {
         });
 
         $("button#testmidibutton").mousedown(function() {
-            Jazz.MidiOut(0x90,24,127);
+            Jazz.MidiOut(midi_channel + 144,24,127);
         }).mouseup(function() {
-            Jazz.MidiOut(0x80,24,0);
+            Jazz.MidiOut(midi_channel + 128,24,0);
         });
 
         Jazz.MidiOut(0x44);
@@ -48,9 +48,9 @@ function setupmidi() {
 //////////////////////////////////
 
 function midi_noteon(channel, note, velocity) {
-
+    Jazz.MidiOut(midi_channel + 144, note, velocity);
 };
 
 function midi_noteoff(channel, note, velocity) {
-
+    Jazz.MidiOut(midi_channel + 128, note, velocity);
 };

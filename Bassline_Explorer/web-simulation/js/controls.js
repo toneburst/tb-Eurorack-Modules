@@ -12,6 +12,15 @@
 
 function setupplaybackcontrols() {
 
+    ///////////////////////
+    // MIDI Channel Menu //
+    ///////////////////////
+
+    // Handle menu changes
+    $("#selectmidichannel").change(function() {
+        midi_channel = parseInt($(this).val());
+    });
+
     /////////////////
     // Scales Menu //
     /////////////////
@@ -224,7 +233,7 @@ function setupcontrols() {
     });
     $knob_shift.val(channelstepcount[lnshiftchannel][1]).trigger("change");
 
-    // Channel-Select
+    // Length | Shift Channel-Select
     $("input[type='radio']").click(function() {
         var radioValue = $("input[name='lnshft-function']:checked").val();
         if(radioValue) {

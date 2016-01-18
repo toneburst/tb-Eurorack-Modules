@@ -2,9 +2,14 @@
 	<head>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script type="text/javascript">
-			function rand(range, offset) {
-				return Math.round(Math.random() * range) + offset;
+			function rand(range, offset, pretransform) {
+				var rand = Math.random();
+				if(pretransform) {
+					rand = eval(pretransform.replace("x", rand));
+				}
+				return Math.round(rand * range + offset);
 			}
+
 			function generate_nodes() {
 				var arr = "<pre>";
 				for(i = 0; i < 25; i++) {
@@ -80,21 +85,10 @@
 				return arr;
 			}
 
-			function generate_1drandomarray(max, offs, len, varname) {
+			function generate_1drandomarray(max, offs, len, varname, pretransform) {
 				var arr = "var " + varname + " = [";
 				for(i = 0; i < len; i++) {
-					arr += rand(max, offs);
-					if(i < len - 1) {
-						arr += ",";
-					}
-				}
-				return arr + "];";
-			}
-
-			function generate_1drandomarray(max, offs, len, varname) {
-				var arr = "var " + varname + " = [";
-				for(i = 0; i < len; i++) {
-					arr += rand(max, offs);
+					arr += rand(max, offs, pretransform);
 					if(i < len - 1) {
 						arr += ",";
 					}
@@ -125,10 +119,10 @@
 				$("#octave_randomarray").html(generate_1drandomarray(10, 0, 16, "octaverandomtable"));
 
 				// Generate accent random array and display result
-				$("#accent_randomarray").html(generate_1drandomarray(1, 0, 16, "accentrandomtable"));
+				$("#accent_randomarray").html(generate_1drandomarray(1, 0, 16, "accentrandomtable", "Math.pow(x, 0.5)"));
 
 				// Generate slide random array and display result
-				$("#slide_randomarray").html(generate_1drandomarray(1, 0, 16, "sliderandomtable"));
+				$("#slide_randomarray").html(generate_1drandomarray(1, 0, 16, "sliderandomtable", "Math.pow(x, 0.5)"));
 
 				// Generate note-length LUT
 				$("#notelength_lut").html(generate_linearlut(0.05, 0.5, 32, "notelengthtable"));

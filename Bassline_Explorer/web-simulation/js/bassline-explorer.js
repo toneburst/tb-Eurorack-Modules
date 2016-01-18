@@ -154,7 +154,7 @@ function playStep() {
 
     // If note isn't tied, send Note-On
     if(!tied) {
-        Jazz.MidiOut(0x90,midi_notenum,midi_velocity);
+        midi_noteon(midi_channel, midi_notenum, midi_velocity);
     };
 
     // Add note number to playing notes array
@@ -195,7 +195,7 @@ function getStepVals() {
     } else {
     // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
-            Jazz.MidiOut(0x80,midi_previousnotes[i],0);
+            midi_noteon(midi_channel, midi_previousnotes[i], 0);
         };
         // Clear previous notes array
         midi_previousnotes = [];
