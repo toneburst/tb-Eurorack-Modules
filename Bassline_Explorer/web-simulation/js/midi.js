@@ -4,11 +4,22 @@
  *
  */
 
-// MIDI output variables
-var midi_channel = 0;
+///////////////////////////
+// MIDI Output Variables //
+///////////////////////////
+
 var Jazz;
-var midi_lowvelocity = 64;
+
+var midi_channel = 0;
+var midi_lowvelocity = 80;
 var midi_highvelocity = 127;
+
+// Master transpose amount
+var transpose = 24;
+
+// Scale Index (index into mpscales array in tables.js)
+var scaleindex = 2; // Dorian
+var scale = mpscales[scaleindex][1];
 
 // Previous note number(s)
 // Required to prevent retrigger of slide notes when new and previous note-numbers are same (ie tied notes))

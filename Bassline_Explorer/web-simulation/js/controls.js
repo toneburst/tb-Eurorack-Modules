@@ -21,6 +21,26 @@ function setupplaybackcontrols() {
         midi_channel = parseInt($(this).val());
     });
 
+    /////////////////////////////////
+    // MIDI Low/High Note Velocity //
+    /////////////////////////////////
+
+    $lowvelocityslider = $("#slidermidilowvelocity");
+    // Set initial value
+    $lowvelocityslider.val(midi_lowvelocity);
+    // Handles changes
+    $lowvelocityslider.change(function() {
+        midi_lowvelocity = parseInt($(this).val());
+    });
+
+    $highvelocityslider = $("#slidermidihighvelocity");
+    // Set initial value
+    $highvelocityslider.val(midi_highvelocity);
+    // Handles changes
+    $highvelocityslider.change(function() {
+        midi_highvelocity = parseInt($(this).val());
+    });
+
     /////////////////
     // Scales Menu //
     /////////////////

@@ -14,7 +14,7 @@ if (isset($_FILES['mid_upload'])){
 }elseif (isset($_POST['file'])) $file=$_POST['file'];
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
@@ -43,7 +43,7 @@ if (@$file){
 	MIDI CLASS CODE
 	****************************************************************************/
 	require('./classes/midi.class.php');
-	
+
 	$midi = new Midi();
 	$midi->importMid($file);
 	$track = $midi->getTrack((int)$_POST['track_num']);

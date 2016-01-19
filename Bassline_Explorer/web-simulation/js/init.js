@@ -15,16 +15,9 @@
 var valx = 0;
 var valy = 0;
 
-// Master transpose amount
-var transpose = 24;
-
 // Auto-reset period (index into resetperiodtable array in tables.js)
 var autoresetindex = 2;
 var autoreset = resetperiodtable[autoresetindex][1];
-
-// Scale Index (index into mpscales array in tables.js)
-var scaleindex = 2; // Dorian
-var scale = mpscales[scaleindex][1];
 
 // Selected channel for Length and Shift controls
 var lnshiftchannel = 0;
