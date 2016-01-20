@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pattern Charts</title>
+        <script src="../js/lib/jquery-2.1.4.min.js"></script>
+        <script src="lib/chartist/chartist.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="lib/chartist/chartist.min.css" media="screen" charset="utf-8">
+        <style media="screen">
+            .chart {
+                width: 50%;
+                height: 100px;
+                border: 1px red solid;
+                clear: both;
+            }
+        </style>
+        <script src="../js/patterns.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                 for (var i = 0; i < patterns.length; i++) {
+                     for (var j = 0; j < patterns[i].length; j++) {
+                         $( "body" ).append( "<div></div>" ).addClass( "chart" );
+                     };
+                 };
+
+
+                 // Chart test
+                 new Chartist.Line('#charts', {
+                     labels: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+                     series: [
+                         patterns[0][0][1],
+                         patterns[0][0][3],
+                         patterns[0][0][4],
+                         patterns[0][0][5],
+                     ]
+                 }, {
+                     fullWidth: true,
+                     low: 0,
+                     showArea: true,
+                     showPoint: false,
+                     chartPadding: {
+                         right: 40
+                     }
+                 });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="charts"></div>
+    </body>
+</html>
