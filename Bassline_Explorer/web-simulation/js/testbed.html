@@ -17,8 +17,19 @@
                 }
             });*/
 
-            for(i = 0; i < 256; i++) {
-                console.log(Math.round(Math.pow(i / 256, 0.5) * 256));
+            function randomDualRange(min0, max0, min1, max1, bias) {
+                var min = min0;
+                var max = max0;
+                if(Math.random() > bias) {
+                    min = min1;
+                    max = max1;
+                };
+                return Math.round(Math.random() * (max - min) + min);
+            };
+
+            for(i = 0; i < 100; i++) {
+                console.log(randomDualRange(0, 137, 117, 192, 0.25));
+                //console.log(Math.round(Math.pow(i / 256, 0.5) * 256));
             };
 
         </script>

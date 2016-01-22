@@ -191,11 +191,11 @@ function getStepVals() {
     if(slide) {
         // Ensure max 2 notes playing
         if(midi_previousnotes.length > 2)
-            Jazz.MidiOut(0x80,midi_previousnotes.shift());
+            midi_noteoff(midi_channel, midi_previousnotes.shift(), 0);
     } else {
     // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
-            midi_noteon(midi_channel, midi_previousnotes[i], 0);
+            midi_noteoff(midi_channel, midi_previousnotes[i], 0);
         };
         // Clear previous notes array
         midi_previousnotes = [];

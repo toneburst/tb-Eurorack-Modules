@@ -40,7 +40,7 @@
 		<key>Color</key>
 		<data>
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWE
-		AWMChARmZmZmg3WTmD6D/tS4PoNSuN4+g83MTD+G
+		AWMChARmZmZmgwIrxz6DYOXQPoNSuN4+g83MTD+G
 		</data>
 		<key>Track Names</key>
 		<array>
@@ -51,7 +51,7 @@
 			<integer>1</integer>
 		</array>
 		<key>device ID</key>
-		<integer>50</integer>
+		<integer>38</integer>
 		<key>isCollapsed</key>
 		<false/>
 	</dict>
@@ -78,11 +78,11 @@
 			<key>audio device uid</key>
 			<string>AppleHDAEngineOutput:1B,0,1,2:0</string>
 			<key>device model uid</key>
-			<string>AppleHDA:9</string>
+			<string>AppleHDA:122</string>
 			<key>in channels</key>
 			<integer>0</integer>
 			<key>io num frames</key>
-			<integer>192</integer>
+			<integer>256</integer>
 			<key>name</key>
 			<string>Built-in Output</string>
 			<key>out channels</key>
@@ -415,15 +415,15 @@
 					bnY9MgojbXY9R2F0ZQojbXY9QURTUjEKI2Nt
 					PW1haW4KQ2NPcD0yMDAuMDAKI0NocnMxPTAK
 					I2NtPVBDb3JlCk1NVDE9VHlyZWxsOkZNRHB0
-					MQpNTVMxPTYKTU1EMT0xNi4wMApNTVZTMT0w
+					MQpNTVMxPTYKTU1EMT0yMC4wMApNTVZTMT0w
 					Ck1NVkQxPTIuMDAKTU1UMj1FTlYyOkRlYwpN
-					TVMyPTYKTU1EMj0tNDQuMDAKTU1WUzI9MApN
+					TVMyPTYKTU1EMj0tNTIuMDAKTU1WUzI9MApN
 					TVZEMj0wLjAwClNCYXNlPTQKU3dpbmc9MC4w
 					MApTVHJpZz0xClBTb25nPTEKUEZvbGQ9MApQ
 					RmlsZT0xCkdGaWxlPTIKR1NjYWxlPTAKQ2hM
 					YXk9MApTdXJyTz0xClJldj0zMzA0CkxFRD0w
 					LjAwClBBR0U9MApQYWdlc09uPTAKQ29yZU49
-					MwpTbGljZT00ClVJX29wPTEyCk1pZGlBPTUK
+					MwpTbGljZT00ClVJX29wPTEzCk1pZGlBPTUK
 					TWlkaVA9NgojY209VkNDClZvaWNpbmc9MQpN
 					b2RlPTIKUG9ydGFNPTAKUG9ydGE9MjguMDAK
 					UG9ydGEyPTAuMDAKUFJhbmdlPTEwMC4wMApQ
@@ -434,7 +434,7 @@
 					ZWM9MC4wMApTdXM9MTAwLjAwCkZSPTAuMDAK
 					UmVsPTI4LjAwClZlbD0zMS4wMApSTW9kPTAu
 					MDAKTGFiZWw9OQpUcmlnPTAKI2NtPUVOVjIK
-					QXRrPTAuMDAKRGVjPTcwLjgwClN1cz0wLjAw
+					QXRrPTAuMDAKRGVjPTg0LjQwClN1cz0wLjAw
 					CkZSPTAuMDAKUmVsPTIwLjAwClZlbD04Mi41
 					MApSTW9kPTAuMDAKTGFiZWw9MTAKVHJpZz0w
 					CiNjbT1MRk8xClN5bmM9MgpUcmlnPTEKV2F2
@@ -447,22 +447,22 @@
 					Rk1TMT0wCkZNRDE9MC4wMAojY209VHlyZWxs
 					ClNocDE9NC4wMApUTVNyYzE9MApUTURwdDE9
 					MC4wMApTaHAyPTIuMDAKVHVuZTI9MC4wMApG
-					aW5lMj05LjUwClRNU3JjMj0xNApUTURwdDI9
+					aW5lMj05LjAwClRNU3JjMj0xNApUTURwdDI9
 					MC4wMApQV0RwdD0yOC40MApQV1NyYz0xNgpE
 					ZXR1bmU9MC4wMApTeW5jPTAuMDAKVnRvRD0w
 					LjAwClJNaTE9MApSTWkyPTAKRkJpbj0wCk5v
 					aXNlPTEuNDAKT3NjVm9sMT0wLjAwCk9zY1Zv
-					bDI9LTEuMDAKU3ViVm9sPS0xMDAuMDAKTnNl
-					Vm9sPS0xMDAuMDAKUk1Wb2w9LTEwMC4wMApG
-					QlZvbD0tMTAwLjAwClZDRm1vZD0wClZDRlBv
-					bD0xCkN1dG9mZj02My41MApGTVNyYzE9MTQK
-					Rk1EcHQxPTcyLjAwCkZNU3JjMj0xNQpGTURw
-					dDI9MC4wMApLZXlGb2w9MTYuMDAKUmVzPTgy
-					LjAwCk14U3A9MC4wMApNeFNwU3JjPTAKQVJT
-					cmM9MApBUkRlc3Q9MApBUkRwdD0wLjAwCkFS
-					TW9kPTAKI2NtPVZDQTEKVkNBPTAKQXR0Uz0x
-					CiNjbT1DaHJzMQpUeXBlPTAKUmF0ZT01MC4w
-					MApEZXB0aD01MC4wMApXZXQ9MzAuMDAKCgoK
+					bDI9LTEwMC4wMApTdWJWb2w9LTg1LjAwCk5z
+					ZVZvbD0tMTAwLjAwClJNVm9sPS0xMDAuMDAK
+					RkJWb2w9LTEwMC4wMApWQ0Ztb2Q9MApWQ0ZQ
+					b2w9MQpDdXRvZmY9MzguNTAKRk1TcmMxPTE0
+					CkZNRHB0MT00MC4wMApGTVNyYzI9MTUKRk1E
+					cHQyPTQuMDAKS2V5Rm9sPTE2LjAwClJlcz03
+					OC40MApNeFNwPTAuMDAKTXhTcFNyYz0wCkFS
+					U3JjPTAKQVJEZXN0PTAKQVJEcHQ9MC4wMApB
+					Uk1vZD0wCiNjbT1WQ0ExClZDQT0wCkF0dFM9
+					MQojY209Q2hyczEKVHlwZT0wClJhdGU9NTAu
+					MDAKRGVwdGg9NTAuMDAKV2V0PTMwLjAwCgoK
 					Ci8vIFNlY3Rpb24gZm9yIHVnbHkgY29tcHJl
 					c3NlZCBiaW5hcnkgRGF0YQovLyBET04nVCBU
 					T1VDSCBUSElTCgokJCQkMTY1Mgo/Z2RnY2Vu
@@ -471,79 +471,79 @@
 					ZHA6CmFhbGZobWFhOmFkYWFhYWFhOnBwYWFh
 					YWFhOmFhOmVjOmViOnBlOmVhOmxwOmNhOnBq
 					OmdwOmhhOmhpOmlhOmoKaTprZDpnYjpqazpk
-					YTpsYTpwaTphYzphaTpiaTpmYTpnZjpoYzpr
-					YSFxdUE3ZW1JZ2RPZ21BbmtqYnh5bW1TRApG
+					YTprYTpsYTpwaTphaTpiaTpmYTpnZjpoYzpt
+					YSFxdUE3ZW1JZ2RPZ21BbmtqYnh5bW1URApG
 					ZWdjZ29ramZ1enJRSERGc0xhb0ExVUhERkFt
-					bG9pamZzY2lIREZwbVNERk1samdhaGt5TG1h
-					SUtaVklLUUEyCkpWSUtwYWhtYXBBMmdhS0Ez
-					SlZJS3hmY05ua2piS2tvUE5iYWFiamxOQTFw
-					Yk1laUhERmZpMXBiTUFSZGVBcmcKaUhERmNl
-					b25vcE1yQVJkZUFXaGpQTnIxUkpQTm1pSERG
-					bWdjcHBiTVJKUE5yb2VlamdlS2RqRHBjTXJB
-					M2FnQQo2cHA3aG1tZ1BOV21nUE5icGxnamxp
-					aEEydUFTSERGZW1BMmFnQTJxdEE3aGVnY0dC
-					T2hkMWdtZ2pnb1hHZWZLCkpnbUlZWFlHUWRi
-					Y29naWRjSkF6clFIREZzTGFvQTFVSERGQW1s
-					b2lqZnNjaUhERnF0QTcxcXRBN29ub29vcHAK
-					YXBicGNwZERwZnBncGhTSHBrcGxwbXBucG9w
-					cEFhYlRhZGFlYWZhZ2FoVWFqYWthbGFtYW5h
+					bG9pamZzY2lIREZwbVRERk1samdhaGt5TFpJ
+					S1JWSUtRQTJKClZJS3BhaG1hcEEyZ2FLQTNK
+					VklLeGZjTm5ramJLa29QTmJhYWJqbE5BMXBi
+					TWVpSERGZmkxcGJNQVNkZUFyZ2kKSERGY2Vv
+					bm9wTXJBU2RlQVdoalBOcjFTSlBObWlIREZt
+					Z2NwcGJNU0pQTnJvZWVqZ2VLZGpEcGNNckEz
+					YWdBNgpwcDdobW1nUE5XbWdQTmJwbGdqbGlo
+					QTJ1QVRIREZlbUEyYWdBMnF0QTdoZWdjR0JP
+					aGQxZ21namdvWEdlZktKCmdtSVlYWUdRZGJj
+					b2dpZGNKQXpyUUhERnNMYW9BMVVIREZBbWxv
+					aWpmc2NpSERGcXRBNzFxdEE3b25vb29wcGEK
+					cGJwY3BkRHBmcGdwaFRIcGtwbHBtcG5wb3Bw
+					QWFiYWNhZGFlYWZhZ2FoVWFqYWthbGFtYW5h
 					b2FwYmFiYmJjYgpkYmViZmJnYmhWYmpia2Js
 					Ym1ibmJvYnBHY2JjY2NkY2VjZmNnY2hjaWNq
-					Y2tjbGNtcWFlQTEwamZsYmZlVHF1CkE3aGgy
+					Y2tjbGNtcWFlQTEwYWZSbWdhZ3F1CkE3aGgy
 					Y29nb0lnamhkWGdnT2dkaGVJWWhqY29nZVhB
 					MjM2cUxBMTBmZmdvSWdjT2hkMWNuZGNHZW9l
 					Z2NvZ2kKZGNKQTExMXF0QTQzd0EyRUExRTFB
-					MUxFQTFaRUExbWFFQTFvYUVxQVRBNXdBM3dB
-					MkVBMUUxQTFMRUExWkVBMQptYUVBMW9hdENB
-					MWJhQ0ExR0NBMVFDQTFFQ0ExV0NBMWdhQ0Ex
-					SkNBMUxDQTFpaUNBMWphQ0ExTUNBMVpDQTFr
-					CmlDQTFSQ0ExbGlDQTFtYUNBMW1pQ0ExbmFD
-					QTFuaUNBMW9hQ0Exb2lDQTFwYUNBMVNDQTJC
-					QTFhZUJBMVVCQTEKYW1CQTFiYUJBMWJlQkEx
-					VkJBMWJtQkExR0JBMWNlQkExY2lCQTFjbUJB
-					MVFCQTFkZUJBMWRpQkExZG1CQTFFQgpBMWVl
-					QkExZWlCQTFlbUJBMVdCQTFmZUJBMWZpQkEx
-					Zm1CQTFnYUJBMWdlQkExZ2lCQTFnbUJBMUpC
-					QTFoZUJBCjFLQkExaG1CQTFMQkExaWNCQTFp
-					ZUJBMWlnQkExaWlCQTFpa0JBMWltQkExaW9C
-					QTFqYUJBMWpjQkExamVCQTEKamdCQTFNQkEx
-					UEJBMWptQkExam9CQTFaQkExa2NCQTFrZUJB
-					MWtnQkExa2lCQTFra0JBMWttQkExa29CQTFS
-					QgpBMWxjQkExbGVCQTFsZ0JBMWxpQkExbGtC
-					QTFsbUJBMWxvQkExbWFCQTFtY0JBMW1lQkEx
-					bWdCQTFtaUJBMW1rCkJBMW1tQkExbW9CQTFu
-					YUJBMW5jQkExbmVCQTFuZ0JBMW5pQkExbmtC
-					QTFubUJBMW5vQkExb2FCQTFvY0JBMW8KZUJB
-					MW9nQkExb2lCQTFva0JBMW9tQkExb29CQTFw
-					YUJBMXBjQkExREJBMXBnQkExU0JBMXBrQkEx
-					cG1CQTFwbwpCcUdBMTBDZWVmZGZjR2RiQTh1
-					QWRtb2NtamRtVEFPZ2VYWWVuT3FHQTEwQ2Vl
-					ZmRmY0dkY0E4dUFVYWRta2RtClRBWU9nb2hr
-					V0k9MTIwMDUzCgAA
+					MUxFQTFSRUExWkVBMW9hRXFBYWNBNXdBM3dB
+					MkVBMUUxQTFMRUExUkVBMQpaRUExb2F0Q0Ex
+					YmFDQTFHQ0ExUUNBMUVDQTFXQ0ExZ2FDQTFK
+					Q0ExTENBMWlpQ0ExamFDQTFNQ0ExUkNBMWtp
+					CkNBMVNDQTFsaUNBMVpDQTFtaUNBMW5hQ0Ex
+					bmlDQTFvYUNBMW9pQ0ExcGFDQTFUQ0EyQkEx
+					YWVCQTFVQkExYW0KQkExYmFCQTFiZUJBMVZC
+					QTFibUJBMUdCQTFjZUJBMWNpQkExY21CQTFR
+					QkExZGVCQTFkaUJBMWRtQkExRUJBMQplZUJB
+					MWVpQkExZW1CQTFXQkExZmVCQTFmaUJBMWZt
+					QkExZ2FCQTFnZUJBMWdpQkExZ21CQTFKQkEx
+					aGVCQTFLCkJBMWhtQkExTEJBMWljQkExaWVC
+					QTFpZ0JBMWlpQkExaWtCQTFpbUJBMWlvQkEx
+					amFCQTFqY0JBMWplQkExamcKQkExTUJBMVBC
+					QTFqbUJBMWpvQkExUkJBMWtjQkExa2VCQTFr
+					Z0JBMWtpQkExa2tCQTFrbUJBMWtvQkExU0JB
+					MQpsY0JBMWxlQkExbGdCQTFsaUJBMWxrQkEx
+					bG1CQTFsb0JBMVpCQTFtY0JBMW1lQkExbWdC
+					QTFtaUJBMW1rQkExCm1tQkExbW9CQTFuYUJB
+					MW5jQkExbmVCQTFuZ0JBMW5pQkExbmtCQTFu
+					bUJBMW5vQkExb2FCQTFvY0JBMW9lQkEKMW9n
+					QkExb2lCQTFva0JBMW9tQkExb29CQTFwYUJB
+					MXBjQkExREJBMXBnQkExVEJBMXBrQkExcG1C
+					QTFwb0JxRwpBMTBDZWVmZGZjR2RiQTh1QWRt
+					b2NtamRtYWNBT2dlWFllbk9xR0ExMENlZWZk
+					ZmNHZGNBOHVBVWFkbWtkbWFjCkFZT2dvaGtX
+					ST0xMTk4OTUKAAA=
 					</data>
 					<key>data</key>
 					<data>
 					AAAAAAAAAAAAAABOAAAAAENIAAAAAAABQMAA
-					AAAAAAJBgAAAAAAAAwAAAAAAAAAEQAAAAAAA
-					AAVAwAAAAAAABsIwAAAAAAAHAAAAAAAAAAgA
+					AAAAAAJBoAAEAAAAAwAAAAAAAAAEQAAAAAAA
+					AAVAwAAAAAAABsJQAAAAAAAHAAAAAAAAAAgA
 					AAAAAAAACT+AAAAAAAAKQAAAAAAAAAsAAAAA
 					AAAADEHgAAAAAAANAAAAAAAAAA5CyAAAAAAA
 					D0AAAAAAAAAQQAAAAAAAABEAAAAAAAAAEgAA
 					AAAAAAATAAAAAAAAABRCyAAAAAAAFQAAAAAA
 					AAAWQeAAAAAAABdB+AAAAAAAGAAAAAAAAAAZ
-					AAAAAAAAABoAAAAAAAAAG0KNmZoAAAAcAAAA
+					AAAAAAAAABoAAAAAAAAAG0KozMwAAAAcAAAA
 					AAAAAB0AAAAAAAAAHkGgAAAAAAAfQqUAAAAA
 					ACAAAAAAAAAAIQAAAAAAAAAiQAAAAAAAACMA
 					AAAAAAAAJEBAAAAAAAAlAAAAAAAAACZAgAAA
 					AAAAJwAAAAAAAAAoAAAAAAAAAClAAAAAAAAA
-					KgAAAAAAAAArQRgABAAAACxBYAAAAAAALQAA
+					KgAAAAAAAAArQQ///AAAACxBYAAAAAAALQAA
 					AAAAAAAuQeMzMwAAAC9BgAAAAAAAMAAAAAAA
 					AAAxAAAAAAAAADIAAAAAAAAAMwAAAAAAAAA0
-					AAAAAAAAADU/szMzAAAANgAAAAAAAAA3v4AA
-					AAAAADjCyAAAAAAAOcLIAAAAAAA6wsgAAAAA
+					AAAAAAAAADU/szMzAAAANgAAAAAAAAA3wsgA
+					AAAAADjCqgAAAAAAOcLIAAAAAAA6wsgAAAAA
 					ADvCyAAAAAAAPAAAAAAAAAA9P4AAAAAAAD5C
-					fgAAAAAAP0FgAAAAAABAQpAAAAAAAEFBcAAA
-					AAAAQgAAAAAAAABDQYAAAAAAAERCo//+AAAA
+					GgAAAAAAP0FgAAAAAABAQiAAAAAAAEFBcAAA
+					AAAAQkCAAAAAAABDQYAAAAAAAERCnMzMAAAA
 					RQAAAAAAAABGAAAAAAAAAEcAAAAAAAAASAAA
 					AAAAAABJAAAAAAAAAEoAAAAAAAAAS0JIAAAA
 					AABMQkgAAAAAAE1B8AAA
@@ -917,24 +917,6 @@
 								<array>
 									<dict>
 										<key>ID</key>
-										<integer>6</integer>
-										<key>enabled</key>
-										<true/>
-										<key>gain</key>
-										<real>-13.499995231628418</real>
-										<key>loop enabled</key>
-										<false/>
-										<key>max key</key>
-										<integer>25</integer>
-										<key>min key</key>
-										<integer>25</integer>
-										<key>root key</key>
-										<integer>25</integer>
-										<key>waveform</key>
-										<integer>268435462</integer>
-									</dict>
-									<dict>
-										<key>ID</key>
 										<integer>1</integer>
 										<key>enabled</key>
 										<true/>
@@ -952,6 +934,24 @@
 										<integer>24</integer>
 										<key>waveform</key>
 										<integer>268435457</integer>
+									</dict>
+									<dict>
+										<key>ID</key>
+										<integer>6</integer>
+										<key>enabled</key>
+										<true/>
+										<key>gain</key>
+										<real>-13.499995231628418</real>
+										<key>loop enabled</key>
+										<false/>
+										<key>max key</key>
+										<integer>25</integer>
+										<key>min key</key>
+										<integer>25</integer>
+										<key>root key</key>
+										<integer>25</integer>
+										<key>waveform</key>
+										<integer>268435462</integer>
 									</dict>
 									<dict>
 										<key>ID</key>
@@ -1047,17 +1047,17 @@
 					<key>file-references</key>
 					<dict>
 						<key>Sample:268435457</key>
-						<string>/Users/alex/Library/Audio/Sounds/BT7A0D3.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/BT7A0D3.WAV</string>
 						<key>Sample:268435458</key>
-						<string>/Users/alex/Library/Audio/Sounds/HANDCLP1.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/HANDCLP1.WAV</string>
 						<key>Sample:268435459</key>
-						<string>/Users/alex/Library/Audio/Sounds/HHCD0.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/HHCD0.WAV</string>
 						<key>Sample:268435460</key>
-						<string>/Users/alex/Library/Audio/Sounds/HHOD4.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/HHOD4.WAV</string>
 						<key>Sample:268435461</key>
-						<string>/Users/alex/Library/Audio/Sounds/ST0T0S3.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/ST0T0S3.WAV</string>
 						<key>Sample:268435462</key>
-						<string>/Users/alex/Library/Audio/Sounds/RIM127.WAV</string>
+						<string>/Users/adrin009/Library/Audio/Sounds/RIM127.WAV</string>
 					</dict>
 					<key>fine tune</key>
 					<real>0.0</real>
@@ -1183,7 +1183,7 @@
 							<key>post fader</key>
 							<integer>1</integer>
 							<key>volume</key>
-							<real>0.025938317179679871</real>
+							<real>0.143893763422966</real>
 						</dict>
 					</array>
 					<key>solo</key>
@@ -1252,7 +1252,7 @@
 						<string>MIDI 1 0</string>
 					</dict>
 					<key>volume</key>
-					<real>1.7147592306137085</real>
+					<real>0.87734544277191162</real>
 				</dict>
 			</array>
 		</dict>
@@ -1353,10 +1353,6 @@
 						<string>User</string>
 						<true/>
 					</array>
-					<array>
-						<string>tb Bassline Explorer 01</string>
-						<false/>
-					</array>
 				</array>
 				<key>kAUInspectorStateKey_PresetDrawerShowing</key>
 				<false/>
@@ -1365,29 +1361,7 @@
 				<key>kAUInspectorStateKey_WindowLevel</key>
 				<integer>2147483647</integer>
 				<key>kAUInspectorStateKey_WindowRect</key>
-				<string>{{631, 95}, {1200, 642}}</string>
-			</dict>
-			<dict>
-				<key>kAUInspectorStateKey_BusIndex</key>
-				<integer>1</integer>
-				<key>kAUInspectorStateKey_BusType</key>
-				<string>kBusType_Input</string>
-				<key>kAUInspectorStateKey_Bypassed</key>
-				<false/>
-				<key>kAUInspectorStateKey_CurrentViewName</key>
-				<string>Apple Sample Playback Synth</string>
-				<key>kAUInspectorStateKey_EffectIndex</key>
-				<integer>-1</integer>
-				<key>kAUInspectorStateKey_PresetDrawerExpandedItems</key>
-				<array/>
-				<key>kAUInspectorStateKey_PresetDrawerShowing</key>
-				<false/>
-				<key>kAUInspectorStateKey_TrackIndex</key>
-				<integer>0</integer>
-				<key>kAUInspectorStateKey_WindowLevel</key>
-				<integer>2147483647</integer>
-				<key>kAUInspectorStateKey_WindowRect</key>
-				<string>{{398, 35}, {790, 618}}</string>
+				<string>{{360, 23}, {1200, 642}}</string>
 			</dict>
 		</array>
 	</dict>

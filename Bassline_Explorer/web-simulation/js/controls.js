@@ -109,9 +109,9 @@ function setupplaybackcontrols() {
     // Tempo Control //
     ///////////////////
 
-    var $slider_tempo = $("#slider_tempo");
-    $slider_tempo.val(bpm);
-    $slider_tempo.on('change', function() {
+    var $temposlider = $("#slider_tempo");
+    $temposlider.val(bpm);
+    $temposlider.on('change', function() {
         bpm = parseInt($(this).val());
         clock.setTempo(bpm);
     });
@@ -120,28 +120,28 @@ function setupplaybackcontrols() {
     // Record Button //
     ///////////////////
 
-    $("#recordbutton").data('recordstatus', '0').mousedown(function() {
-        /*if($(this).data('recordstatus') === '0') {
-            var recorder = new Recorder();
-            console.log("Recorder enabled. Recording will start at next bar");
-            clock.bind('bar', function(e) {
-                console.log("Starting recording now");
+    var $recordbutton = $("#recordbutton");
+    $recordbutton.data('recordstatus', '0').mousedown(function() {
+        var recstatus = $recordbutton.data('recordstatus');
+        if(recstatus === "0") {
+            $recordbutton.html("Recording Armed");
+            clock.bind("bar", function() {
+                $recordbutton.html("Recording...");
+                recorder = new Recorder();
                 recorder.startrecording();
-                recorder.bind('midievent', function(e) {
-                    $("#recorderoutputdiv").append(document.createTextNode(e));
-                });
+                clock.unbind("bar");
             });
-            $(this).data('recordstatus', '1');
+            $recordbutton.data('recordstatus', "1");
         } else {
-            console.log("Stopping recording at end of bar");
-            clock.bind('bar', function(e) {
-                console.log("Stopping recorder now");
-                recorder.stoprecording();
-                //recorder = null;
-                clock.unbind('bar');
-                $(this).data('recordstatus', '0');
+            $recordbutton.html("Recording Disarmed");
+            clock.bind("bar", function() {
+                console.log(recorder.stoprecording());
+                $recordbutton.html("Record");
+                clock.unbind("bar");
+                recorder = null;
             });
-        };*/
+            $recordbutton.data('recordstatus', "0");
+        };
     });
 };
 

@@ -2,13 +2,24 @@
 	<head>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script type="text/javascript">
+
 			function rand(range, offset, pretransform) {
 				var rand = Math.random();
 				if(pretransform) {
 					rand = eval(pretransform.replace("x", rand));
-				}
+				};
 				return Math.round(rand * range + offset);
-			}
+			};
+
+			function randDualRange(min0, max0, min1, max1, bias) {
+                var min = min0;
+                var max = max0;
+                if(Math.random() > bias) {
+                    min = min1;
+                    max = max1;
+                };
+                return Math.round(Math.random() * (max - min) + min);
+            };
 
 			function generate_nodes() {
 				var arr = "<pre>";
@@ -59,8 +70,8 @@
 							// Accent Probability //
 							////////////////////////
 							} else if(j == 4) {
-								// Write out random number for Accent/Slide
-								arr += rand(192, 0);
+								// Write out random number for Accent
+								arr += randDualRange(0, 137, 117, 192, 0.5);
 							///////////////////////
 							// Slide Probability //
 							///////////////////////
@@ -68,7 +79,7 @@
 								if(k == 0)
 									arr += "0";
 								else
-									arr += rand(192, 0);
+									arr += randDualRange(0, 137, 117, 192, 0.4);
 							}
 							// Add comma unless last array item
 							if(k < 15)
@@ -89,6 +100,17 @@
 				var arr = "var " + varname + " = [";
 				for(i = 0; i < len; i++) {
 					arr += rand(max, offs, pretransform);
+					if(i < len - 1) {
+						arr += ",";
+					}
+				}
+				return arr + "];";
+			}
+
+			function generate_1dbiasedrandomarray(min0, max0, min1, max1, bias, len, varname) {
+				var arr = "var " + varname + " = [";
+				for(i = 0; i < len; i++) {
+					arr += randDualRange(min0, max0, min1, max1, bias);
 					if(i < len - 1) {
 						arr += ",";
 					}
@@ -119,13 +141,15 @@
 				$("#octave_randomarray").html(generate_1drandomarray(10, 0, 16, "octaverandomtable"));
 
 				// Generate accent random array and display result
+				//$("#accent_randomarray").html(generate_1dbiasedrandomarray(0, 137, 117, 192, 0.75, 16, "accentrandomtable"));
 				$("#accent_randomarray").html(generate_1drandomarray(1, 0, 16, "accentrandomtable", "Math.pow(x, 0.5)"));
 
 				// Generate slide random array and display result
+				//$("#slide_randomarray").html(generate_1dbiasedrandomarray(0, 137, 117, 192, 0.8, 16, "sliderandomtable"));
 				$("#slide_randomarray").html(generate_1drandomarray(1, 0, 16, "sliderandomtable", "Math.pow(x, 0.5)"));
 
 				// Generate note-length LUT
-				$("#notelength_lut").html(generate_linearlut(0.05, 0.5, 32, "notelengthtable"));
+				//$("#notelength_lut").html(generate_linearlut(0.05, 0.5, 32, "notelengthtable"));
 			});
 		</script>
 	</head>
@@ -140,6 +164,6 @@
 		<div id="slide_randomarray"></div>
 
 		<h3>Other Lookup Tables</h3>
-		<div id="notelength_lut"></div>
+		<!--<div id="notelength_lut"></div>-->
 	</body>
 </html>
