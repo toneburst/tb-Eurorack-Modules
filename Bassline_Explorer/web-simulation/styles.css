@@ -20,11 +20,18 @@ h4 {
 
 }
 section {
-    width: 400px;
+    width: 190px;
+    margin: 5px;
+    padding: 10px;
+    float: left;
+    border: 1px #eee dashed;
+}
+#wrapper {
     margin: auto;
+    width: 700px;
 }
 .control {
-    width: 120px;
+    margin: 0 10px 0 10px;
     float: left;
 }
 .control_small {

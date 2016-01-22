@@ -17,6 +17,9 @@ var midi_highvelocity = 127;
 // Master transpose amount
 var transpose = 24;
 
+var enablerecord = false;
+var recording = [];
+
 // Scale Index (index into mpscales array in tables.js)
 var scaleindex = 2; // Dorian
 var scale = mpscales[scaleindex][1];

@@ -115,6 +115,34 @@ function setupplaybackcontrols() {
         bpm = parseInt($(this).val());
         clock.setTempo(bpm);
     });
+
+    ///////////////////
+    // Record Button //
+    ///////////////////
+
+    $("#recordbutton").data('recordstatus', '0').mousedown(function() {
+        /*if($(this).data('recordstatus') === '0') {
+            var recorder = new Recorder();
+            console.log("Recorder enabled. Recording will start at next bar");
+            clock.bind('bar', function(e) {
+                console.log("Starting recording now");
+                recorder.startrecording();
+                recorder.bind('midievent', function(e) {
+                    $("#recorderoutputdiv").append(document.createTextNode(e));
+                });
+            });
+            $(this).data('recordstatus', '1');
+        } else {
+            console.log("Stopping recording at end of bar");
+            clock.bind('bar', function(e) {
+                console.log("Stopping recorder now");
+                recorder.stoprecording();
+                //recorder = null;
+                clock.unbind('bar');
+                $(this).data('recordstatus', '0');
+            });
+        };*/
+    });
 };
 
 //////////////////////////////////
