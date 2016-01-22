@@ -64,11 +64,11 @@ function setupmidi() {
 function midi_noteon(channel, note, velocity) {
     Jazz.MidiOut(midi_channel + 144, note, velocity);
     if(recorder)
-        recorder.recordstep('"NoteOn"', midi_channel, note, velocity);
+        recorder.recordevent("NoteOn", midi_channel, note, velocity);
 };
 
 function midi_noteoff(channel, note, velocity) {
     Jazz.MidiOut(midi_channel + 128, note, velocity);
     if(recorder)
-        recorder.recordstep('"NoteOff"', midi_channel, note, velocity);
+        recorder.recordevent("NoteOff", midi_channel, note, velocity);
 };

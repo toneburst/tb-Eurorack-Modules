@@ -109,7 +109,7 @@ function setupplaybackcontrols() {
     // Tempo Control //
     ///////////////////
 
-    var $temposlider = $("#slider_slider");
+    var $temposlider = $("#slider_tempo");
     $temposlider.val(bpm);
     $temposlider.on('change', function() {
         bpm = parseInt($(this).val());
@@ -121,9 +121,9 @@ function setupplaybackcontrols() {
     ///////////////////
 
     var $recordbutton = $("#recordbutton");
-    $recordbutton.data('recordstatus', '0').mousedown(function() {
-        var recstatus = $recordbutton.data('recordstatus');
-        if(recstatus === "0") {
+    $recordbutton.data('recordstatus', '0');
+    $recordbutton.mousedown(function() {
+        if($recordbutton.data('recordstatus') === "0") {
             $recordbutton.html("Recording Armed");
             clock.bind("bar", function() {
                 $recordbutton.html("Recording...");
@@ -135,10 +135,14 @@ function setupplaybackcontrols() {
         } else {
             $recordbutton.html("Recording Disarmed");
             clock.bind("bar", function() {
-                recorder.stoprecording();
-                $recordbutton.html("Record");
+                $recordbutton.html("Get MIDI File");
                 clock.unbind("bar");
-                recorder = null;
+                recorder.stoprecording();
+                var mxml = recorder.getmidixml();
+                /*
+                    TODO: Function to submit XML string for conversion to MIDIFile (PHP file- to write)
+                */
+                recorder = null; // Note sure this method of deleting an object instance works...
             });
             $recordbutton.data('recordstatus', "0");
         };

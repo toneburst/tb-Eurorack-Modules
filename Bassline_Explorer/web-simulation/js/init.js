@@ -93,11 +93,4 @@ $(document).ready(function() {
         if(recorder)
             recorder.updateticks();
     });
-    /*clock.bind('bar', function(e) {
-        console.log("bar");
-    });
-    clock.bind('reset', function() {
-        console.log("reset");
-    });*/
-
 });
