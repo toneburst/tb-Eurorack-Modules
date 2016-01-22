@@ -145,18 +145,16 @@
                     <input id="knob_shift" class="knob" data-cursor=true data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
                 </div>
                 <p class="clear">Length + Shift Channel Select</p>
-                <form id="lnshift">
                   <input type="radio" name="lnshft-function" value="0" checked> Note<br>
                   <input type="radio" name="lnshft-function" value="1"> Octave<br>
                   <input type="radio" name="lnshft-function" value="2"> Accent<br>
                   <input type="radio" name="lnshft-function" value="3"> Slide
-                </form>
             </section>
 
             <!-- Recorder -->
             <section>
                 <p><button type="button" id="recordbutton">Record</button></p>
-                <p id="recorderoutputdiv"><p>
+                <p><iframe id="midifileiframe"><p>
             </section>
         </div>
     </body>

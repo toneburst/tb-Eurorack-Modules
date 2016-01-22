@@ -109,7 +109,7 @@ function setupplaybackcontrols() {
     // Tempo Control //
     ///////////////////
 
-    var $temposlider = $("#slider_tempo");
+    var $temposlider = $("#slider_slider");
     $temposlider.val(bpm);
     $temposlider.on('change', function() {
         bpm = parseInt($(this).val());
@@ -135,7 +135,7 @@ function setupplaybackcontrols() {
         } else {
             $recordbutton.html("Recording Disarmed");
             clock.bind("bar", function() {
-                console.log(recorder.stoprecording());
+                recorder.stoprecording();
                 $recordbutton.html("Record");
                 clock.unbind("bar");
                 recorder = null;

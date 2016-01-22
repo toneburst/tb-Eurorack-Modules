@@ -83,15 +83,15 @@ $(document).ready(function() {
     clock.init();
     clock.setResetPeriod(autoreset);
     clock.bind('tick', function(count) {
-        if(recorder)
-            recorder.updateticks();
         masterstepcounter = count;
         playStep();
-    });
-    clock.bind('note-off', function(e) {
         if(recorder)
             recorder.updateticks();
+    });
+    clock.bind('note-off', function(e) {
         getStepVals();
+        if(recorder)
+            recorder.updateticks();
     });
     /*clock.bind('bar', function(e) {
         console.log("bar");

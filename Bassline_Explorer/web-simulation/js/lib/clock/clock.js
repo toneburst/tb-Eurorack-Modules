@@ -92,11 +92,11 @@ Clock.prototype.nextNote = function() {
 Clock.prototype.scheduleNote = function(time) {
     var self = this;
     if(this.noteOn === 1) {
-        // Send note-on tick
-        self.trigger('tick', this.notesCounter);
         // Emit event on new bar
         if(self.notesCounter % 16 === 0)
             self.trigger('bar');
+        // Send note-on tick
+        self.trigger('tick', this.notesCounter);
     } else {
         // Emit note-off tick
         self.trigger('note-off', "Note Off");
