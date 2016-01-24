@@ -59,7 +59,8 @@ var slide = false;
 
 // Clock var (instance of Clock object)
 var bpm = 120;
-var clock = new Clock(bpm, 0.5);
+var clock = new NoteClock(bpm);
+var masterstepcounter = 0;
 
 // Var to hold MIDI note-recorder object
 var recorder = null;
@@ -80,17 +81,33 @@ $(document).ready(function() {
     setupmidi();
 
     // Init Clock
-    clock.init();
-    clock.setResetPeriod(autoreset);
-    clock.bind('tick', function(count) {
-        masterstepcounter = count;
+    var noteoffcounter16ths = 0;
+    clock.setautoreset(autoreset);
+
+    var noteoffcounter16ths = 0;
+    clock.setautoreset(autoreset);
+
+    // Note-Off 16ths
+    clock.bind('tick', function() {
+        if(noteoffcounter16ths == 3) {
+            getStepVals();
+            if(recorder)
+                recorder.updateticks();
+        };
+        noteoffcounter16ths++;
+    });
+
+    // Note-On 16ths
+    clock.bind('16th', function() {
         playStep();
         if(recorder)
             recorder.updateticks();
+        masterstepcounter++;
+        noteoffcounter16ths = 0;
     });
-    clock.bind('note-off', function(e) {
-        getStepVals();
-        if(recorder)
-            recorder.updateticks();
+
+    // Reset if set
+    clock.bind('reset', function() {
+        masterstepcounter = 0;
     });
 });

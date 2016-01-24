@@ -190,7 +190,7 @@ function getStepVals() {
 
     if(slide) {
         // Ensure max 2 notes playing
-        if(midi_previousnotes.length > 2)
+        if(midi_previousnotes.length > 1)
             midi_noteoff(midi_channel, midi_previousnotes.shift(), 0);
     } else {
     // Send note-offs for all previously-playing notes

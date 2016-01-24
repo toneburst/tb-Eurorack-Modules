@@ -88,7 +88,7 @@ function setupplaybackcontrols() {
         var valInt = parseInt($(this).val())
         autoresetindex = valInt;
         autoreset = resetperiodtable[autoresetindex][1];
-        clock.setResetPeriod(autoreset);
+        clock.setautoreset(autoreset);
     });
 
     /////////////////
@@ -98,10 +98,10 @@ function setupplaybackcontrols() {
     $("button#playbutton").click(function() {
         if(clock.isPlaying == false) {
             $(this).text("Stop sequencer");
-            clock.play();
+            clock.stop();
         } else {
             $(this).text("Start sequencer");
-            clock.stop();
+            clock.start();
         }
     });
 
@@ -113,7 +113,7 @@ function setupplaybackcontrols() {
     $temposlider.val(bpm);
     $temposlider.on('change', function() {
         bpm = parseInt($(this).val());
-        clock.setTempo(bpm);
+        clock.settempo(bpm);
     });
 
     ///////////////////
@@ -139,6 +139,7 @@ function setupplaybackcontrols() {
                 clock.unbind("bar");
                 recorder.stoprecording();
                 var mxml = recorder.getmidixml();
+                console.log(mxml);
                 /*
                     TODO: Function to submit XML string for conversion to MIDIFile (PHP file- to write)
                 */

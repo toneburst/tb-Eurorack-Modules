@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>24 PQN Clock Test</title>
+        <script src="../jquery-2.1.4.min.js"></script>
+        <script src="../microevent/microevent.min.js" charset="utf-8"></script>
+        <script src="AudioContextMonkeyPatch.js" charset="utf-8"></script>
+        <script src="clockworker.js" charset="utf-8"></script>
+        <script src="clock24ppqn.js" charset="utf-8"></script>
+        <script src="note-clock.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var counter = 0;
+                var noteoffcounter16ths = 0;
+                var notelength16ths = 3;
+
+                var noteclock = new NoteClock(120);
+                noteclock.setautoreset(1);
+                noteclock.start();
+
+                // Note-Off 16ths
+                noteclock.bind('tick', function() {
+                    if(noteoffcounter16ths == notelength16ths)
+
+                    noteoffcounter16ths++;
+                });
+
+                // Note-On 16ths
+                noteclock.bind('16th', function() {
+                    counter++;
+                    noteoffcounter16ths = 0;
+                });
+
+                noteclock.bind('reset', function() {
+                    console.log('Clock Reset');
+                    counter = 0;
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
