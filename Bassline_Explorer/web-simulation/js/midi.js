@@ -11,7 +11,7 @@
 var Jazz;
 
 var midi_channel = 0;
-var midi_lowvelocity = 80;
+var midi_lowvelocity = 63;
 var midi_highvelocity = 127;
 
 // Master transpose amount

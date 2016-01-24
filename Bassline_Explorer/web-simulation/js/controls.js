@@ -96,12 +96,12 @@ function setupplaybackcontrols() {
     /////////////////
 
     $("button#playbutton").click(function() {
-        if(clock.isPlaying == false) {
-            $(this).text("Stop sequencer");
-            clock.stop();
-        } else {
-            $(this).text("Start sequencer");
+        if(clock.isplaying == false) {
             clock.start();
+            $(this).text("Stop sequencer");
+        } else {
+            clock.stop();
+            $(this).text("Start sequencer");
         }
     });
 

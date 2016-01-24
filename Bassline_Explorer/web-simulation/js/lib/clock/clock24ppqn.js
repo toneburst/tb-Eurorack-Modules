@@ -30,16 +30,13 @@ Clock24PPQN.prototype.setTempo = function(newtempo) {
     this.newTempo = newtempo;
 };
 
-Clock24PPQN.prototype.isRunning = function() {
-    return this.isPlaying;
-}
-
 Clock24PPQN.prototype.nextTick = function() {
     var self = this;
     // Schedule tick
     this.nextTickTime += this.secondsPerTick
     // Update tempo if required
     if(this.tempo != this.newTempo) {
+        this.tempo = this.newTempo;
         this.secondsPerTick = 2.5 / this.tempo;
     };
 };

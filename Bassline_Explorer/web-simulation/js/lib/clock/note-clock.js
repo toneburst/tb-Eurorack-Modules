@@ -7,14 +7,11 @@ function NoteClock(bpm) {
     this.bpm = bpm;
     this.autoreset = null;
     this.clock = new Clock24PPQN(this.bpm);
+    this.isplaying = false;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
 MicroEvent.mixin(NoteClock);
-
-NoteClock.prototype.reset = function() {
-    this.counter = 0;
-};
 
 NoteClock.prototype.settempo = function(tempo) {
     this.clock.setTempo(tempo);
@@ -32,6 +29,7 @@ NoteClock.prototype.start = function() {
     var counter = 0;
     this.clock.init();
     this.clock.play();
+    this.isplaying = true;
     this.clock.bind('tick', function(e) {
         self.trigger('tick', 'tick');
         if(counter % 3 == 0) {
@@ -54,9 +52,9 @@ NoteClock.prototype.start = function() {
         };
         counter++;
         if(self.autoreset) {
-            if(counter % (self.autoreset - 1) == 0) {
+            if(counter % (self.autoreset) == 0) {
                 self.trigger('reset', 'reset');
-                self.reset();
+                counter = 0;
             };
         };
     });
@@ -64,4 +62,5 @@ NoteClock.prototype.start = function() {
 
 NoteClock.prototype.stop = function() {
     this.clock.stop();
+    this.isplaying = false;
 };
