@@ -120,33 +120,47 @@ function setupplaybackcontrols() {
     // Record Button //
     ///////////////////
 
+    // MIDIFile download form Submit button
+    var $midixmlformsubmit = $("#midixmlformsubmit");
+    // Hide Submit button
+    $midixmlformsubmit.hide();
+    // Record button
     var $recordbutton = $("#recordbutton");
+    // Set initial record status
     $recordbutton.data('recordstatus', '0');
+    // Handle mousedown on Record button
     $recordbutton.mousedown(function() {
         if($recordbutton.data('recordstatus') === "0") {
-            $recordbutton.html("Recording Armed");
+            $recordbutton.prop('disabled', true).html("Recording Armed");
             clock.bind("bar", function() {
+                $recordbutton.prop('disabled', false);
                 $recordbutton.html("Recording...");
+                $midixmlformsubmit.hide();
                 recorder = new Recorder();
                 recorder.startrecording();
                 clock.unbind("bar");
             });
             $recordbutton.data('recordstatus', "1");
         } else {
-            $recordbutton.html("Recording Disarmed");
+            $recordbutton.prop('disabled', true).html("Recording Disarmed");
             clock.bind("bar", function() {
-                $recordbutton.html("Get MIDI File");
+                $recordbutton.prop('disabled', false).html("Record");
                 clock.unbind("bar");
                 recorder.stoprecording();
-                var mxml = recorder.getmidixml();
-                console.log(mxml);
+                $midixmlformsubmit.show();
+                //var mxml = recorder.getmidixml();
                 /*
                     TODO: Function to submit XML string for conversion to MIDIFile (PHP file- to write)
                 */
+                $("#midixmlformhidden").val(recorder.getmidixml());
                 recorder = null; // Note sure this method of deleting an object instance works...
             });
             $recordbutton.data('recordstatus', "0");
         };
+    });
+    $midixmlformsubmit.mousedown(function() {
+        $("#midixmlform").submit();
+        $(this).hide();
     });
 };
 

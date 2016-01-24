@@ -160,7 +160,11 @@
             <!-- Recorder -->
             <section>
                 <p><button type="button" id="recordbutton">Record</button></p>
-                <p><iframe id="midifileiframe"><p>
+                <form id="midixmlform" action="php/download_midifile.php" target="midifileiframe" method="post">
+                  <input id="midixmlformhidden" type="hidden" name="midixmlformhidden" value="English">
+                  <input type="submit" id="midixmlformsubmit" value="Get MIDI File">
+                </form>
+                <p><iframe id="midifileiframe" name="midifileiframe"></iframe><p>
             </section>
         </div>
     </body>
