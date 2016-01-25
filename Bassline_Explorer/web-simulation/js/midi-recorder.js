@@ -16,7 +16,7 @@ function MIDIXMLRecorder() {
     this.ticks          = 0;
     // MIDIXML Strings
     this.midixmlheader  = '<?xml version="1.0"?><!DOCTYPE MIDIFile SYSTEM "http://www.musicxml.org/dtds/midixml.dtd"><MIDIFile><Format>1</Format><TrackCount>2</TrackCount><TicksPerBeat>8</TicksPerBeat><TimestampType>Absolute</TimestampType>';
-    this.midixmltrk0    = '<Track Number="0"><Event><Absolute>0</Absolute><TimeSignature Numerator="4" LogDenominator="2" MIDIClocksPerMetronomeClick="24" ThirtySecondsPer24Clocks="8"/></Event><Event><Absolute>0</Absolute><SetTempo Value="' + this.tempo + '"/></Event><Event><Absolute>0</Absolute><EndOfTrack/></Event></Track>';
+    this.midixmltrk0    = '<Track Number="0"><Event><Absolute>0</Absolute><TimeSignature Numerator="4" LogDenominator="2" MIDIClocksPerMetronomeClick="24" ThirtySecondsPer24Clocks="8" CopyrightNotice="toneburst 2016"/></Event><Event><Absolute>0</Absolute><SetTempo Value="' + this.tempo + '"/></Event><Event><Absolute>0</Absolute><EndOfTrack/></Event></Track>';
     this.midixmltrk1    = null;
     this.midixmlclose   = "</MIDIFile>";
     this.midixml        = null;
