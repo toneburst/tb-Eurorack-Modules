@@ -10,10 +10,13 @@
 
 function Recorder() {
     this.isrecording    = false;
+    this.tempo          = 500000;
+    this.trackname      = "Bassline Explorer"
+    this.lastnotes      = [];
     this.ticks          = 0;
     // MIDIXML Strings
     this.midixmlheader  = '<?xml version="1.0"?><!DOCTYPE MIDIFile SYSTEM "http://www.musicxml.org/dtds/midixml.dtd"><MIDIFile><Format>1</Format><TrackCount>2</TrackCount><TicksPerBeat>8</TicksPerBeat><TimestampType>Absolute</TimestampType>';
-    this.midixmltrk0    = '<Track Number="0"><Event><Absolute>0</Absolute><TimeSignature Numerator="4" LogDenominator="2" MIDIClocksPerMetronomeClick="24" ThirtySecondsPer24Clocks="8"/></Event><Event><Absolute>0</Absolute><SetTempo Value="371520"/></Event><Event><Absolute>0</Absolute><EndOfTrack/></Event></Track>';
+    this.midixmltrk0    = '<Track Number="0"><Event><Absolute>0</Absolute><TimeSignature Numerator="4" LogDenominator="2" MIDIClocksPerMetronomeClick="24" ThirtySecondsPer24Clocks="8"/></Event><Event><Absolute>0</Absolute><SetTempo Value="' + this.tempo + '"/></Event><Event><Absolute>0</Absolute><EndOfTrack/></Event></Track>';
     this.midixmltrk1    = null;
     this.midixmlclose   = "</MIDIFile>";
     this.midixml        = null;
@@ -26,12 +29,16 @@ function Recorder() {
 
 MicroEvent.mixin(Recorder);
 
+Recorder.prototype.settempo = function(bpm) {
+    this.tempo = 60 / bpm * 100000;
+};
+
 /////////////////////
 // Start Recording //
 /////////////////////
 
 Recorder.prototype.startrecording = function() {
-    this.midixmltrk1 = '<Track Number="1">';
+    this.midixmltrk1 = '<Track Number="1"><Event><Absolute>0</Absolute><TrackName>' + this.trackname + '</TrackName></Event>';
     if(!this.isrecording) {
         this.isrecording = true;
         this.ticks = 0;
@@ -50,18 +57,17 @@ Recorder.prototype.updateticks = function() {
 // Record MIDI Event //
 ///////////////////////
 
-Recorder.prototype.recordevent = function(messagetype, channel, note, velocity) {
+Recorder.prototype.recordnote = function(messagetype, channel, note, velocity) {
     if(this.isrecording) {
+        var vel = (messagetype === "NoteOn") ? velocity : 0;
         // Create Event string
         var midievent = '<Event>';
         midievent += '<Absolute>' + this.ticks + '</Absolute>';
-        if(messagetype == "NoteOn" || messagetype == "NoteOff") {
-            midievent += '<' + messagetype + ' ';
-            // Always record on MIDI ch.1
-            midievent += 'Channel="1" ';
-            midievent += 'Note="' + note + '" ';
-            midievent += 'Velocity="' + velocity + '"/>';
-        };
+        midievent += '<NoteOn ';
+        // Always record on MIDI ch.1
+        midievent += 'Channel="1" ';
+        midievent += 'Note="' + note + '" ';
+        midievent += 'Velocity="' + vel + '"/>';
         //
         midievent += "</Event>";
         // Concatenate event to XML string

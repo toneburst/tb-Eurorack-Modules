@@ -132,26 +132,22 @@ function setupplaybackcontrols() {
     $recordbutton.mousedown(function() {
         if($recordbutton.data('recordstatus') === "0") {
             $recordbutton.prop('disabled', true).html("Recording Armed");
-            clock.bind("bar", function() {
+            clock.bind("beforebar", function() {
                 $recordbutton.prop('disabled', false);
                 $recordbutton.html("Recording...");
                 $midixmlformsubmit.hide();
                 recorder = new Recorder();
                 recorder.startrecording();
-                clock.unbind("bar");
+                clock.unbind("beforebar");
             });
             $recordbutton.data('recordstatus', "1");
         } else {
             $recordbutton.prop('disabled', true).html("Recording Disarmed");
-            clock.bind("bar", function() {
+            clock.bind("beforebar", function() {
                 $recordbutton.prop('disabled', false).html("Record");
-                clock.unbind("bar");
+                clock.unbind("beforebar");
                 recorder.stoprecording();
                 $midixmlformsubmit.show();
-                //var mxml = recorder.getmidixml();
-                /*
-                    TODO: Function to submit XML string for conversion to MIDIFile (PHP file- to write)
-                */
                 $("#midixmlformhidden").val(recorder.getmidixml());
                 recorder = null; // Note sure this method of deleting an object instance works...
             });

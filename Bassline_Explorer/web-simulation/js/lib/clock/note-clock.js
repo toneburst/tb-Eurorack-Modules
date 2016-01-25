@@ -51,6 +51,10 @@ NoteClock.prototype.start = function() {
             self.trigger('bar', 'bar');
         };
         counter++;
+        // Triggers on tick before new bar
+        if(counter % 96 == 0) {
+            self.trigger('beforebar', 'bar');
+        };
         if(self.autoreset) {
             if(counter % (self.autoreset) == 0) {
                 self.trigger('reset', 'reset');
