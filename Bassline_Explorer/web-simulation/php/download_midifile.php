@@ -22,6 +22,6 @@ if($_POST["midixmlformhidden"]) {
 	delete($tmpfile);
 } else {
 	// No post data
-	echo "No MIDIXML data received";
+	echo "Error: No MIDIXML data received";
 };
 ?>

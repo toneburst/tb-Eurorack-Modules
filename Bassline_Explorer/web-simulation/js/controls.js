@@ -130,13 +130,16 @@ function setupplaybackcontrols() {
     $recordbutton.data('recordstatus', '0');
     // Handle mousedown on Record button
     $recordbutton.mousedown(function() {
+        // We're not recording, so arm recorder
         if($recordbutton.data('recordstatus') === "0") {
+            // Disable record button until recording has started
             $recordbutton.prop('disabled', true).html("Recording Armed");
             clock.bind("beforebar", function() {
                 $recordbutton.prop('disabled', false);
                 $recordbutton.html("Recording...");
                 $midixmlformsubmit.hide();
-                recorder = new Recorder();
+                recorder = new MIDIXMLRecorder();
+                recorder.settempo(bpm);
                 recorder.startrecording();
                 clock.unbind("beforebar");
             });
