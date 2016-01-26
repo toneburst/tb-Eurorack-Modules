@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tone.js Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="icon" type="image/png" sizes="174x174" href="./style/favicon.png">
+
+        <script type="text/javascript" src="Tone.js-master/build/Tone.js"></script>
+        <script type="text/javascript" src="Tone.js-master/examples/scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="Tone.js-master/examples/scripts/draggabilly.js"></script>
+        <script type="text/javascript" src="Tone.js-master/examples/scripts/Interface.js"></script>
+        <script type="text/javascript" src="Tone.js-master/examples/scripts/Logo.js"></script>
+        <script type="text/javascript" src="Tone.js-master/examples/scripts/qwerty-hancock.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="Tone.js-master/examples/style/examples.css">
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var notecount = 0;
+                var filter = new Tone.Filter({
+                    type:"lowpass",
+                    frequency:350,
+                    rolloff:-12,
+                    Q:10,
+                    gain:0
+                }).toMaster();
+
+                var osc = new Tone.OmniOscillator({
+                    frequency : "C2",
+                    type : "square",
+                    portamento : 100
+                }).connect(filter);
+
+                var keyboard = new QwertyHancock({
+    				id: "Keyboard",
+    				width: $("#Content").width(),
+    				height: 150,
+    				octaves: Interface.isMobile ? 1.26 : 3,
+    				startNote: "C3",
+    				whiteKeyColour: "white",
+    				blackKeyColour: "#1EDF3E",
+    				activeColour : "#3833ED"
+    			});
+
+                keyboard.keyDown = function (note, frequency) {
+                    osc.frequency.value = note;
+                    osc.start();
+                    notecount++;
+                    console.log(notecount);
+    			};
+
+    			keyboard.keyUp = function () {
+    			    osc.stop();
+                    notecount--;
+                    console.log(notecount);
+    			};
+            });
+        </script>
+    </head>
+    <body>
+        <div id="Content">
+            <div id="Title">MonoSynth</div>
+            <div id="Keyboard"></div>
+        </div>
+    </body>
+</html>
