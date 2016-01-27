@@ -1,4 +1,4 @@
-function MIDI() {
+function TBMIDI() {
     this.midichannel = 0;
 
     // Master transpose amount
@@ -15,7 +15,7 @@ function MIDI() {
     this.$uicontainer = null;
 };
 
-MIDI.prototype.init = function(uicontainer) {
+TBMIDI.prototype.init = function(uicontainer) {
     if(uicontainer) {
         this.$uicontainer = $(uicontainer);
         this.$uicontainer.addClass("midiui");
@@ -40,11 +40,11 @@ MIDI.prototype.init = function(uicontainer) {
     };
 };
 
-MIDI.prototype.errornooutputdevice = function() {
+TBMIDI.prototype.errornooutputdevice = function() {
     console.log("Can't get MIDI output");
 };
 
-MIDI.prototype.setoutputdevice = function(device) {
+TBMIDI.prototype.setoutputdevice = function(device) {
     if(this.havejazz) {
         this.jazz.MidiOutOpen(device);
     } else {
@@ -53,7 +53,7 @@ MIDI.prototype.setoutputdevice = function(device) {
     };
 };
 
-MIDI.prototype.addoutputselect = function() {
+TBMIDI.prototype.addoutputselect = function() {
     if(this.havejazz) {
         var midioutselect_str = '<p>MIDI Output</p><p><select id="selectmidiout"><option value="select">Select MIDI Output</option></select></p>';
         this.$uicontainer.append(midioutselect_str);
@@ -76,11 +76,11 @@ MIDI.prototype.addoutputselect = function() {
     };
 };
 
-MIDI.prototype.setmidichannel = function(channel) {
+TBMIDI.prototype.setmidichannel = function(channel) {
     this.midichannel = channel;
 };
 
-MIDI.prototype.addchannelselect = function() {
+TBMIDI.prototype.addchannelselect = function() {
     if(this.havejazz) {
         var midichannelselect_str = '<p>MIDI Channel</p><p><select id="selectmidichannel"><option value="select">Select MIDI Channel</option></select></p>';
         this.$uicontainer.append(midichannelselect_str);
@@ -102,7 +102,7 @@ MIDI.prototype.addchannelselect = function() {
     };
 };
 
-MIDI.prototype.addtestbutton = function() {
+TBMIDI.prototype.addtestbutton = function() {
     if(this.havejazz) {
         var midiouttestbutton_str = '<p>Test Output</p><p><button type="button" id="testmidioutbutton">test MIDI</button></p>';
         this.$uicontainer.append(midiouttestbutton_str);
@@ -119,42 +119,7 @@ MIDI.prototype.addtestbutton = function() {
     };
 };
 
-MIDI.prototype.selectscale = function() {
-    // Scales from Mutable Instruments MIDIPal firmware
-    // Olivier Gillet
-    // NAMES MAY BE WRONG!
-    this.mpscales = Array();
-    this.mpscales[0]  = ["Chromatic",[0,1,2,3,4,5,6,7,8,9,10,11]];
-    this.mpscales[1]  = ["Ionian",[0,0,2,2,4,5,5,7,7,9,9,11]];
-    this.mpscales[2]  = ["Dorian",[0,0,2,3,3,5,5,7,7,10,10]];
-    this.mpscales[3]  = ["Phrygian",[0,1,1,3,3,5,5,7,8,8,10,10]];
-    this.mpscales[4]  = ["Lydian",[0,0,2,2,4,4,6,7,7,9,11]];
-    this.mpscales[5]  = ["Mixolydian",[0,0,2,2,4,5,5,7,7,9,10,10]];
-    this.mpscales[6]  = ["Aeolian Minor",[0,0,2,3,3,5,5,7,8,8,10,10]];
-    this.mpscales[7]  = ["Locrian",[0,1,1,3,3,5,6,6,8,8,10,10]];
-    this.mpscales[8]  = ["Blues Major",[0,0,3,3,4,4,7,7,7,9,10,10]];
-    this.mpscales[9]  = ["Blues Minor",[0,0,3,3,3,5,6,7,7,10,10,10]];
-    this.mpscales[10] = ["Pentatonic Major",[0,0,2,2,4,4,7,7,7,9,9,9]];
-    this.mpscales[11] = ["Pentatonic Minor",[0,0,3,3,3,5,5,7,7,10,10,10]];
-    this.mpscales[12] = ["Raga Bhiarav",[0,1,1,4,4,5,5,7,8,8,11,11]];
-    this.mpscales[13] = ["Raga Shri",[0,1,1,4,4,4,6,7,8,8,11,11]];
-    this.mpscales[14] = ["Raga Rupatavi",[0,1,1,3,3,5,5,7,7,10,10,11]];
-    this.mpscales[15] = ["Raga Todi",[0,1,1,3,3,6,6,7,8,8,11,11]];
-    this.mpscales[16] = ["Raga Kaafi",[0,0,2,2,4,5,5,5,9,9,10,11]];
-    this.mpscales[17] = ["Raga Meg",[0,0,2,2,5,5,5,7,7,9,9,9]];
-    this.mpscales[18] = ["Raga Malkauns",[0,0,3,3,3,5,5,8,8,8,10,10]];
-    this.mpscales[19] = ["Raga Deepak",[0,0,3,3,4,4,6,6,8,8,10,10]];
-    this.mpscales[20] = ["Folkish",[0,1,1,3,4,5,5,7,8,8,10,10]];
-    this.mpscales[21] = ["Japanese",[0,1,1,1,5,5,5,7,8,8,8,8]];
-    this.mpscales[22] = ["Gamelan",[0,1,1,3,3,3,7,7,8,8,8,8]];
-    this.mpscales[23] = ["Whole Tones",[0,0,2,2,4,4,6,6,8,8,10,10]];
-
-    // Scale Index
-    this.scaleindex = 2; // Dorian
-    this.scale = this.mpscales[this.scaleindex][0];
-};
-
-MIDI.prototype.noteon = function(channel, note, velocity) {
+TBMIDI.prototype.noteon = function(channel, note, velocity) {
     if(this.havejazz) {
         this.jazz.MidiOut(channel + 144, note, velocity);
         /*if(recorder)
@@ -165,7 +130,7 @@ MIDI.prototype.noteon = function(channel, note, velocity) {
     };
 };
 
-MIDI.prototype.noteoff = function(channel, note) {
+TBMIDI.prototype.noteoff = function(channel, note) {
     if(this.havejazz) {
         this.jazz.MidiOut(channel + 128, note, 0);
         /*if(recorder)
