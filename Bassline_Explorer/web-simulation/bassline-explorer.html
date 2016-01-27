@@ -113,52 +113,69 @@
             </section>
 
             <!-- Coordinate Controls -->
-            <section id="coordinates">
-                <div class="control">
-                    <p>X Position</p>
-                    <input id="knob_x" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#666" data-rotation="clockwise">
-                </div>
-                <div class="control">
-                    <p>Y Position</p>
-                    <input id="knob_y" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#666" data-rotation="clockwise">
+            <section id="controls">
+
+                <div class="group">
+                    <div class="control">
+                        <p class="knoblabel">X Position</p>
+                        <input id="knob_x" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#666" data-rotation="clockwise">
+                    </div>
+                    <div class="control">
+                        <p class="knoblabel">Y Position</p>
+                        <input id="knob_y" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-fgColor="#666" data-rotation="clockwise">
+                    </div>
                 </div>
 
                 <!-- Density/Transform Controls -->
-                <div class="control clear">
-                    <p>Note</p>
-                    <input id="knob_threshold_note" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                <div class="group">
+                    <div class="control">
+                        <p class="knoblabel">Note</p>
+                        <input id="knob_threshold_note" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
+                    <div class="control">
+                        <p class="knoblabel">Octave</p>
+                        <input id="knob_threshold_octave" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
                 </div>
-                <div class="control">
-                    <p>Octave</p>
-                    <input id="knob_threshold_octave" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
-                </div>
-                <div class="control clear">
-                    <p>Accent</p>
-                    <input id="knob_threshold_accent" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
-                </div>
-                <div class="control">
-                    <p>Slide</p>
-                    <input id="knob_threshold_slide" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+
+                <div class="group">
+                    <div class="control">
+                        <p class="knoblabel">Accent</p>
+                        <input id="knob_threshold_accent" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
+                    <div class="control">
+                        <p class="knoblabel">Slide</p>
+                        <input id="knob_threshold_slide" class="knob" data-cursor=true data-min="0" data-max="255" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
                 </div>
 
                 <!-- Length and Shift Controls -->
-                <div class="control clear">
-                    <p>Length</p>
-                    <input id="knob_length" class="knob" data-cursor=true data-min="1" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                <div class="group">
+                    <div class="control clear">
+                        <p class="knoblabel">Length</p>
+                        <input id="knob_length" class="knob" data-cursor=true data-min="1" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
+
+                    <div class="control">
+                        <p class="knoblabel">Shift</p>
+                        <input id="knob_shift" class="knob" data-cursor=true data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+                    </div>
                 </div>
-                <div class="control">
-                    <p>Shift</p>
-                    <input id="knob_shift" class="knob" data-cursor=true data-min="0" data-max="16" data-step="1" data-angleOffset=-125 data-angleArc=250 data-rotation="clockwise">
+
+                <!-- Length/Shift-Select controls -->
+                <div class="group">
+                    <p class="knoblabel">Length + Shift Channel Select</p>
+                    <input type="radio" name="lnshft-function" value="0" checked> Note<br>
+                    <input type="radio" name="lnshft-function" value="1"> Octave<br>
+                    <input type="radio" name="lnshft-function" value="2"> Accent<br>
+                    <input type="radio" name="lnshft-function" value="3"> Slide
                 </div>
-                <p class="clear">Length + Shift Channel Select</p>
-                  <input type="radio" name="lnshft-function" value="0" checked> Note<br>
-                  <input type="radio" name="lnshft-function" value="1"> Octave<br>
-                  <input type="radio" name="lnshft-function" value="2"> Accent<br>
-                  <input type="radio" name="lnshft-function" value="3"> Slide
+                
             </section>
 
             <!-- Recorder -->
             <section>
+                <p>MIDI Note Recorder</p>
                 <p><button type="button" id="recordbutton">Record</button></p>
                 <form id="midixmlform" action="php/download_midifile.php" target="midifileiframe" method="post">
                   <input id="midixmlformhidden" type="hidden" name="midixmlformhidden" value="English">

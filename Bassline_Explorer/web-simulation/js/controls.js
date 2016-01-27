@@ -144,22 +144,21 @@ function setupplaybackcontrols() {
                 clock.unbind("beforebar");
             });
             $recordbutton.data('recordstatus', "1");
+        // We are recording, so stop recording
         } else {
             $recordbutton.prop('disabled', true).html("Recording Disarmed");
             clock.bind("beforebar", function() {
                 $recordbutton.prop('disabled', false).html("Record");
                 clock.unbind("beforebar");
                 recorder.stoprecording();
-                $midixmlformsubmit.show();
+                // Dump recording into hidden form field
                 $("#midixmlformhidden").val(recorder.getmidixml());
+                // Submit form (target is iFrame)
+                $("#midixmlform").submit();
                 recorder = null; // Note sure this method of deleting an object instance works...
             });
             $recordbutton.data('recordstatus', "0");
         };
-    });
-    $midixmlformsubmit.mousedown(function() {
-        $("#midixmlform").submit();
-        $(this).hide();
     });
 };
 
