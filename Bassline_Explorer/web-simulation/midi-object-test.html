@@ -4,19 +4,20 @@
         <meta charset="utf-8">
         <title>MIDI Object Test</title>
         <script src="js/lib/jquery-2.1.4.min.js"></script>
-        <script src="js/midi-object.js" charset="utf-8"></script>
-        <script src="js/tb-scales.js" charset="utf-8"></script>
+        <script src="js/lib/webmidiapi/WebMIDIAPI.min.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-midi-io.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-scales.js" charset="utf-8"></script>
         <script type="text/javascript">
 
             $(document).ready(function(event) {
-                var midi = new TBMIDI();
-                midi.init("#midisetup");
-                midi.addoutputselect();
+                var m = new TBMIDI();
+                m.init("#midisetup");
+                m.addoutputselect();
                 //midi.addchannelselect();
                 //midi.addtestbutton();
 
-                scales = new TBScales();
-                scales.addscaleselect("#midisetup");
+                //scales = new TBScales();
+                //scales.addscaleselect("#midisetup");
             });
 
             /*jQuery(document).ready(function($) {

@@ -1,27 +1,74 @@
+/*
+ * toneburst 2016
+ *
+ *
+ */
+
 function TBMIDI() {
-    this.midichannel = 0;
-
-    // Master transpose amount
-    this.transpose = 24;
-
-    this.enablerecord = false;
-    this.recording = [];
-
-    this.scale = null;
-
+    this.midichannel    = 0;
     // Jazz object
-    this.jazz = null;
-    this.havejazz = false;
-    this.$uicontainer = null;
+    this.jazz           = null;
+    this.havemidi       = false;
+    this.havecontainer  = false;
+    this.$uicontainer   = null;
+    this.uicontainer    = null;
+    this.containerclass = "midiui";
+
+    this.idprefix       = "tbmio";
+    this.outputselectid = this.idprefix + "-" + "outputdevice";
 };
+
+//////////////////////////////////////////////
+// UI Container DOM element not found error //
+//////////////////////////////////////////////
+
+TBMIDI.prototype.errordomelement = function() {
+    var error = "Error: Container element not found. You need to specify ID of an existing element (with or without leading '#') when initialising this instance or calling this method";
+    console.log(error);
+    return error;
+};
+
+/////////////////////////////////
+// No MIDI output device error //
+/////////////////////////////////
+
+TBMIDI.prototype.errornooutputdevice = function() {
+    this.havemidi = false;
+    var error = "Error: No MIDI or no MIDI output device found";
+    console.log(error);
+    return error;
+};
+
+////////////////////////////////
+// Create <label> DOM element //
+////////////////////////////////
+
+TBMIDI.prototype.createlabel = function(labelfor, labeltext) {
+    var label = document.createElement("label");
+    label.setAttribute("for", labelfor);
+    label.innerHTML = labeltext;
+    return label;
+};
+
+///////////////////
+// Init function //
+///////////////////
 
 TBMIDI.prototype.init = function(uicontainer) {
     if(uicontainer) {
         this.$uicontainer = $(uicontainer);
-        this.$uicontainer.addClass("midiui");
+        this.uicontainer = document.getElementById(uicontainer.replace("#", ""));
+        if(!this.uicontainer)
+            return this.errordomelement();
     } else {
-        return "You must specify a container element for MIDI setup controls";
+        return this.errordomelement();
     };
+
+    // Container element found, and valid DOM element, so set property
+    this.havecontainer = true;
+
+    // Add class to container
+    this.uicontainer.classList.add(this.containerclass);
 
     var jazz1 = document.createElement("object");
     jazz1.setAttribute("id", "jazz1");
@@ -46,15 +93,11 @@ TBMIDI.prototype.init = function(uicontainer) {
 
     this.jazz = (jazz1.isJazz) ? jazz1 : jazz2;
     if(this.jazz.isJazz)
-        this.havejazz = true;
-};
-
-TBMIDI.prototype.errornooutputdevice = function() {
-    console.log("Can't get MIDI output");
+        this.havemidi = true;
 };
 
 TBMIDI.prototype.setoutputdevice = function(device) {
-    if(this.havejazz) {
+    if(this.havemidi) {
         this.jazz.MidiOutOpen(device);
     } else {
         this.errornooutputdevice();
@@ -63,25 +106,42 @@ TBMIDI.prototype.setoutputdevice = function(device) {
 };
 
 TBMIDI.prototype.addoutputselect = function() {
-    if(this.havejazz) {
-        var midioutselect_str = '<p>MIDI Output</p><p><select id="selectmidiout"><option value="select">Select MIDI Output</option></select></p>';
-        this.$uicontainer.append(midioutselect_str);
-        var $midioutselect = $("#selectmidiout");
+
+    if(this.havemidi) {
+
         var midi_devicelist = this.jazz.MidiOutList();
-        $.each(midi_devicelist, function(i, item) {
-            $midioutselect.append($('<option>', {
-                value: item,
-                text : item
-            }));
-        });
-        var self = this;
-        $midioutselect.change(function() {
-            if($midioutselect.val() !== "select")
-                self.setoutputdevice($midioutselect.val());
-        });
-    } else {
-        this.errornooutputdevice();
-        return;
+
+        if(midi_devicelist.length > 0) {
+
+            // Create <label> element
+            var label = this.createlabel(this.outputselectid, "Select MIDI Output Device");
+
+            // Create <select> element
+            var sel = document.createElement("select");
+            sel.setAttribute("id", this.outputselectid);
+            // Add options
+            if(midi_devicelist) {
+                for(var i = 0; i < midi_devicelist.length; i++) {
+                    var opt = document.createElement("option");
+                    opt.text = midi_devicelist[i];
+                    opt.value = midi_devicelist[i];
+                    sel.add(opt);
+                };
+            };
+
+            // Append label and select to container DOM element
+            this.uicontainer.appendChild(label);
+            this.uicontainer.appendChild(sel);
+
+            // Listen for changes
+            var self = this;
+            sel.addEventListener('change', function(){
+                // Set scale
+                self.setoutputdevice(this.value);
+            });
+        } else {
+            this.errornooutputdevice();
+        };
     };
 };
 
@@ -90,7 +150,7 @@ TBMIDI.prototype.setmidichannel = function(channel) {
 };
 
 TBMIDI.prototype.addchannelselect = function() {
-    if(this.havejazz) {
+    if(this.havemidi) {
         var midichannelselect_str = '<p>MIDI Channel</p><p><select id="selectmidichannel"><option value="select">Select MIDI Channel</option></select></p>';
         this.$uicontainer.append(midichannelselect_str);
         var $midichannelselect = $("#selectmidichannel");
@@ -112,7 +172,7 @@ TBMIDI.prototype.addchannelselect = function() {
 };
 
 TBMIDI.prototype.addtestbutton = function() {
-    if(this.havejazz) {
+    if(this.havemidi) {
         var midiouttestbutton_str = '<p>Test Output</p><p><button type="button" id="testmidioutbutton">test MIDI</button></p>';
         this.$uicontainer.append(midiouttestbutton_str);
         var $midiouttestbutton = $("#testmidioutbutton");
@@ -129,7 +189,7 @@ TBMIDI.prototype.addtestbutton = function() {
 };
 
 TBMIDI.prototype.noteon = function(channel, note, velocity) {
-    if(this.havejazz) {
+    if(this.havemidi) {
         var ch = (channel) ? channel : this.midichannel;
         this.jazz.MidiOut(ch + 144, note, velocity);
     } else {
@@ -139,7 +199,7 @@ TBMIDI.prototype.noteon = function(channel, note, velocity) {
 };
 
 TBMIDI.prototype.noteoff = function(channel, note) {
-    if(this.havejazz) {
+    if(this.havemidi) {
         var ch = (channel) ? channel : this.midichannel;
         this.jazz.MidiOut(channel + 128, note, 0);
     } else {
