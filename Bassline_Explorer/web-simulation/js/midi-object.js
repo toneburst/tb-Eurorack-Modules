@@ -23,21 +23,30 @@ TBMIDI.prototype.init = function(uicontainer) {
         return "You must specify a container element for MIDI setup controls";
     };
 
-    var jazzobject = '<object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden"><object id="Jazz2" type="audio/x-jazz" class="hidden"><p>This page requires <a href=http://jazz-soft.net>Jazz-Plugin</a> ...</p></object></object>';
-    this.$uicontainer.append(jazzobject);
+    var jazz1 = document.createElement("object");
+    jazz1.setAttribute("id", "jazz1");
+    jazz1.setAttribute("classid", "CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90");
+    jazz1.setAttribute("class", "hidden");
 
-    // Set Jazz object
-    this.jazz = $("#Jazz1")[0];
-    if(this.jazz) {
-        if(this.jazz.isJazz) {
-            this.havejazz = true;
-        } else if($("#Jazz2")[0].isJazz) {
-            this.jazz = $("#Jazz2")[0];
-            this.havejazz = true;
-        } else {
-            this.havejazz = false;
-        };
-    };
+    var jazz2 = document.createElement("object");
+    jazz2.setAttribute("id", "jazz2");
+    jazz2.setAttribute("class", "hidden");
+    jazz2.setAttribute("type", "audio/x-jazz");
+    jazz2.innerHTML = "This page requires the ";
+
+    var jazzlnk = document.createElement("a");
+    jazzlnk.setAttribute("href","http://jazz-soft.net");
+    jazzlnk.setAttribute("target","_blank");
+    jazzlnk.innerHTML = "Jazz MIDI Plugin";
+    jazz2.appendChild(jazzlnk);
+
+    jazz1.appendChild(jazz2);
+
+    var cntnr = document.getElementById(uicontainer.replace("#","")).appendChild(jazz1);
+
+    this.jazz = (jazz1.isJazz) ? jazz1 : jazz2;
+    if(this.jazz.isJazz)
+        this.havejazz = true;
 };
 
 TBMIDI.prototype.errornooutputdevice = function() {
@@ -121,9 +130,8 @@ TBMIDI.prototype.addtestbutton = function() {
 
 TBMIDI.prototype.noteon = function(channel, note, velocity) {
     if(this.havejazz) {
-        this.jazz.MidiOut(channel + 144, note, velocity);
-        /*if(recorder)
-            recorder.recordnote("NoteOn", midi_channel, note, velocity);*/
+        var ch = (channel) ? channel : this.midichannel;
+        this.jazz.MidiOut(ch + 144, note, velocity);
     } else {
         this.errornooutputdevice();
         return;
@@ -132,9 +140,8 @@ TBMIDI.prototype.noteon = function(channel, note, velocity) {
 
 TBMIDI.prototype.noteoff = function(channel, note) {
     if(this.havejazz) {
+        var ch = (channel) ? channel : this.midichannel;
         this.jazz.MidiOut(channel + 128, note, 0);
-        /*if(recorder)
-            recorder.recordnote("NoteOff", midi_channel, note, 0);*/
     } else {
         this.errornooutputdevice();
         return;

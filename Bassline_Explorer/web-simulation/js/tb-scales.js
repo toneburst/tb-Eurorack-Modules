@@ -1,4 +1,8 @@
-
+/*
+ *
+ *
+ *
+ */
 
 function TBScales() {
     // Scales from Mutable Instruments MIDIPal firmware
@@ -33,10 +37,6 @@ function TBScales() {
     // Scale Index
     this.scaleindex = 0; // Chromatic
     this.scale = this.mpscales[this.scaleindex]["notes"];
-
-    if (!window.jQuery) {
-        return "Error: jQuery required!"
-    };
 };
 
 ///////////////////////////////////////////////////////////
@@ -47,6 +47,14 @@ TBScales.prototype.logscales = function() {
     for(var i = 0; i < this.mpscales.length; i++) {
         console.log(i + ": " + this.mpscales[i]["name"]);
     };
+};
+
+//////////////////////
+// Get scales array //
+//////////////////////
+
+TBScales.prototype.getscales = function() {
+    return this.mpscales;
 };
 
 ///////////////
@@ -66,19 +74,43 @@ TBScales.prototype.addscaleselect = function(container) {
     if(!container)
         return "Error: You must specify a container element when calling this function";
 
-    var notescaleselect_str = '<p>Select Scale</p><p><select id="selectnotescale"></select></p>';
-    $(container).append(notescaleselect_str);
-    var $notescaleselect = $("#selectnotescale");
-    var self = this;
+    // Container DOM element
+    var cntnr = document.getElementById(container.replace("#", ""));
+
+    var label = document.createElement("Label");
+    label.setAttribute("for", "scale");
+    label.innerHTML = "Select Scale";
+
+    // Create new <select> element
+    var sel = document.createElement("select");
+    sel.setAttribute("id", "scale");
+
+    // Add options to select
     for(var i = 0; i < this.mpscales.length; i++) {
-        $notescaleselect.append($('<option>', {
-            value: i,
-            text : self.mpscales[i]["name"]
-        }));
+        var opt = document.createElement("option");
+        opt.text = this.mpscales[i]["name"];
+        opt.value = i;
+        sel.add(opt);
     };
-    $notescaleselect.change(function() {
-        self.setscale(parseInt($(this).val()));
+    // Append label and select to container element
+    cntnr.appendChild(label);
+    cntnr.appendChild(sel);
+    var self = this;
+    // Listen for changes
+    sel.addEventListener('change', function(){
+        // Set scale
+        self.setscale(this.value);
     });
+};
+
+////////////////////
+// Get scale info //
+////////////////////
+
+TBScales.prototype.getscaleinfo = function() {
+    // Return current scale info:
+    // Scale Index (number) | Scale Name (string) | Scale Notes (array)
+    return {index:this.scaleindex, name:this.mpscales[this.scaleindex]["name"], scale:this.scale};
 };
 
 ////////////////////////////////////////////////
