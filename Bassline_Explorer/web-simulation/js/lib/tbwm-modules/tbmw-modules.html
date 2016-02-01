@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MIDI Object Test</title>
+        <script src="../jquery-2.1.4.min.js"></script>
+        <script src="../microevent/microevent.js" charset="utf-8"></script>
+        <script src="tbwm-clock/AudioContextMonkeyPatch.min.js" charset="utf-8"></script>
+        <script src="../webmidi/webmidi.js" charset="utf-8"></script>
+        <script src="../webmidiapi/WebMIDIAPI.min.js" charset="utf-8"></script>
+        <script src="tbwm-clock/tbwm-clock.js" charset="utf-8"></script>
+        <script src="tbwm-clockdivider.js" charset="utf-8"></script>
+        <script src="tbwm-midi-io.js" charset="utf-8"></script>
+        <script src="tbwm-notequantiser.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+
+                /*var clock = new TBWMClock(120);
+                clock.setWorkerURL("tbwm-clock/clockworker.js");
+                clock.init();
+                clock.start();
+
+                var divider = new TBMWClockdivider();
+
+                clock.bind("tick", function(e) {
+                    divider.tick();
+                });
+
+                divider.bind("16th", function() {
+                    //console.log("quarter");
+                });*/
+
+                var midi = new TBMWMIDIio();
+                midi.init("#midisetup");
+
+                midi.bind("midistatus", function(e) {
+                    if(e === "success") {
+                        midi.addoutputselect();
+                        midi.addoutchannelselect();
+                        midi.addtestbutton();
+                    };
+                });
+
+                //quantiser = new TBWMNotequantiser();
+                //quantiser.addscaleselect("#midisetup");
+                //quantiser.addtransposeselect("#midisetup");
+                //quantiser.addrandomrange("#midisetup");
+            });
+        </script>
+    </head>
+    <body>
+        <div id="midisetup"></div>
+    </body>
+</html>
