@@ -26,6 +26,12 @@ function TBMWMIDIio() {
 // Mix in Microevent object from microevent.js so our Clock object can emit events
 MicroEvent.mixin(TBMWMIDIio);
 
+//////////////////////////////
+//////////////////////////////
+// DOM-Manipulation Methods //
+//////////////////////////////
+//////////////////////////////
+
 //////////////////////////////////////////////
 // UI Container DOM element not found error //
 //////////////////////////////////////////////
@@ -35,6 +41,23 @@ TBMWMIDIio.prototype.errordomelement = function() {
     console.log(error);
     return error;
 };
+
+////////////////////////////////
+// Create <label> DOM element //
+////////////////////////////////
+
+TBMWMIDIio.prototype.createlabel = function(labelfor, labeltext) {
+    var label = document.createElement("label");
+    label.setAttribute("for", labelfor);
+    label.innerHTML = labeltext;
+    return label;
+};
+
+//////////////////
+//////////////////
+// MIDI Methods //
+//////////////////
+//////////////////
 
 ///////////////////
 // No MIDI error //
@@ -84,18 +107,45 @@ TBMWMIDIio.prototype.channelmessage = function(messagetype, ch) {
         "channelaftertouch": 0xD, // 13
         "pitchbend": 0xE          // 14
     };
-    return (_channelmessages[messagetype] << 4) + (ch - 1);
+    if(!_channelmessages[messagetype]) {
+        console.log("Error: MIDI Channel message not found");
+    } else {
+        return (_channelmessages[messagetype] << 4) + (ch - 1);
+    };
 };
 
-////////////////////////////////
-// Create <label> DOM element //
-////////////////////////////////
+TBMWMIDIio.prototype.systemmessage = function(messagetype) {
+    var _systemmessages = {
+        "sysex": 0xF0,            // 240
+        "timecode": 0xF1,         // 241
+        "songposition": 0xF2,     // 242
+        "songselect": 0xF3,       // 243
+        "tuningrequest": 0xF6,    // 246
+        "sysexend": 0xF7,         // 247 (never actually received - simply ends a sysex)
+        "clock": 0xF8,            // 248
+        "start": 0xFA,            // 250
+        "continue": 0xFB,         // 251
+        "stop": 0xFC,             // 252
+        "activesensing": 0xFE,    // 254
+        "reset": 0xFF,            // 255
+    };
+    if(!_systemmessages[messagetype]) {
+        console.log("Error: MIDI System message not found");
+    } else {
+        return (_systemmessages[messagetype] << 4) + (ch - 1);
+    };
+};
 
-TBMWMIDIio.prototype.createlabel = function(labelfor, labeltext) {
-    var label = document.createElement("label");
-    label.setAttribute("for", labelfor);
-    label.innerHTML = labeltext;
-    return label;
+///////////////
+// Timestamp //
+///////////////
+
+TBMWMIDIio.prototype.time = function(delay) {
+    var now = window.performance.now();
+    if(delay)
+        return now + delay;
+    else
+        return now;
 };
 
 ///////////////////
@@ -119,30 +169,19 @@ TBMWMIDIio.prototype.init = function(uicontainer) {
     var self = this;
     navigator.requestMIDIAccess().then(onsuccesscallback, onerrorcallback);
     function onsuccesscallback(access) {
-
+        // Set bool for MIDI access
         self.havemidi = true;
 
         // MIDI access object
         self.midiaccess = access;
 
-        // Get output ports
-        self.outputs = self.midiaccess.outputs; // outputs = MIDIOutputMaps, you can retrieve the outputs with iterators
-
-        if(self.outputs.size > 0) {
-            // Get and open first MIDI output port
-            self.midiout = self.outputs.values().next().value;
-            self.midiout.open();
-            self.havemidiout = true;
-        } else {
-            self.errornooutputdevice();
-            self.havemidiout = false;
-        };
-
         /*
         // Get input ports
-        self.inputs = self.midiaccess.inputs; // inputs = MIDIInputMaps, you can retrieve the inputs with iterators
+        self.inputs = self.midiaccess.inputs;
 
+        // Check MIDI input ports found
         if(self.inputs.size > 0) {
+            // Get and open first MIDI input port
             self.midiin = self.inputs.values().next().value;
             self.midiin.open();
             self.havemidiin = true;
@@ -151,6 +190,23 @@ TBMWMIDIio.prototype.init = function(uicontainer) {
             self.havemidiin = false;
         };*/
 
+        // Get output ports
+        self.outputs = self.midiaccess.outputs;
+
+        // Check MIDI output ports found
+        if(self.outputs.size > 0) {
+            // Get and open first MIDI output port
+            self.midiout = self.outputs.values().next().value;
+            self.midiout.open();
+            self.havemidiout = true;
+        } else {
+            // Send error
+            self.errornooutputdevice();
+            // Set switch false
+            self.havemidiout = false;
+        };
+
+        // Notify MIDI system ready
         console.log("MIDI system success!");
         self.trigger("midistatus", "success");
     };
@@ -180,6 +236,23 @@ TBMWMIDIio.prototype.setoutputdevice = function(deviceid) {
         return;
     };
 };
+
+///////////////////////////
+// Set MIDI Input device //
+///////////////////////////
+
+/*TBMWMIDIio.prototype.setinputdevice = function(deviceid) {
+    if(this.havemidiout) {
+        // Close previously-open port
+        this.midiin.close();
+        // Get and open new output port
+        this.midiin = this.outputs.get(deviceid);
+        this.midiin.open();
+    } else {
+        this.errornoinputdevice();
+        return;
+    };
+};*/
 
 ////////////////////////////////////////////////////////
 // Append Output device menu to container DOM element //
@@ -268,11 +341,13 @@ TBMWMIDIio.prototype.addtestbutton = function() {
         this.uicontainer.appendChild(button);
         // Listen for changes
         var self = this;
-        button.addEventListener("mousedown", function () {
-            self.noteon(null, 64, 127);
+        button.addEventListener("mousedown", function() {
+            // Send note-on on default MIDI channel
+            self.noteon(null, 64, 127, null);
         }, false);
-        button.addEventListener("mouseup", function () {
-            self.noteoff(null, 64, 127);
+        button.addEventListener("mouseup", function() {
+            // Send note-off on default MIDI channel
+            self.noteoff(null, 64, 127, null);
         }, false);
     } else {
         this.errornooutputdevice();
@@ -284,11 +359,11 @@ TBMWMIDIio.prototype.addtestbutton = function() {
 // Send MIDI note-on //
 ///////////////////////
 
-TBMWMIDIio.prototype.noteon = function(channel, note, velocity) {
+TBMWMIDIio.prototype.noteon = function(channel, note, velocity, delay) {
     if(this.havemidi && this.havemidiout) {
         var ch = (channel) ? channel : this.midichannel;
-        var cm = this.channelmessage("noteon", ch);
-        this.midiout.send([cm, note, velocity]);
+        var time = (delay) ? this.time(delay) : this.time();
+        this.midiout.send([this.channelmessage("noteon", ch), note, velocity], time);
     } else {
         this.errornooutputdevice();
         return;
@@ -299,11 +374,11 @@ TBMWMIDIio.prototype.noteon = function(channel, note, velocity) {
 // Send MIDI note-off //
 ////////////////////////
 
-TBMWMIDIio.prototype.noteoff = function(channel, note, velocity) {
+TBMWMIDIio.prototype.noteoff = function(channel, note, velocity, delay) {
     if(this.havemidi && this.havemidiout) {
         var ch = (channel) ? channel : this.midichannel;
-        var cm = this.channelmessage("noteoff", ch);
-        this.midiout.send([cm, note, velocity]);
+        var time = (delay) ? this.time(delay) : this.time();
+        this.midiout.send([this.channelmessage("noteoff", ch), note, velocity], time);
     } else {
         this.errornooutputdevice();
         return;
@@ -315,5 +390,21 @@ TBMWMIDIio.prototype.noteoff = function(channel, note, velocity) {
 //////////////////////////
 
 TBMWMIDIio.prototype.clocktick = function() {
-    self.midiout.send([0xF8]);
+    self.midiout.send([this.systemmessage("clock")], this.time());
+};
+
+//////////////////////////
+// Send MIDI clock stop //
+//////////////////////////
+
+TBMWMIDIio.prototype.clockstop= function() {
+    self.midiout.send([this.systemmessage("stop")], this.time());
+};
+
+//////////////////////////////
+// Send MIDI clock continue //
+//////////////////////////////
+
+TBMWMIDIio.prototype.clockcontinue = function() {
+    self.midiout.send([this.systemmessage("continue")], this.time());
 };

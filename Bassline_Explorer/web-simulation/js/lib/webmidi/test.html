@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WebMidi Test</title>
+        <script src="../webmidiapi/WebMIDIAPI.min.js" charset="utf-8"></script>
+        <script src="webmidi.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            window.onload=function() {
+                WebMidi.enable(function() {
+                    WebMidi.outputs[0].open();
+                    WebMidi.outputs[0].send([144, 64, 127], window.performance.now());
+                });
+            };
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

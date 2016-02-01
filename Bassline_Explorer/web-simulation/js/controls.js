@@ -123,7 +123,7 @@ function setupplaybackcontrols() {
     // MIDIFile download form Submit button
     var $midixmlformsubmit = $("#midixmlformsubmit");
     // Hide Submit button
-    $midixmlformsubmit.hide();
+    //$midixmlformsubmit.hide();
     // Record button
     var $recordbutton = $("#recordbutton");
     // Set initial record status
