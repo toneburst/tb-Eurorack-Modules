@@ -33,11 +33,9 @@
                 midi.init("#midisetup");
 
                 midi.bind("midistatus", function(e) {
-                    if(e === "success") {
-                        midi.addoutputselect();
-                        midi.addoutchannelselect();
-                        midi.addtestbutton();
-                    };
+                    midi.addoutputselect(true);
+                    midi.addoutchannelselect();
+                    midi.addtestbutton();
                 });
 
                 //quantiser = new TBWMNotequantiser();
