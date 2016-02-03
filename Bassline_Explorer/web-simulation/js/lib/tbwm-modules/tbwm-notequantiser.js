@@ -4,7 +4,7 @@
  *
  */
 
-function TBWMNotequantiser() {
+function TBWMNotequantiser(initsettings) {
     // Scales from Mutable Instruments MIDIPal firmware
     // Olivier Gillet
     // NAMES MAY BE WRONG!
@@ -44,6 +44,42 @@ function TBWMNotequantiser() {
     this.scalesselectid     = this.idprefix + "-scale"
     this.transposerangeid   = this.idprefix + "-transpose"
     this.randomrangeid      = this.idprefix + "-random"
+
+    // Load in settings if object passed in to init function
+    if(initsettings)
+        this.applysettings(initsettings);
+};
+
+//////////////////////////
+// Get current settings //
+//////////////////////////
+
+TBWMNotequantiser.prototype.getsettings = function() {
+    return {
+        scaleindex:this.scaleindex,
+        transpose:this.transpose,
+        shift:this.shift,
+        scalerandomise:this.scalerandomise
+    };
+};
+
+///////////////////
+// Load settings //
+///////////////////
+
+TBWMNotequantiser.prototype.applysettings = function(settings) {
+    if(settings) {
+        if(settings.scaleindex)
+            this.scaleindex = settings.scaleindex;
+        if(settings.transpose)
+            this.transpose = settings.transpose;
+        if(settings.shift)
+            this.shift = settings.shift;
+        if(settings.scalerandomise)
+            this.scalerandomise = settings.scalerandomise;
+    } else {
+        console.log("Error: You need to pass in a settings object {scaleindex:[val],transpose:[val],shift:[val],scalerandomise:[val]}");
+    };
 };
 
 ////////////////////////////////////////////

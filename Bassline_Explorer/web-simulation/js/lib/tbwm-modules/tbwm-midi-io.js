@@ -334,7 +334,6 @@ TBMWMIDIio.prototype.addoutputselect = function(savetocookie) {
             // Set cookie if option set
             if(savetocookie === true)
                 self.setcookie("midioutportname", sel.options[sel.selectedIndex].text, 365);
-                console.log(self.getcookie("midioutportname"));
         });
     } else {
         this.errornooutputdevice();
@@ -353,8 +352,16 @@ TBMWMIDIio.prototype.setoutmidichannel = function(channel) {
 // Add MIDI Channel select menu //
 //////////////////////////////////
 
-TBMWMIDIio.prototype.addoutchannelselect = function(setcookie) {
+TBMWMIDIio.prototype.addoutchannelselect = function(savetocookie) {
     if(this.havemidi && this.havemidiout) {
+        // If setcookie option set, attempt to read cookie
+        var savedoutputchannel = null;
+        if(savetocookie === true) {
+            savedoutputchannel = this.getcookie("midioutchannel");
+            if(savedoutputchannel) {
+                this.setoutmidichannel(savedoutputchannel);
+            };
+        };
         // Create <label> element
         var label = this.createlabel(this.channelselectid, "Select MIDI Channel");
         // Create <select> element
@@ -365,6 +372,10 @@ TBMWMIDIio.prototype.addoutchannelselect = function(setcookie) {
             var opt = document.createElement("option");
             opt.text = i;
             opt.value = i;
+            // Try and get previous port from cookie if option set
+            if(savedoutputchannel && parseInt(savedoutputchannel)  === i) {
+                opt.setAttribute("selected", "selected");
+            };
             sel.add(opt);
         };
         // Append label and select to container DOM element
@@ -375,6 +386,9 @@ TBMWMIDIio.prototype.addoutchannelselect = function(setcookie) {
         sel.addEventListener('change', function(){
             // Set output device
             self.setoutmidichannel(parseInt(this.value));
+            // Set cookie if option set
+            if(savetocookie === true)
+                self.setcookie("midioutchannel", sel.options[sel.selectedIndex].text, 365);
         });
     } else {
         this.errornooutputdevice();

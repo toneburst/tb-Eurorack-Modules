@@ -34,14 +34,14 @@
 
                 midi.bind("midistatus", function(e) {
                     midi.addoutputselect(true);
-                    midi.addoutchannelselect();
+                    midi.addoutchannelselect(true);
                     midi.addtestbutton();
                 });
 
-                //quantiser = new TBWMNotequantiser();
-                //quantiser.addscaleselect("#midisetup");
-                //quantiser.addtransposeselect("#midisetup");
-                //quantiser.addrandomrange("#midisetup");
+                quantiser = new TBWMNotequantiser();
+                quantiser.addscaleselect("#midisetup");
+                quantiser.addtransposeselect("#midisetup");
+                quantiser.addrandomrange("#midisetup");
             });
         </script>
     </head>
