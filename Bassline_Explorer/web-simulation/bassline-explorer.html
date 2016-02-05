@@ -3,29 +3,33 @@
     <head>
         <title>Bassline Explorer Beta 0.5.0</title>
 
+        <!-- Libraries -->
         <script src="js/lib/jquery-2.1.4.min.js"></script>
         <!--[if IE]><script type="text/javascript" src="js/lib/jquery-knob/excanvas.js"></script><![endif]-->
-
         <script src="js/lib/jquery-knob/jquery.knob.min.js"></script>
 
-        <script src="js/lib/jzz/JZZ.js" charset="utf-8"></script>
-
+        <!-- MIDI/Clock Scripts -->
         <script src="js/lib/microevent/microevent.min.js" charset="utf-8"></script>
-        <script src="js/lib/clock/AudioContextMonkeyPatch.min.js" charset="utf-8"></script>
-        <script src="js/lib/clock/clock24ppqn.min.js" charset="utf-8"></script>
-        <script src="js/lib/clock/note-clock.min.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-clock/AudioContextMonkeyPatch.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-clock/tbwm-clock.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-clockdivider.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-midi-io.js" charset="utf-8"></script>
+        <script src="js/lib/tbwm-modules/tbwm-notequantiser.js" charset="utf-8"></script>
 
+        <!-- Bassline Explorer Scripts -->
         <script src="js/tables.min.js" charset="utf-8"></script>
         <script src="js/patterns.min.js" charset="utf-8"></script>
         <script src="js/midi.min.js" charset="utf-8"></script>
-        <script src="js/midi-recorder.min.js" charset="utf-8"></script>
-        <script src="js/controls.min.js" charset="utf-8"></script>
-        <script src="js/bassline-explorer.min.js" charset="utf-8"></script>
+        <script src="js/midi-recorder.js" charset="utf-8"></script>
+        <script src="js/controls.js" charset="utf-8"></script>
+        <script src="js/bassline-explorer.js" charset="utf-8"></script>
         <script src="js/init.js" charset="utf-8"></script>
 
+        <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="styles.min.css">
         <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
         <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
@@ -175,13 +179,14 @@
 
             <!-- Recorder -->
             <section>
-                <p>MIDI Note Recorder</p>
+                <!--<p>MIDI Note Recorder</p>
                 <p><button type="button" id="recordbutton">Record</button></p>
                 <form id="midixmlform" action="php/download_midifile.php" target="midifileiframe" method="post" sandbox="allow-same-origin allow-scripts allow-forms">
                   <input id="midixmlformhidden" type="hidden" name="midixmlformhidden" value="English">
                   <input type="submit" id="midixmlformsubmit" value="Get MIDI File">
                 </form>
                 <p><iframe id="midifileiframe" name="midifileiframe" src="php/download_midifile.php"></iframe><p>
+                -->
             </section>
         </div>
     </body>

@@ -285,7 +285,7 @@ TBMWMIDIio.prototype.setoutputdevice = function(deviceid) {
             this.midiout.open();
         } else {
             // Port not found
-            console.log("Error: MIDI output port not available");
+            console.log("Error: MIDI output port " + deviceid + " not available");
         };
     } else {
         this.errornooutputdevice();

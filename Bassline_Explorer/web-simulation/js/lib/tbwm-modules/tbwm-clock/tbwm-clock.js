@@ -13,10 +13,10 @@
 // TO WORK ON CURRENT CHROME!!  But this means our code can be properly
 // spec-compliant, and work on Chrome, Safari and Firefox.
 
-function TBWMClock(tempo) {
-    this.tempo = tempo;
+function TBWMClock() {
+    this.tempo = 120;
     this.audioContext = null;
-    this.isPlaying = false;         // Are we currently playing?
+    this.isplaying = false;         // Are we currently playing?
     this.startTime;                 // The start time of the entire sequence.
     this.lookahead = 10.0;			// How frequently to call scheduling function
     this.scheduleAheadTime = 0.1;	// How far ahead to schedule audio (sec)
@@ -35,22 +35,6 @@ function TBWMClock(tempo) {
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
 MicroEvent.mixin(TBWMClock);
-
-////////////////////
-// Set worker URL //
-////////////////////
-
-TBWMClock.prototype.setWorkerURL = function(url) {
-    this.workerurl = url;
-};
-
-///////////////
-// Set tempo //
-///////////////
-
-TBWMClock.prototype.setTempo = function(newtempo) {
-    this.newTempo = newtempo;
-};
 
 /////////////////////
 // Setup next tick //
@@ -74,7 +58,7 @@ TBWMClock.prototype.nextTick = function() {
 TBWMClock.prototype.scheduleTick = function(time) {
     var self = this;
     // Emit tick
-    self.trigger('tick', 'Tick!');
+    self.trigger('tick', 'tick');
 };
 
 TBWMClock.prototype.scheduler = function() {
@@ -86,6 +70,15 @@ TBWMClock.prototype.scheduler = function() {
     };
 };
 
+///////////////
+// Set tempo //
+///////////////
+
+TBWMClock.prototype.settempo = function(newtempo) {
+    this.newTempo = newtempo;
+    return this;
+};
+
 /////////////////
 // Start Clock //
 /////////////////
@@ -93,8 +86,9 @@ TBWMClock.prototype.scheduler = function() {
 TBWMClock.prototype.start = function() {
     this.nextTickTime = this.audioContext.currentTime;
     this.timerWorker.postMessage("start");
-    console.log("Starting 96ppqn Clock");
-    this.isPlaying = true;
+    console.log("Starting 24PPQN Clock");
+    this.isplaying = true;
+    return this;
 };
 
 ////////////////
@@ -103,19 +97,23 @@ TBWMClock.prototype.start = function() {
 
 TBWMClock.prototype.stop = function() {
     this.timerWorker.postMessage("stop");
-    console.log("Stopping 96ppqn Clock");
-    this.isPlaying = false;
+    console.log("Stopping 24PPQN Clock");
+    this.isplaying = false;
+    return this;
 };
 
 //////////////////////
 // Initialise Clock //
 //////////////////////
 
-TBWMClock.prototype.init = function() {
-    // NOTE: THIS RELIES ON THE MONKEYPATCH LIBRARY BEING LOADED FROM
-    // http://cwilso.github.io/metroAudioContext-MonkeyPatch/metroAudioContextMonkeyPatch.js
-    // TO WORK ON CURRENT CHROME!!  But this means our code can be properly
-    // spec-compliant, and work on Chrome, Safari and Firefox.
+TBWMClock.prototype.init = function(initvars) {
+    if(initvars.bpm)
+        this.tempo = initvars.bpm;
+    if(initvars.workerurl) {
+        this.workerurl = initvars.workerurl;
+    } else {
+        console.log("Error: Webworker URL must be set relative to HTML page using <instance>.setworkerurl(<url>) method");
+    };
     var self = this;    // Handle to object instance context, used below.
     this.audioContext = new AudioContext();
     // Create an oscillator
@@ -129,4 +127,5 @@ TBWMClock.prototype.init = function() {
             console.log("message: " + e.data);
     }, false);
     this.timerWorker.postMessage({"interval":this.lookahead});
+    return this;
 };

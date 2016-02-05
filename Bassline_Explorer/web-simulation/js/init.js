@@ -59,7 +59,8 @@ var slide = false;
 
 // Clock var (instance of Clock object)
 var bpm = 120;
-var clock = new NoteClock(bpm);
+var ticker = new TBWMClock(bpm);
+var clock = new TBMWClockdivider();
 var masterstepcounter = 0;
 
 // Var to hold MIDI note-recorder object
@@ -78,16 +79,34 @@ $(document).ready(function() {
     setupplaybackcontrols();
 
     // Init MIDI
-    setupmidi();
+    //setupmidi();
 
     // Init Clock
-    var noteoffcounter16ths = 0;
-    clock.setautoreset(autoreset);
+    //var noteoffcounter16ths = 0;
+    //clock.setautoreset(autoreset);
 
-    var noteoffcounter16ths = 0;
-    clock.setautoreset(autoreset);
+    ticker.init({
+        bpm: bpm,
+        workerurl: "js/lib/tbwm-modules/tbwm-clock/clockworker.min.js"
+    }).bind("tick", function(e) {
+        clock.tick();
+    });
 
-    // Note-Off 16ths
+    clock.init({
+        autoreset: autoreset,
+        counting: "continuous"
+    });
+
+    
+    clock.bind("1/16", function(e) {
+        console.log(e);
+    });
+
+    clock.bind("1/32", function(e) {
+
+    });
+
+    /*// Note-Off 16ths
     clock.bind('tick', function() {
         if(noteoffcounter16ths == 3) {
             getStepVals();
@@ -109,5 +128,5 @@ $(document).ready(function() {
     // Reset if set
     clock.bind('reset', function() {
         masterstepcounter = 0;
-    });
+    });*/
 });
