@@ -8,26 +8,6 @@
 // MIDI Output Variables //
 ///////////////////////////
 
-var Jazz;
-
-var midi_channel = 0;
-var midi_lowvelocity = 63;
-var midi_highvelocity = 127;
-
-// Master transpose amount
-var transpose = 24;
-
-var enablerecord = false;
-var recording = [];
-
-// Scale Index (index into mpscales array in tables.js)
-var scaleindex = 2; // Dorian
-var scale = mpscales[scaleindex][1];
-
-// Previous note number(s)
-// Required to prevent retrigger of slide notes when new and previous note-numbers are same (ie tied notes))
-var midi_previousnotes = [0];
-
 function setupmidi() {
     Jazz = document.getElementById("Jazz1");
     if(!Jazz || !Jazz.isJazz) Jazz = document.getElementById("Jazz2");

@@ -27,6 +27,12 @@ h1 {
 h4 {
 
 }
+label,
+select,
+input {
+    diplay: block;
+}
+
 section {
     width: 190px;
     margin: 5px;

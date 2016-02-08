@@ -21,6 +21,7 @@ function TBMWMIDIio() {
     this.midiout            = {};
     this.midiin             = {};
     this.midichannel        = 1;
+    return this;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
@@ -185,6 +186,7 @@ TBMWMIDIio.prototype.init = function(uicontainer) {
     } else {
         return this.errordomelement();
     };
+
     // Container element found, and valid DOM element, so set property
     this.havecontainer = true;
     // Add class to container
@@ -242,6 +244,7 @@ TBMWMIDIio.prototype.init = function(uicontainer) {
         console.log( "Uh-oh! Something went wrong! Error code: " + err.code );
         self.trigger("midistatus", "fail");
     };
+    return this;
 };
 
 ///////////////////////////
@@ -291,17 +294,18 @@ TBMWMIDIio.prototype.setoutputdevice = function(deviceid) {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 ////////////////////////////////////////////////////////
 // Append Output device menu to container DOM element //
 ////////////////////////////////////////////////////////
 
-TBMWMIDIio.prototype.addoutputselect = function(savetocookie) {
+TBMWMIDIio.prototype.addoutputselect = function(opts) {
     if(this.havemidi && this.havemidiout) {
         // If setcookie option set, attempt to read cookie
         var savedoutputportname = null;
-        if(savetocookie === true) {
+        if(opts.savetocookie && opts.savetocookie === true) {
             savedoutputportname = this.getcookie("midioutportname");
             if(savedoutputportname)
                 this.setoutputdevice(savedoutputportname);
@@ -323,9 +327,11 @@ TBMWMIDIio.prototype.addoutputselect = function(savetocookie) {
             opt.value = port.id;
             sel.add(opt);
         });
+
         // Append label and select to container DOM element
         this.uicontainer.appendChild(label);
         this.uicontainer.appendChild(sel);
+
         // Listen for changes
         var self = this;
         sel.addEventListener('change', function(){
@@ -338,6 +344,7 @@ TBMWMIDIio.prototype.addoutputselect = function(savetocookie) {
     } else {
         this.errornooutputdevice();
     };
+    return this;
 };
 
 //////////////////////
@@ -352,11 +359,13 @@ TBMWMIDIio.prototype.setoutmidichannel = function(channel) {
 // Add MIDI Channel select menu //
 //////////////////////////////////
 
-TBMWMIDIio.prototype.addoutchannelselect = function(savetocookie) {
+TBMWMIDIio.prototype.addoutchannelselect = function(opts) {
     if(this.havemidi && this.havemidiout) {
         // If setcookie option set, attempt to read cookie
         var savedoutputchannel = null;
-        if(savetocookie === true) {
+        var savetocookie = false;
+        if(opts.savetocookie && opts.savetocookie === true) {
+            savetocookie = true;
             savedoutputchannel = this.getcookie("midioutchannel");
             if(savedoutputchannel) {
                 this.setoutmidichannel(savedoutputchannel);
@@ -387,13 +396,14 @@ TBMWMIDIio.prototype.addoutchannelselect = function(savetocookie) {
             // Set output device
             self.setoutmidichannel(parseInt(this.value));
             // Set cookie if option set
-            if(savetocookie === true)
+            if(savetocookie)
                 self.setcookie("midioutchannel", sel.options[sel.selectedIndex].text, 365);
         });
     } else {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 /////////////////////////////////
@@ -422,6 +432,7 @@ TBMWMIDIio.prototype.addtestbutton = function() {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 ///////////////////////
@@ -437,6 +448,7 @@ TBMWMIDIio.prototype.send_noteon = function(channel, note, velocity, delay) {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 ////////////////////////
@@ -452,6 +464,7 @@ TBMWMIDIio.prototype.send_noteoff = function(channel, note, velocity, delay) {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 //////////////////////////
@@ -467,6 +480,7 @@ TBMWMIDIio.prototype.send_controller = function(channel, cc, value, delay) {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 //////////////////////////
@@ -480,6 +494,7 @@ TBMWMIDIio.prototype.send_clocktick = function() {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 //////////////////////////
@@ -493,6 +508,7 @@ TBMWMIDIio.prototype.send_clockstop= function() {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };
 
 //////////////////////////////
@@ -506,4 +522,5 @@ TBMWMIDIio.prototype.send_clockcontinue = function() {
         this.errornooutputdevice();
         return;
     };
+    return this;
 };

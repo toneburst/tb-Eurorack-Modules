@@ -63,8 +63,31 @@ var ticker = new TBWMClock(bpm);
 var clock = new TBMWClockdivider();
 var masterstepcounter = 0;
 
+var midi_lowvelocity = 63;
+var midi_highvelocity = 127;
+
+// Master transpose amount
+var transpose = 24;
+
+var enablerecord = false;
+var recording = [];
+
+// Scale Index (index into mpscales array in tables.js)
+var scaleindex = 2; // Dorian
+var scale = mpscales[scaleindex][1];
+
+// Previous note number(s)
+// Required to prevent retrigger of slide notes when new and previous note-numbers are same (ie tied notes))
+var midi_previousnotes = [0];
+
 // Var to hold MIDI note-recorder object
 var recorder = null;
+
+// Init MIDI output object
+var midiout = null;
+
+// Note/Scale
+var quantiser = null;
 
 ///////////////////////////////////////
 // Start Main Functions at page load //
@@ -75,15 +98,15 @@ $(document).ready(function() {
     // Setup Sequencer controls
     setupcontrols();
 
-    // Setup Playback controls
-    setupplaybackcontrols();
+    // Init quantiser
+    quantiser = new TBWMNotequantiser();
 
     // Init MIDI
-    //setupmidi();
+    midiout = new TBMWMIDIio();
+    midiout.init("#midi-outputsettings");
 
-    // Init Clock
-    //var noteoffcounter16ths = 0;
-    //clock.setautoreset(autoreset);
+    // Setup Playback controls
+    setupplaybackcontrols();
 
     ticker.init({
         bpm: bpm,
@@ -97,36 +120,24 @@ $(document).ready(function() {
         counting: "continuous"
     });
 
-    
-    clock.bind("1/16", function(e) {
-        console.log(e);
-    });
 
+    var onoff = 0;  // Note On/Off switch
+
+    // Bind to clock-divider 1/32nd note
     clock.bind("1/32", function(e) {
-
-    });
-
-    /*// Note-Off 16ths
-    clock.bind('tick', function() {
-        if(noteoffcounter16ths == 3) {
+        // Note-On
+        if(onoff === 0) {
+            playStep();
+            if(recorder)
+                recorder.updateticks();
+            masterstepcounter++;
+        // Note-Off
+        } else {
             getStepVals();
             if(recorder)
                 recorder.updateticks();
         };
-        noteoffcounter16ths++;
+        // Toggle note on/off switch var
+        onoff = 1 - onoff;
     });
-
-    // Note-On 16ths
-    clock.bind('16th', function() {
-        playStep();
-        if(recorder)
-            recorder.updateticks();
-        masterstepcounter++;
-        noteoffcounter16ths = 0;
-    });
-
-    // Reset if set
-    clock.bind('reset', function() {
-        masterstepcounter = 0;
-    });*/
 });

@@ -12,13 +12,14 @@
 
 function setupplaybackcontrols() {
 
-    ///////////////////////
-    // MIDI Channel Menu //
-    ///////////////////////
+    ///////////////////////////////////
+    // Output Device / Channel Menus //
+    ///////////////////////////////////
 
-    // Handle menu changes
-    $("#selectmidichannel").change(function() {
-        midi_channel = parseInt($(this).val());
+    midiout.bind("midistatus", function(e) {
+        midiout.addoutputselect({savetocookie: true});
+        midiout.addoutchannelselect({savetocookie: true});
+        midiout.addtestbutton();
     });
 
     /////////////////////////////////
@@ -45,51 +46,24 @@ function setupplaybackcontrols() {
     // Scales Menu //
     /////////////////
 
-    // Setup menu
-    var $scalesmenu = $("#selectscale");
-    for(var i = 0; i < mpscales.length; i++) {
-        var opt = '<option value="' + i + '"';
-        if(i === scaleindex)
-            opt += " selected";
-        opt += '>' + mpscales[i][0] + '</option>';
-        $scalesmenu.append(opt);
-    };
-    // Handle menu changes
-    $scalesmenu.change(function() {
-        var valInt = parseInt($scalesmenu.val());
-        scale = mpscales[valInt][1];
-        scaleindex = valInt;
-    });
+    quantiser.addscaleselect("#midi-scalesettings");
 
     ////////////////////
     // Transpose Menu //
     ////////////////////
 
-    // Handle menu changes
-    $("#selecttranspose").change(function() {
-        transpose = 12 + parseInt($(this).val());
-    });
+    quantiser.addtransposeselect("#midi-scalesettings");
+
+    /////////////////////////////////
+    // Add Scale-Randomise Control //
+    /////////////////////////////////
+
+    quantiser.addrandomrange("#midi-scalesettings");
 
     /////////////////////
     // Auto-Reset Menu //
     /////////////////////
 
-    // Setup menu
-    var $autoresetmenu = $("#selectautoreset");
-    for(var i = 0; i < resetperiodtable.length; i++) {
-        var opt = '<option value="' + i + '"';
-        if(i === autoresetindex)
-            opt += " selected";
-        opt += '>' + resetperiodtable[i][0] + '</option>';
-        $autoresetmenu.append(opt);
-    };
-    // Handle menu changes
-    $autoresetmenu.change(function() {
-        var valInt = parseInt($(this).val())
-        autoresetindex = valInt;
-        autoreset = resetperiodtable[autoresetindex][1];
-        clock.setautoreset(autoreset);
-    });
 
     /////////////////
     // Play Button //
@@ -114,7 +88,7 @@ function setupplaybackcontrols() {
     $temposlider.val(bpm);
     $temposlider.on('change', function() {
         bpm = parseInt($(this).val());
-        clock.settempo(bpm);
+        ticker.settempo(bpm);
     });
 
     ///////////////////

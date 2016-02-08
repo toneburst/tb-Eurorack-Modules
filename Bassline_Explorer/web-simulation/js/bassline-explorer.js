@@ -72,7 +72,7 @@ function cornerswitch(pat, ch, x, y, stp) {
 // Randomise Trigger (Accent/Slide) //
 //////////////////////////////////////
 
-function randomisetrigger(chan, prob, thresh, randincr) {
+function calculatetrigger(chan, prob, thresh, randincr) {
     var result = (prob < thresh) ? 1 : 0;
     if(thresh > 191) {
         if((prob >> 2) < (thresh - 192)) {
@@ -146,7 +146,7 @@ function playStep() {
     var midi_notenum = scale[note] + (12 * octave) + transpose;
 
     // Set note-on velocity
-    var midi_velocity = (randomisetrigger(2, accentprob, accentthresh, randomtablerandomincrement) === 0) ? midi_lowvelocity : midi_highvelocity;
+    var midi_velocity = (calculatetrigger(2, accentprob, accentthresh, randomtablerandomincrement) === 0) ? midi_lowvelocity : midi_highvelocity;
 
 
     // Determine if note is tied (ie slide enabled and note number same as previous note)
@@ -154,11 +154,11 @@ function playStep() {
 
     // If note isn't tied, send Note-On
     if(!tied) {
-        midi_noteon(midi_channel, midi_notenum, midi_velocity);
+        var notenum = quantiser.applyscale(midi_notenum);
+        midiout.send_noteon(null, notenum, midi_velocity);
+        // Add note number to playing notes array
+        midi_previousnotes.push(notenum);
     };
-
-    // Add note number to playing notes array
-    midi_previousnotes.push(midi_notenum);
 
     // Update channel step-counters
     // Add offset and % (mod) channel length with master step counter to get channel step-count
@@ -186,16 +186,16 @@ function playStep() {
 function getStepVals() {
 
     // Determine if next note is slide
-    slide = (randomisetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
+    slide = (calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
     if(slide) {
         // Ensure max 2 notes playing
         if(midi_previousnotes.length > 1)
-            midi_noteoff(midi_channel, midi_previousnotes.shift(), 0);
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 0);
     } else {
     // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
-            midi_noteoff(midi_channel, midi_previousnotes[i], 0);
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 0);
         };
         // Clear previous notes array
         midi_previousnotes = [];
