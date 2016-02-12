@@ -211,15 +211,17 @@ function getStepVals() {
     // Determine if next note is slide
     slide = false;//(calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
+    console.log(midi_previousnotes);
+
     if(slide) {
         // Ensure max 2 notes playing
         if(midi_previousnotes.length > 1)
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 0, null);
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 63, null);
     } else {
         // Send note-offs for all previously-playing notes
-        for(i = 0; i < midi_previousnotes.length - 1; i++) {
+        for(i = 0; i < midi_previousnotes.length; i++) {
             // null, notenum, midi_velocity, null
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 0, null);
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 63, null);
         };
         // Clear previous notes array
         midi_previousnotes = [];

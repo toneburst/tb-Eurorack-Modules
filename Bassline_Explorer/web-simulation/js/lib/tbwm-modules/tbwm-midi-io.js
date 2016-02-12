@@ -437,7 +437,7 @@ TBMWMIDIio.prototype.addtestbutton = function() {
 };
 
 ///////////////////////
-// Send MIDI note-on //
+// Send MIDI Note-On //
 ///////////////////////
 
 TBMWMIDIio.prototype.send_noteon = function(channel, note, velocity, delay) {
@@ -445,6 +445,7 @@ TBMWMIDIio.prototype.send_noteon = function(channel, note, velocity, delay) {
         var ch = (channel) ? channel : this.midichannel;
         var time = (delay) ? this.time(delay) : this.time();
         this.midiout.send([this.channelmessage("noteon", ch), note, velocity], time);
+        console.log("NoteOn Note: " + note + " Time: " + time + " MIDI message: " + [this.channelmessage("noteon", ch), note, velocity]);
     } else {
         this.errornooutputdevice();
         return;
@@ -453,19 +454,19 @@ TBMWMIDIio.prototype.send_noteon = function(channel, note, velocity, delay) {
 };
 
 ////////////////////////
-// Send MIDI note-off //
+// Send MIDI Note-Off //
 ////////////////////////
 
 TBMWMIDIio.prototype.send_noteoff = function(channel, note, velocity, delay) {
     if(this.havemidi && this.havemidiout) {
         var ch = (channel) ? channel : this.midichannel;
         var time = (delay) ? this.time(delay) : this.time();
-        this.midiout.send([this.channelmessage("noteoff", ch), note, 0], this.time());
+        this.midiout.send([this.channelmessage("noteoff", ch), note, 0], time);
+        console.log("NoteOff Note: " + note + " Time: " + time + " MIDI message: " + [this.channelmessage("noteoff", ch), note, 0]);
     } else {
         this.errornooutputdevice();
         return;
     };
-    //console.log("Note Off");
     return this;
 };
 
