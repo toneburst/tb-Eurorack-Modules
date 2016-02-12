@@ -130,7 +130,8 @@ TBMWMIDIio.prototype.channelmessage = function(messagetype, ch) {
         "channelmode": 0xB,       // 11
         "programchange": 0xC,     // 12
         "channelaftertouch": 0xD, // 13
-        "pitchbend": 0xE          // 14
+        "pitchbend": 0xE,         // 14
+        "allnotesoff": 0x7B       // 123
     };
     if(!_channelmessages[messagetype]) {
         console.log("Error: MIDI Channel message not found");
@@ -459,7 +460,24 @@ TBMWMIDIio.prototype.send_noteoff = function(channel, note, velocity, delay) {
     if(this.havemidi && this.havemidiout) {
         var ch = (channel) ? channel : this.midichannel;
         var time = (delay) ? this.time(delay) : this.time();
-        this.midiout.send([this.channelmessage("noteoff", ch), note, velocity], time);
+        this.midiout.send([this.channelmessage("noteoff", ch), note, 0], this.time());
+    } else {
+        this.errornooutputdevice();
+        return;
+    };
+    //console.log("Note Off");
+    return this;
+};
+
+////////////////////////
+// Send All Notes Off //
+////////////////////////
+
+TBMWMIDIio.prototype.send_allnotesoff = function(channel, delay) {
+    if(this.havemidi && this.havemidiout) {
+        var ch = (channel) ? channel : this.midichannel;
+        var time = (delay) ? this.time(delay) : this.time();
+        this.midiout.send([this.channelmessage("allnotesoff", ch), 0, 0], this.time());
     } else {
         this.errornooutputdevice();
         return;
@@ -475,7 +493,7 @@ TBMWMIDIio.prototype.send_controller = function(channel, cc, value, delay) {
     if(this.havemidi && this.havemidiout) {
         var ch = (channel) ? channel : this.midichannel;
         var time = (delay) ? this.time(delay) : this.time();
-        self.midiout.send([this.channelmessage("controller", ch), cc, value], time);
+        this.midiout.send([this.channelmessage("controller", ch), cc, value], time);
     } else {
         this.errornooutputdevice();
         return;
@@ -489,7 +507,7 @@ TBMWMIDIio.prototype.send_controller = function(channel, cc, value, delay) {
 
 TBMWMIDIio.prototype.send_clocktick = function() {
     if(this.havemidi && this.havemidiout) {
-        self.midiout.send([this.systemmessage("clock")], this.time());
+        this.midiout.send([this.systemmessage("clock")], this.time());
     } else {
         this.errornooutputdevice();
         return;
@@ -503,7 +521,7 @@ TBMWMIDIio.prototype.send_clocktick = function() {
 
 TBMWMIDIio.prototype.send_clockstop= function() {
     if(this.havemidi && this.havemidiout) {
-        self.midiout.send([this.systemmessage("stop")], this.time());
+        this.midiout.send([this.systemmessage("stop")], this.time());
     } else {
         this.errornooutputdevice();
         return;
@@ -517,7 +535,7 @@ TBMWMIDIio.prototype.send_clockstop= function() {
 
 TBMWMIDIio.prototype.send_clockcontinue = function() {
     if(this.havemidi && this.havemidiout) {
-        self.midiout.send([this.systemmessage("continue")], this.time());
+        this.midiout.send([this.systemmessage("continue")], this.time());
     } else {
         this.errornooutputdevice();
         return;

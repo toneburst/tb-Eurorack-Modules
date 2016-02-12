@@ -78,7 +78,7 @@ var scale = mpscales[scaleindex][1];
 
 // Previous note number(s)
 // Required to prevent retrigger of slide notes when new and previous note-numbers are same (ie tied notes))
-var midi_previousnotes = [0];
+var midi_previousnotes = [];
 
 // Var to hold MIDI note-recorder object
 var recorder = null;

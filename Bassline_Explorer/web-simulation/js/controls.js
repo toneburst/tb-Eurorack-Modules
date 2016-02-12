@@ -77,6 +77,7 @@ function setupplaybackcontrols() {
             ticker.stop();
             clock.reset();
             $(this).text("Start sequencer");
+            //midiout.send_allnotesoff(null, null);
         }
     });
 

@@ -87,6 +87,30 @@ function calculatetrigger(chan, prob, thresh, randincr) {
     return result;
 };
 
+///////////////////////////
+// Calculate Note/Octave //
+///////////////////////////
+
+function calculatenoteoct(chan, prob, thresh, def, rtabindx, randincr, modulo) {
+    var result;
+    if(thresh < 127) {
+        if(prob > thresh)
+            result = def;
+    } else if(thresh >= 127) {
+        if(prob < (thresh - 127)) {
+            // Calculate lookup index for random note/octave tables
+            var rtableindex = (channelstepcount[chan][2] + randomtablecounter);
+            // If note randomisation threshold is high, add random offset to lookup index
+            if(thresh < 250)
+                rtableindex += randincr;
+            // Wrap index to table length
+            rtableindex = rtableindex % (randomtable[rtabindx].length - 1);
+            result = (result + randomtable[0][rtableindex]) % modulo;
+        };
+    };
+    return result;
+};
+
 ////////////////////////
 ////////////////////////
 //// Step Functions ////
@@ -155,7 +179,7 @@ function playStep() {
     // If note isn't tied, send Note-On
     if(!tied) {
         var notenum = quantiser.applyscale(midi_notenum);
-        midiout.send_noteon(null, notenum, midi_velocity);
+        midiout.send_noteon(null, notenum, midi_velocity, null);
         // Add note number to playing notes array
         midi_previousnotes.push(notenum);
     };
@@ -175,7 +199,6 @@ function playStep() {
         // Generate new random offset
         randomtablerandomincrement = getrandom(7, 0);
     };
-
 };
 
 ////////////////////////////////////
@@ -186,16 +209,17 @@ function playStep() {
 function getStepVals() {
 
     // Determine if next note is slide
-    slide = (calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
+    slide = false;//(calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
     if(slide) {
         // Ensure max 2 notes playing
         if(midi_previousnotes.length > 1)
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 0);
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 0, null);
     } else {
-    // Send note-offs for all previously-playing notes
-        for(i = 0; i < midi_previousnotes.length; i++) {
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 0);
+        // Send note-offs for all previously-playing notes
+        for(i = 0; i < midi_previousnotes.length - 1; i++) {
+            // null, notenum, midi_velocity, null
+            midiout.send_noteoff(null, midi_previousnotes.shift(), 0, null);
         };
         // Clear previous notes array
         midi_previousnotes = [];
