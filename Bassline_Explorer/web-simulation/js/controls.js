@@ -23,14 +23,14 @@ function setupplaybackcontrols() {
     while(match = regex.exec(url)) {
         params[match[1]] = match[2];
     };
-    
+
     ///////////////////////////////////
     // Output Device / Channel Menus //
     ///////////////////////////////////
 
     midiout.bind("midistatus", function(e) {
-        midiout.addoutputselect({savetocookie: true});
-        midiout.addoutchannelselect({savetocookie: true});
+        midiout.addoutputselect({savetocookie: false});
+        midiout.addoutchannelselect({savetocookie: false});
         midiout.addtestbutton();
     });
 

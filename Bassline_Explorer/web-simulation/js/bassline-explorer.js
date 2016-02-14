@@ -209,7 +209,7 @@ function playStep() {
 function getStepVals() {
 
     // Determine if next note is slide
-    slide = false;//(calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
+    slide = (calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
     console.log(midi_previousnotes);
 
@@ -221,7 +221,7 @@ function getStepVals() {
         // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
             // null, notenum, midi_velocity, null
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 63, null);
+            midiout.send_noteoff(null, midi_previousnotes[i], 63, null);
         };
         // Clear previous notes array
         midi_previousnotes = [];
