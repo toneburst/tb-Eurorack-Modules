@@ -178,10 +178,12 @@ function playStep() {
 
     // If note isn't tied, send Note-On
     if(!tied) {
-        var notenum = quantiser.applyscale(midi_notenum);
-        midiout.send_noteon(null, notenum, midi_velocity, null);
+        var note = quantiser.applyscale(midi_notenum);
+        midiout.send_noteon(null, note, midi_velocity, null);
+		if(recorder)
+			recorder.recordnote("NoteOn", 1, note, 63)
         // Add note number to playing notes array
-        midi_previousnotes.push(notenum);
+        midi_previousnotes.push(note);
     };
 
     // Update channel step-counters
@@ -211,17 +213,20 @@ function getStepVals() {
     // Determine if next note is slide
     slide = (calculatetrigger(3, stepvals[5], thresholds[3], randomtablerandomincrement) === 0) ? false : true;
 
-    console.log(midi_previousnotes);
-
     if(slide) {
         // Ensure max 2 notes playing
         if(midi_previousnotes.length > 1)
-            midiout.send_noteoff(null, midi_previousnotes.shift(), 63, null);
+			var note = midi_previousnotes.shift();
+			midiout.send_noteoff(null, note, 63, null);
+			if(recorder)
+				recorder.recordnote("NoteOff", 1, note, 63)
     } else {
         // Send note-offs for all previously-playing notes
         for(i = 0; i < midi_previousnotes.length; i++) {
-            // null, notenum, midi_velocity, null
-            midiout.send_noteoff(null, midi_previousnotes[i], 63, null);
+			var note = midi_previousnotes[i];
+			midiout.send_noteoff(null, note, 63, null);
+			if(recorder)
+				recorder.recordnote("NoteOff", 1, note, 63)
         };
         // Clear previous notes array
         midi_previousnotes = [];
