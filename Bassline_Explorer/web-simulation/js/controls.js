@@ -66,16 +66,18 @@ function setupplaybackcontrols() {
 
     quantiser.addtransposeselect("#midi-scalesettings");
 
-    /////////////////////////////////
-    // Add Scale-Randomise Control //
-    /////////////////////////////////
-
-    quantiser.addrandomrange("#midi-scalesettings");
-
     /////////////////////
     // Auto-Reset Menu //
     /////////////////////
 
+    var $autoresetselect = $("#clock-autoreset");
+    $autoresetselect.val(autoreset);
+    $autoresetselect.change(function() {
+        autoreset = parseInt($(this).val());
+        clock.setautoreset(autoreset);
+    });
+
+    // clock.setautoreset();
 
     /////////////////
     // Play Button //
@@ -116,6 +118,10 @@ function setupplaybackcontrols() {
     var $recordbutton = $("#recordbutton");
     // Set initial record status
     $recordbutton.data('recordstatus', '0');
+    // Hide get MIDI File button
+    $midixmlformsubmit.hide();
+    // MIDI XML string
+    var midixml = null;
     // Handle mousedown on Record button
     $recordbutton.mousedown(function() {
         // We're not recording, so arm recorder
@@ -125,7 +131,6 @@ function setupplaybackcontrols() {
             clock.bind("beforebar", function() {
                 $recordbutton.prop('disabled', false);
                 $recordbutton.html("Recording...");
-                $midixmlformsubmit.hide();
                 recorder = new MIDIXMLRecorder();
                 recorder.settempo(bpm);
                 recorder.startrecording();
@@ -139,13 +144,34 @@ function setupplaybackcontrols() {
                 $recordbutton.prop('disabled', false).html("Record");
                 clock.unbind("beforebar");
                 recorder.stoprecording();
-                // Dump recording into hidden form field
-                $("#midixmlformhidden").val(recorder.getmidixml());
-                // Submit form (target is iFrame)
-                $("#midixmlform").submit();
+                // Get XML string from recorder
+                midixml = recorder.getmidixml();
                 recorder = null; // Note sure this method of deleting an object instance works...
+                $midixmlformsubmit.show();
             });
             $recordbutton.data('recordstatus', "0");
+        };
+    });
+    // Ajax submit MIDI XML string
+    $midixmlformsubmit.mousedown(function() {
+        if(midixml) {
+            var request = $.ajax({
+                url: "php/ajax-submit-midixml.php",
+                method: "POST",
+                data: {mxml : midixml},
+                dataType: "text"
+            });
+            request.done(function(url) {
+                if(url.substring(0, 5) == "Error:") {
+                    console.log(url);
+                } else {
+                    $midixmlformsubmit.hide();
+                    $("#midifileiframe").attr('src', url);
+                };
+            });
+            request.fail(function(jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
         };
     });
 };

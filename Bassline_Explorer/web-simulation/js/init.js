@@ -17,7 +17,7 @@ var valy = 0;
 
 // Auto-reset period (index into resetperiodtable array in tables.js)
 var autoresetindex = 2;
-var autoreset = resetperiodtable[autoresetindex][1];
+var autoreset = 16;
 
 // Selected channel for Length and Shift controls
 var lnshiftchannel = 0;
@@ -108,6 +108,11 @@ $(document).ready(function() {
     // Setup Playback controls
     setupplaybackcontrols();
 
+    clock.init({
+        autoreset: autoreset,
+        counting: "continuous"
+    });
+
     ticker.init({
         bpm: bpm,
         workerurl: "js/lib/tbwm-modules/tbwm-clock/clockworker.min.js"
@@ -115,22 +120,21 @@ $(document).ready(function() {
         clock.tick();
     });
 
-    clock.init({
-        autoreset: autoreset,
-        counting: "continuous"
+    // Bind to clock-divider 16th notes to update step-counter
+    clock.bind("1/16", function(e) {
+        masterstepcounter = e;
     });
 
-
     var onoff = 0;  // Note On/Off switch
-
-    // Bind to clock-divider 1/32nd note
+    
+    // Bind to clock-divider 1/32nd note for note-on/off
     clock.bind("1/32", function(e) {
         // Note-On
         if(onoff === 0) {
             playStep();
             if(recorder)
                 recorder.updateticks();
-            masterstepcounter++;
+            //masterstepcounter++;
         // Note-Off
         } else {
             getStepVals();

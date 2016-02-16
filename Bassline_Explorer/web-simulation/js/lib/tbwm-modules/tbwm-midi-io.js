@@ -339,7 +339,7 @@ TBMWMIDIio.prototype.addoutputselect = function(opts) {
             // Set output device
             self.setoutputdevice(this.value);
             // Set cookie if option set
-            if(savetocookie === true)
+            if(opts.savetocookie === true)
                 self.setcookie("midioutportname", sel.options[sel.selectedIndex].text, 365);
         });
     } else {

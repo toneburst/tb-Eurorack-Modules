@@ -28,7 +28,6 @@ TBMWClockdivider.prototype.init = function(opts) {
 ////////////////////
 
 TBMWClockdivider.prototype.reset = function() {
-
     this.tickcounter = 0;   // Ticks (1/24)
     this.counter0 = 0;      // 1/32
     this.counter1 = 0;      // 1/16

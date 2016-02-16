@@ -42,6 +42,6 @@
 			echo "Error: No MIDIXML data received";
 		};
 		?>
-		<input id="downloadbutton" type="button" name="download" value="Download MIDI File" onclick="self.location.href='download.php?f=<?php echo urlencode($tmpfile)?>&n=<?php echo urlencode($destfilename)?>'" />
+		<input id="downloadbutton" type="button" name="download" value="Download MIDI File" onclick="self.location.href='download.php?f=<?php echo urlencode($tmpfile)?>&n=<?php echo urlencode($destfilename); ?>'" />
 	</body>
 </html>

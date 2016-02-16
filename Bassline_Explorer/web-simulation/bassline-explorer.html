@@ -32,12 +32,6 @@
 
     </head>
     <body>
-        <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
-            <object id="Jazz2" type="audio/x-jazz" class="hidden">
-                <p>This page requires <a href=http://jazz-soft.net>Jazz-Plugin</a> ...</p>
-          </object>
-        </object>
-
         <div id="wrapper">
             <h1>Bassline Explorer</h1>
 
@@ -58,7 +52,15 @@
                 <p><input id="slider_tempo" type="range" min="20" max="150" step="1" value="120" style="height: 20px; width: 100px"></p>
 
                 <p>Auto-Reset Clock</p>
-                <p id="clock-autoreset"></p>
+                <p>
+                    <select id="clock-autoreset">
+                        <option value="1">1 Bar</option>
+                        <option value="2">2 Bars</option>
+                        <option value="4">4 Bars</option>
+                        <option value="8">8 Bars</option>
+                        <option value="16">16 Bars</option>
+                    </select>
+                </p>
 
                 <p><button type="button" id="playbutton">Start sequencer</button></p>
             </section>
@@ -128,12 +130,9 @@
             <section>
                 <p>MIDI Note Recorder</p>
                 <p><button type="button" id="recordbutton">Record</button></p>
-                <form id="midixmlform" action="php/download_midifile.php" target="midifileiframe" method="post" sandbox="allow-same-origin allow-scripts allow-forms">
-                  <input id="midixmlformhidden" type="hidden" name="midixmlformhidden" value="English">
-                  <input type="submit" id="midixmlformsubmit" value="Get MIDI File">
-                </form>
-                <!--<p><iframe id="midifileiframe" name="midifileiframe" src="php/download_midifile.php"></iframe><p>
-                -->
+                 <!--<input id="midixmlformhidden" type="hidden" name="midixmlformhidden" value="English">-->
+                 <input type="submit" id="midixmlformsubmit" value="Get MIDI File">
+                <p><iframe id="midifileiframe" name="midifileiframe"></iframe></iframe><p>
             </section>
         </div>
     </body>
