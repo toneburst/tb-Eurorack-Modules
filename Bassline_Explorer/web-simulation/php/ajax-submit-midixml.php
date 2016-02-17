@@ -16,7 +16,6 @@ if($_REQUEST["mxml"]) {
     $midi->saveMidFile($tmpfile, 0666);
     // Download file
     $destfilename  = 'bassline_explorer.mid';
-    //$midi->downloadMidFile($destFilename, $tmpfile);
     echo "php/download.php?f=" . urlencode($tmpfile) . "&n=" . urlencode($destfilename);
 } else {
     // No post data

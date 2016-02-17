@@ -40,10 +40,11 @@ function TBWMNotequantiser(initsettings) {
     this.shift              = 0;
     this.scalerandomise     = 0;
     // Element IDs
-    this.idprefix           = "tbwm-nq";
+    this.idprefix           = "tbwm-ui";
     this.scalesselectid     = this.idprefix + "-scale"
     this.transposerangeid   = this.idprefix + "-transpose"
-    this.randomrangeid      = this.idprefix + "-random"
+    this.randomiserangeid   = this.idprefix + "-random"
+    this.containerclass     = this.idprefix;
 
     // Load in settings if object passed in to init function
     if(initsettings)
@@ -86,31 +87,31 @@ TBWMNotequantiser.prototype.applysettings = function(settings) {
 // Check DOM ID passed and element exists //
 ////////////////////////////////////////////
 
-TBWMNotequantiser.prototype.checkdomelement = function(id) {
-    var result = null;
-    // No element id
-    if(!id) {
-        this.errordomelement();
-        return "error";
-    } else {
-        // Attempt to select DOM element
-        var element = document.getElementById(id.replace("#", ""));
-        // Element doesn't exist?
-        if(!element) {
-            this.errordomelement();
-            return "error";
+TBWMNotequantiser.prototype.checkdomelement = function(elementid) {
+    // Check element ID passed
+    if(elementid) {
+        // Test container DOM element exists
+        var domelement = document.getElementById(elementid.replace("#", ""));
+        if(!domelement) {
+            this.errordomelement(elementid);
+            return null;
         } else {
-            return element;
+            return domelement;
         };
+    } else {
+        this.errordomelement();
+        return null;
     };
 };
+//////////////////////////////////////////////
+// UI Container DOM element not found error //
+//////////////////////////////////////////////
 
-//////////////////////////////////////////////////
-// Log UI Container DOM element not found error //
-//////////////////////////////////////////////////
-
-TBWMNotequantiser.prototype.errordomelement = function() {
-    console.log("Error: Container element not found. You need to specify ID of an existing element (with or without leading '#') when initialising this instance or calling this method");
+TBWMNotequantiser.prototype.errordomelement = function(elementid) {
+    var eid = (elementid) ? "'" + elementid + "'" : "";
+    var error = "Error: Container element " + eid + " not found. You need to specify ID of an existing element (with or without leading '#') when calling this method";
+    console.log(error);
+    return error;
 };
 
 ///////////////
@@ -126,15 +127,21 @@ TBWMNotequantiser.prototype.setscale = function(index) {
 // Add select control to choose scale to DOM //
 ///////////////////////////////////////////////
 
-TBWMNotequantiser.prototype.addscaleselect = function(container) {
-    // Check DOM element
-    var cntnr = this.checkdomelement(container);
-    if(cntnr === "error")
-        return;
+TBWMNotequantiser.prototype.addscaleselect = function(opts) {
 
-    var label = document.createElement("label");
-    label.setAttribute("for", this.scalesselectid);
-    label.innerHTML = "Select Scale";
+    // Check DOM element exists, return early if not
+    var domcontainer = this.checkdomelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+    // Check option to add label element and add if set
+    if(opts.addlabel === true) {
+        var label = document.createElement("label");
+        label.setAttribute("for", this.outputselectid);
+        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Select Scale";
+        label.setAttribute("class", this.containerclass);
+        domcontainer.appendChild(label);
+    };
 
     // Create new <select> element
     var sel = document.createElement("select");
@@ -148,9 +155,8 @@ TBWMNotequantiser.prototype.addscaleselect = function(container) {
         sel.add(opt);
     };
 
-    // Append label and select to container element
-    cntnr.appendChild(label);
-    cntnr.appendChild(sel);
+    // Append Select to container element
+    domcontainer.appendChild(sel);
 
     // Listen for changes
     var self = this;
@@ -172,16 +178,21 @@ TBWMNotequantiser.prototype.settranspose = function(amount) {
 // Add Transpose control to DOM //
 //////////////////////////////////
 
-TBWMNotequantiser.prototype.addtransposeselect = function(container) {
-    // Check DOM element
-    var cntnr = this.checkdomelement(container);
-    if(cntnr === "error")
-        return;
+TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
 
-    // Create <label> element
-    var label = document.createElement("label");
-    label.setAttribute("for", this.transposerangeid);
-    label.innerHTML = "Select Transpose";
+    // Check DOM element exists, return early if not
+    var domcontainer = this.checkdomelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+    // Check option to add label element and add if set
+    if(opts.addlabel === true) {
+        var label = document.createElement("label");
+        label.setAttribute("for", this.transposerangeid);
+        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Transpose Amount";
+        label.setAttribute("class", this.containerclass);
+        domcontainer.appendChild(label);
+    };
 
     // Create new <select> element
     var range = document.createElement("input");
@@ -192,9 +203,8 @@ TBWMNotequantiser.prototype.addtransposeselect = function(container) {
     range.setAttribute("step", 1);
     range.setAttribute("value", 0);
 
-    // Append label and select to container element
-    cntnr.appendChild(label);
-    cntnr.appendChild(range);
+    // Append Select to container element
+    domcontainer.appendChild(range);
 
     // Listen for changes
     var self = this;
@@ -224,16 +234,21 @@ TBWMNotequantiser.prototype.setrandomise = function(amount) {
 // Add slider for randomise amount to DOM //
 ////////////////////////////////////////////
 
-TBWMNotequantiser.prototype.addrandomrange = function(container) {
-    // Check DOM element
-    var cntnr = this.checkdomelement(container);
-    if(cntnr === "error")
-        return;
+TBWMNotequantiser.prototype.addrandomrange = function(opts) {
 
-    // Create <label> element
-    var label = document.createElement("label");
-    label.setAttribute("for", "random");
-    label.innerHTML = "Scale Randomise";
+    // Check DOM element exists, return early if not
+    var domcontainer = this.checkdomelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+    // Check option to add label element and add if set
+    if(opts.addlabel === true) {
+        var label = document.createElement("label");
+        label.setAttribute("for", this.randomiserangeid);
+        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Scale Randomise Amount";
+        label.setAttribute("class", this.containerclass);
+        domcontainer.appendChild(label);
+    };
 
     // Create range slider element
     var range = document.createElement("input");
@@ -242,11 +257,10 @@ TBWMNotequantiser.prototype.addrandomrange = function(container) {
     range.setAttribute("max", 1);
     range.setAttribute("step", 0.01);
     range.setAttribute("value", 0);
-    range.setAttribute("id", "random");
+    range.setAttribute("id", this.randomiserangeid);
 
-    // Append label and range elements to container
-    cntnr.appendChild(label);
-    cntnr.appendChild(range);
+    // Append Range element to container
+    domcontainer.appendChild(range);
 
     // Listen for changes
     var self = this;

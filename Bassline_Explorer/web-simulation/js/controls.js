@@ -111,15 +111,15 @@ function setupplaybackcontrols() {
     ///////////////////
 
     // MIDIFile download form Submit button
-    var $midixmlformsubmit = $("#midixmlformsubmit");
+    var $getmidixmlbutton = $("#getmidixmlbutton");
     // Hide Submit button
-    //$midixmlformsubmit.hide();
+    //$getmidixmlbutton.hide();
     // Record button
     var $recordbutton = $("#recordbutton");
     // Set initial record status
     $recordbutton.data('recordstatus', '0');
     // Hide get MIDI File button
-    $midixmlformsubmit.hide();
+    $getmidixmlbutton.hide();
     // MIDI XML string
     var midixml = null;
     // Handle mousedown on Record button
@@ -147,13 +147,13 @@ function setupplaybackcontrols() {
                 // Get XML string from recorder
                 midixml = recorder.getmidixml();
                 recorder = null; // Note sure this method of deleting an object instance works...
-                $midixmlformsubmit.show();
+                $getmidixmlbutton.show();
             });
             $recordbutton.data('recordstatus', "0");
         };
     });
     // Ajax submit MIDI XML string
-    $midixmlformsubmit.mousedown(function() {
+    $getmidixmlbutton.mousedown(function() {
         if(midixml) {
             var request = $.ajax({
                 url: "php/ajax-submit-midixml.php",
@@ -165,12 +165,12 @@ function setupplaybackcontrols() {
                 if(url.substring(0, 5) == "Error:") {
                     console.log(url);
                 } else {
-                    $midixmlformsubmit.hide();
+                    $getmidixmlbutton.hide();
                     $("#midifileiframe").attr('src', url);
                 };
             });
             request.fail(function(jqXHR, textStatus) {
-                alert("Request failed: " + textStatus);
+                alert("Ajax request failed: " + textStatus);
             });
         };
     });

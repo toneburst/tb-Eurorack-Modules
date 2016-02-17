@@ -5,7 +5,7 @@ if (isset($_GET['f']) && isset($_GET['n'])) {
 	$destFilename  = $_GET['n'];
 	$midi = new Midi();
 	$midi->downloadMidFile($destFilename, $srcFile);
-	sleep(30);
+	sleep(60);
 	unlink($srcFile);
 }
 ?>

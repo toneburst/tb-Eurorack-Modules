@@ -4,6 +4,11 @@
  *
  */
 
+function getrandom(max, offset) {
+    return Math.round(Math.random() * max) + offset;
+}
+
+
 //////////////////////////
 // 8-bit blend function //
 //////////////////////////
@@ -11,9 +16,6 @@
 // Olivier Gillet, Grids firmware
 // https://github.com/pichenettes/eurorack/blob/master/grids/pattern_generator.cc
 
-function getrandom(max, offset) {
-    return Math.round(Math.random() * max) + offset;
-}
 function U8Mix(a, b, x) {
     return (x == 255)? b : x * b + (255 - x) * a >> 8;
 }
@@ -69,7 +71,7 @@ function cornerswitch(pat, ch, x, y, stp) {
 }
 
 //////////////////////////////////////
-// Randomise Trigger (Accent/Slide) //
+// Calculate Trigger (Accent/Slide) //
 //////////////////////////////////////
 
 function calculatetrigger(chan, prob, thresh, randincr) {

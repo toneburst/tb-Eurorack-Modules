@@ -11,23 +11,44 @@
 ////////////////////////////////
 // * Updated in controls.js * //
 
+var settings = {
+    valx            : 0,
+    valy            : 0,
+    thresholdnote   : 0,
+    thresholdoctave : 0,
+    thresholdaccent : 0,
+    thresholdslide  : 0,
+    lnshiftchannel  : 0,
+    pttnlennote     : 16,
+    pttnoffsnote    : 0,
+    pttnlenoctave   : 16,
+    pttnoffsoctave  : 0,
+    pttnlenaccent   : 16,
+    pttnoffsaccent  : 0,
+    pttnlenslide    : 16,
+    pttnoffsslide   : 0,
+    scaleindx       : 0,
+    transpose       : 0,
+    autoreset       : 1
+};
+
 // Coordinates
 var valx = 0;
 var valy = 0;
 
 // Auto-reset period (index into resetperiodtable array in tables.js)
-var autoresetindex = 2;
-var autoreset = 16;
+//var autoresetindex = 2;
+//var autoreset = 16;
 
 // Selected channel for Length and Shift controls
 var lnshiftchannel = 0;
 
 // Theshold values
 var thresholds = new Array();
-thresholds[0] = 127;    // Note Threshold
-thresholds[1] = 127;    // Octave Threshold
-thresholds[2] = 127;    // Accent Threshold
-thresholds[3] = 127;    // Slide Threshold
+thresholds[0] = 0;    // Note Threshold
+thresholds[1] = 0;    // Octave Threshold
+thresholds[2] = 0;    // Accent Threshold
+thresholds[3] = 0;    // Slide Threshold
 
 // Init values for first step
 // Updated by getStepVals() function in bassline-explorer.js
@@ -125,21 +146,21 @@ $(document).ready(function() {
         masterstepcounter = e;
     });
 
-    var onoff = 0;  // Note On/Off switch
-    
+    // Note On/Off switch
+    var onoff = 0;
+
     // Bind to clock-divider 1/32nd note for note-on/off
     clock.bind("1/32", function(e) {
         // Note-On
         if(onoff === 0) {
-            playStep();
             if(recorder)
                 recorder.updateticks();
-            //masterstepcounter++;
+            playStep();
         // Note-Off
         } else {
-            getStepVals();
             if(recorder)
                 recorder.updateticks();
+            getStepVals();
         };
         // Toggle note on/off switch var
         onoff = 1 - onoff;

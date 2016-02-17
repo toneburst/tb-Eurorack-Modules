@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>Toneburst Web Midi Modules</title>
+        <link rel="stylesheet" type="text/css" href="tbwm.css">
         <script src="../jquery-2.1.4.min.js"></script>
         <script src="../microevent/microevent.js" charset="utf-8"></script>
-        <script src="tbwm-clock/AudioContextMonkeyPatch.min.js" charset="utf-8"></script>
         <script src="../webmidiapi/WebMIDIAPI.min.js" charset="utf-8"></script>
         <script src="tbwm-clock/tbwm-clock.js" charset="utf-8"></script>
         <script src="tbwm-clockdivider.js" charset="utf-8"></script>
-        <script src="tbwm-midi-io.js" charset="utf-8"></script>
+        <script src="tbwm-midiout.js" charset="utf-8"></script>
         <script src="tbwm-notequantiser.js" charset="utf-8"></script>
         <script type="text/javascript">
             $(document).ready(function(event) {
@@ -29,23 +29,57 @@
                     //console.log("quarter");
                 });*/
 
-                var midi = new TBMWMIDIio();
-                midi.init("#midisetup");
+                var midi = new TBMWMIDIOut({
+                    instanceid : 0,
+                    savesettings : true
+                });
+
+                midi.init();
 
                 midi.bind("midistatus", function(e) {
-                    midi.addoutputselect(true);
-                    midi.addoutchannelselect(true);
-                    midi.addtestbutton();
+                    midi.addoutputselect({
+                        domcontainer : "outputselect",
+                        addlabel : true,
+                        labeltext : "MIDI Out Device:"
+                    })
+                    .addoutchannelselect({
+                        domcontainer : "outputchannel",
+                        addlabel : true,
+                        labeltext : "MIDI Out Channel:"
+                    })
+                    .addtestbutton({
+                        domcontainer : "outputtest"
+                    });
                 });
 
                 quantiser = new TBWMNotequantiser();
-                quantiser.addscaleselect("#midisetup");
-                quantiser.addtransposeselect("#midisetup");
-                quantiser.addrandomrange("#midisetup");
+                quantiser.addscaleselect({
+                    domcontainer : "scale",
+                    addlabel : true,
+                    labeltext : "Note Scale:"
+                });
+                quantiser.addtransposeselect({
+                    domcontainer : "transpose",
+                    addlabel : true,
+                    labeltext : "Note Transpose:"
+                });
+                quantiser.addrandomrange({
+                    domcontainer : "randomise",
+                    addlabel : true,
+                    labeltext : "Note Scale Randomise:"
+                });
             });
         </script>
     </head>
     <body>
-        <div id="midisetup"></div>
+        <h3>MIDI Setup</h3>
+        <p id="outputselect"></p>
+        <p id="outputchannel"></p>
+        <p id="outputtest"></p>
+
+        <h3>Quantiser Setup</h3>
+        <p id="scale"></p>
+        <p id="transpose"></p>
+        <p id="randomise"></p>
     </body>
 </html>
