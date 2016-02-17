@@ -164,6 +164,9 @@ TBWMNotequantiser.prototype.addscaleselect = function(opts) {
         // Set scale
         self.setscale(parseInt(this.value));
     });
+
+    // Return object for chaining
+    return this;
 };
 
 //////////////////////////
@@ -212,6 +215,9 @@ TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
         // Set transpose amount
         self.settranspose(parseInt(this.value));
     });
+
+    // Return object for chaining
+    return this;
 };
 
 ///////////////////////////
@@ -220,6 +226,8 @@ TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
 
 TBWMNotequantiser.prototype.setshift = function(amount) {
     this.shift = Math.max(amount, 0) % 11;
+    // Return object for chaining
+    return this;
 };
 
 //////////////////////////////////////
@@ -228,6 +236,8 @@ TBWMNotequantiser.prototype.setshift = function(amount) {
 
 TBWMNotequantiser.prototype.setrandomise = function(amount) {
     this.scalerandomise = amount;
+    // Return object for chaining
+    return this;
 };
 
 ////////////////////////////////////////////
@@ -268,6 +278,9 @@ TBWMNotequantiser.prototype.addrandomrange = function(opts) {
         // Set random amount
         self.setrandomise(parseFloat(this.value));
     });
+
+    // Return object for chaining
+    return this;
 };
 
 ////////////////////////////////////////////////
