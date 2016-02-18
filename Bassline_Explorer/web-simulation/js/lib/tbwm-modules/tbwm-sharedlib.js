@@ -65,16 +65,16 @@ TBWMSharedfunctions.prototype.DOMcreatelabel = function(opts) {
 TBWMSharedfunctions.prototype.DOMaddselect = function(opts) {
 	var select = document.createElement("select");
     select.setAttribute("id", opts.id);
-	var clss = (opts.class !== undefined) ? opts.class : this.containerclass;
+	var clss = (opts.selectclass !== undefined) ? opts.selectclass : this.containerclass;
 	select.setAttribute("class", clss);
 	for(var i = 0; i < opts.options.length; i++) {
         var option = document.createElement("option");
         option.text = opts.options[i].text;
         option.value = opts.options[i].value;
-		if(opts.options[i].value === opts.def)
+		if(opts.options[i].value === opts.selected)
 			option.setAttribute("selected", "selected");
         select.add(option);
-    }
+    };
 	return select;
 };
 
@@ -85,7 +85,7 @@ TBWMSharedfunctions.prototype.DOMaddselect = function(opts) {
 TBWMSharedfunctions.prototype.DOMaddrange = function(opts) {
 	var range = document.createElement("input");
     range.setAttribute("id", opts.id);
-	var clss = (opts.class !== undefined) ? opts.class : this.containerclass;
+	var clss = (opts.rangeclass !== undefined) ? opts.rangeclass : this.containerclass;
 	range.setAttribute("class", clss);
     range.setAttribute("type", "range");
     range.setAttribute("min", opts.min);
@@ -102,20 +102,28 @@ TBWMSharedfunctions.prototype.DOMaddrange = function(opts) {
 TBWMSharedfunctions.prototype.DOMaddbutton = function(opts) {
 	var button = document.createElement("button");
 	button.setAttribute("id", opts.id);
-	var clss = (opts.class !== undefined) ? opts.class : this.containerclass;
+	var clss = (opts.buttonclass !== undefined) ? opts.buttonclass : this.containerclass;
 	button.setAttribute("class", clss);
 	button.innerHTML = opts.text;
 	return button;
 };
 
-//////////////////////
-//////////////////////
-// Cookie Functions //
-//////////////////////
-//////////////////////
+TBWMSharedfunctions.prototype.DOMchangebuttontext = function(opts) {
+	opts.button.innerHTML = opts.text;
+	return opts.button;
+};
+
+///////////////////
+///////////////////
+// Save / Recall //
+///////////////////
+///////////////////
+
+// Currently uses cookies. May be better to use localStorage?
+// TODO: Look into using localStorage instead of cookies
 
 // Set cookie (don't call directly)
-TBWMSharedfunctions.prototype.setcookie = function(cname, cvalue, exdays) {
+TBWMSharedfunctions.prototype.savesettings = function(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
@@ -123,7 +131,7 @@ TBWMSharedfunctions.prototype.setcookie = function(cname, cvalue, exdays) {
 };
 
 // Get cookie (don't call directly)
-TBWMSharedfunctions.prototype.getcookie = function(cname) {
+TBWMSharedfunctions.prototype.getsettings = function(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i=0; i<ca.length; i++) {
@@ -136,30 +144,6 @@ TBWMSharedfunctions.prototype.getcookie = function(cname) {
 };
 
 // Delete cookie (don't call directly)
-TBWMSharedfunctions.prototype.deletecookie = function(cname) {
+TBWMSharedfunctions.prototype.deletesettings = function(cname) {
     document.cookie = name + "=expired; Thu, 01 Jan 1970 00:00:01 GMT";
-};
-
-// Save output settings to cookie if init option set
-TBWMSharedfunctions.prototype.savesettings = function() {
-    if(this.savesettingstocookie) {
-        this.setcookie(this.cookiename, JSON.stringify(this.outputsettings), 365);
-    };
-};
-
-// Get output settings from cookie, and update output settings object
-// Won't update previously-set settings, so only to be called at init by instance itself
-TBWMSharedfunctions.prototype.getsavedsettings = function() {
-    if(this.savesettings) {
-        var fromcookie = this.getcookie(this.cookiename);
-        if(fromcookie) {
-            var savedsettings = JSON.parse(this.getcookie(this.cookiename));
-            if(savedsettings !== null) {
-                if(savedsettings.device)
-                    this.outputsettings.device = savedsettings.device;
-                if(savedsettings.channel)
-                    this.outputsettings.channel = savedsettings.channel;
-            };
-        };
-    };
 };

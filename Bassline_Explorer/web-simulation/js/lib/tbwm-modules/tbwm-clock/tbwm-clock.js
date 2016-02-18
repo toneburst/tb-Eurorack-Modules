@@ -13,8 +13,23 @@
 // TO WORK ON CURRENT CHROME!!  But this means our code can be properly
 // spec-compliant, and work on Chrome, Safari and Firefox.
 
-function TBWMClock() {
+function TBWMClock(initopts) {
+
+    // Path to web-worker
+    // RELATIVE to HTML document to which this script is attached.
+    // Will probably need to be changed
+    this.workerurl = null;
+    if(initopts.workerurl) {
+        this.workerurl = initopts.workerurl;
+    } else {
+        console.log("Error: Webworker URL must be set relative to HTML page by passing object {workerurl : '<url>'} when instantiating this object");
+        return this;
+    };
+
     this.tempo = 120;
+    if(initopts.bpm)
+        this.tempo = initopts.bpm;
+
     this.audioContext = null;
     this.isplaying = false;         // Are we currently playing?
     this.startTime;                 // The start time of the entire sequence.
@@ -22,15 +37,32 @@ function TBWMClock() {
     this.scheduleAheadTime = 0.1;	// How far ahead to schedule audio (sec)
     								// This is calculated from lookahead, and overlaps
     								// with next interval (in case the timer is late)
-    this.nextTickTime = 0.0;	    // when the next note is due.
+    this.nexttickTime = 0.0;	    // when the next note is due.
     this.timerWorker = null;
     this.secondsPerTick = 2.5 / this.tempo;
     this.newTempo = this.tempo;
 
-    // Path to web-worker
-    // RELATIVE to HTML document to which this script is attached.
-    // Will probably need to be changed
-    this.workerurl = null;
+    // ID of play/stop button
+    this.playbuttonid = "tbwm-clock-playbutton";
+    this.temporangeid = "tbwm-clock-temporange"
+
+    // Instantiate utility object
+	this.utils = null;
+	try {
+		if(typeof TBWMSharedfunctions() === undefined)
+			throw "TBWMSharedfunctions() Object not available";
+		else
+			this.utils = new TBWMSharedfunctions();
+    }
+    catch(err) {
+        this.errornoutils(err);
+    };
+
+    // Run init method
+    this.init();
+
+    // Return object for chaining
+    return this;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
@@ -40,10 +72,10 @@ MicroEvent.mixin(TBWMClock);
 // Setup next tick //
 /////////////////////
 
-TBWMClock.prototype.nextTick = function() {
+TBWMClock.prototype.nexttick = function() {
     var self = this;
     // Schedule tick
-    this.nextTickTime += this.secondsPerTick
+    this.nexttickTime += this.secondsPerTick
     // Update tempo if required
     if(this.tempo != this.newTempo) {
         this.tempo = this.newTempo;
@@ -55,7 +87,7 @@ TBWMClock.prototype.nextTick = function() {
 // Schedule tick //
 ///////////////////
 
-TBWMClock.prototype.scheduleTick = function(time) {
+TBWMClock.prototype.scheduletick = function(time) {
     var self = this;
     // Emit tick
     self.trigger('tick', 'tick');
@@ -64,9 +96,9 @@ TBWMClock.prototype.scheduleTick = function(time) {
 TBWMClock.prototype.scheduler = function() {
     // While there are notes that will need to play before the next interval,
     // Schedule them and advance the pointer.
-    while(this.nextTickTime < this.audioContext.currentTime + this.scheduleAheadTime) {
-        this.scheduleTick(this.nextTickTime);
-        this.nextTick();
+    while(this.nexttickTime < this.audioContext.currentTime + this.scheduleAheadTime) {
+        this.scheduletick(this.nexttickTime);
+        this.nexttick();
     };
 };
 
@@ -84,9 +116,9 @@ TBWMClock.prototype.settempo = function(newtempo) {
 /////////////////
 
 TBWMClock.prototype.start = function() {
-    this.nextTickTime = this.audioContext.currentTime;
+    this.nexttickTime = this.audioContext.currentTime;
     this.timerWorker.postMessage("start");
-    console.log("Starting 24PPQN Clock");
+    console.log("TBWMClock: Starting 24PPQN Clock");
     this.isplaying = true;
     return this;
 };
@@ -97,23 +129,120 @@ TBWMClock.prototype.start = function() {
 
 TBWMClock.prototype.stop = function() {
     this.timerWorker.postMessage("stop");
-    console.log("Stopping 24PPQN Clock");
+    console.log("TBWMClock: Stopping 24PPQN Clock");
     this.isplaying = false;
     return this;
 };
+
+////////////////////////////////////
+// Add button to start/stop clock //
+////////////////////////////////////
+
+TBWMClock.prototype.addplaybutton = function(opts) {
+    if(this.utils && opts && opts.domcontainer) {
+
+		// Check DOM element exists, return early if not
+	    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+	    if(!domcontainer)
+	        return this;
+
+        // Start and Stop button text (default value, value from passed-in options)
+        var starttext = "Start Clock";
+        if(opts.starttext)
+            starttext = opts.starttext;
+
+        var stoptext = "Stop Clock";
+        if(opts.starttext)
+            stoptext = opts.stoptext;
+
+        // Create <button> element
+		var playbutton = this.utils.DOMaddbutton({
+			id : this.playbuttonid,
+			text : (opts.buttontext !== undefined) ? opts.buttontext : starttext
+		});
+
+        // Append button to container DOM element
+        domcontainer.appendChild(playbutton);
+
+        // Listen for changes
+        var self = this;
+        playbutton.addEventListener("mouseup", function() {
+            // Toggle clock start/stop
+            if(!self.isplaying) {
+                self.utils.DOMchangebuttontext({
+                    button : this,
+                    text : stoptext
+                });
+                self.start();
+            } else {
+                self.utils.DOMchangebuttontext({
+                    button : this,
+                    text : starttext
+                });
+                self.stop();
+                self.trigger("reset", "reset");
+            };
+        }, false);
+
+    // No utility instance found
+    } else {
+        return this;
+    };
+    return this;
+};
+
+//////////////////////
+// Add Tempo slider //
+//////////////////////
+
+TBWMClock.prototype.addtemporange = function(opts) {
+
+    // Return early if Utils object not available
+	if(!this.utils) {
+		return this;
+	};
+
+    // Check DOM element exists, return early if not
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.temporangeid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Tempo"
+		}));
+	};
+
+	// Create new <range> element
+	var range = this.utils.DOMaddrange({
+		id : this.temporangeid,
+		min : 50,
+		max : 200,
+		step : 1,
+		value : this.tempo
+	});
+    // Append Select to container element
+    domcontainer.appendChild(range);
+
+    // Listen for changes
+    var self = this;
+    range.addEventListener('change', function() {
+        // Set transpose amount
+        self.settempo(parseInt(this.value));
+    });
+
+    // Return object for chaining
+    return this;
+};
+
 
 //////////////////////
 // Initialise Clock //
 //////////////////////
 
-TBWMClock.prototype.init = function(initvars) {
-    if(initvars.bpm)
-        this.tempo = initvars.bpm;
-    if(initvars.workerurl) {
-        this.workerurl = initvars.workerurl;
-    } else {
-        console.log("Error: Webworker URL must be set relative to HTML page using <instance>.setworkerurl(<url>) method");
-    };
+TBWMClock.prototype.init = function() {
     var self = this;    // Handle to object instance context, used below.
     this.audioContext = new AudioContext();
     // Create an oscillator
@@ -124,7 +253,7 @@ TBWMClock.prototype.init = function(initvars) {
         if (e.data == "tick") {
             self.scheduler();
         } else
-            console.log("message: " + e.data);
+            console.log("TNWMClock: message: " + e.data);
     }, false);
     this.timerWorker.postMessage({"interval":this.lookahead});
     return this;

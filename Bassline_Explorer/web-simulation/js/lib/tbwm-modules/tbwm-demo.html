@@ -12,90 +12,174 @@
         <script src="tbwm-clockdivider.js" charset="utf-8"></script>
         <script src="tbwm-midiout.js" charset="utf-8"></script>
         <script src="tbwm-notequantiser.js" charset="utf-8"></script>
+
         <script type="text/javascript">
             $(document).ready(function(event) {
 
-                /*var clock = new TBWMClock(120);
-                clock.setWorkerURL("tbwm-clock/clockworker.js");
-                clock.init();
-                clock.start();
+                ///////////////////////////////
+                ///////////////////////////////
+                //// CLOCK & CLOCK-DIVIDER ////
+                ///////////////////////////////
+                ///////////////////////////////
 
-                var divider = new TBMWClockdivider();
+                // Instantiate 24PPQN Clock instance
+                var clock = new TBWMClock({
+                    workerurl : "tbwm-clock/clockworker.js",    // Set webworker URL relative to this page. String (required)
+                    bpm : 125                                   // BPM value. Int (optional)
+                })
+                // Start clock
+                .addplaybutton({
+                    domcontainer : "clockplay",    // Name of existing DOM element to append element into (required)
+                    //starttext : "Start Clock:",  // Text to display on button while clock not playing (optional)
+                    //stoptext : "Stop Clock:"     // Text to display on button while clock playing (optional)
+                })
+                .addtemporange({
+                    domcontainer : "clocktempo"
+                });
 
+                // Instantiate Clock-Divider
+                var divider = new TBMWClockdivider({
+                    autoreset : 1 // Auto-reset counter period (bars). Int, default null (counters don't reset)
+                });
+
+                // Bind to clock 'tick' event, and sent ticks to divider
                 clock.bind("tick", function(e) {
                     divider.tick();
                 });
 
-                divider.bind("16th", function() {
-                    //console.log("quarter");
+                // Bind divider to clock reset event, so divider resets when clock stopped/restarted
+                clock.bind("reset", function() {
+                    divider.reset();
+                });
+
+                // Bind to divider 1/4-note event
+                /*divider.bind("1/4", function(e) {
+                    console.log("quarter count: " + e);
                 });*/
 
-                var midi = new TBMWMIDIOut({
-                    instanceid : 0,
-                    savesettings : true
-                });
+                //////////////////////
+                //////////////////////
+                //// SCALE OBJECT ////
+                //////////////////////
+                //////////////////////
 
-                midi.init();
-
-                midi.bind("midistatus", function(e) {
-                    midi.addoutputselect({
-                        domcontainer : "outputselect",
-                        addlabel : true,
-                        labeltext : "MIDI Out Device:"
-                    })
-                    .addoutchannelselect({
-                        domcontainer : "outputchannel",
-                        addlabel : true,
-                        labeltext : "MIDI Out Channel:"
-                    })
-                    .addtestbutton({
-                        domcontainer : "outputtest",
-						buttontext : "Test MIDI Output"
-                    });
-                });
-
-                quantiser = new TBWMNotequantiser({
-					instanceid : 0
-				})
+                // Instantiate new Scale object passing instamce ID and optioned init values.
+                // Passed settings applied before control elements rendered.
+                // NOTE: Optional settings set at init will override any settings recalled from local storage (if option set)
+                quantiser = new TBWMNotequantiser("0", {
+                    savesettings      : true,   // Save to settings to local storage (see note above). Bool (default false)
+                    //scaleindex        : 0,      // Index of scale. Int 0 > 23 (default 0)
+                    //scaleshift        : 0,      // Shift notes up in scale. Int 0 > 11 (default 0)
+            		//scalerandomise    : 0,      // Randomise note-lookup. Float 0.0 > 1.0 (default 0)
+            		//scaleflatten      : 0,      // Randomly flatten scale towards root note. Float 0.0 > 1.0 (default 0)
+                    //scaletranspose    : 0       // Transpose scale. Int -24 > +24 (default 0)
+                 })
+                // Methods can be chained
+                // Add DOM select element to select scale.
+                // Must supply 'domcontainer' with ID of existing DOM element (with or without leading '#') into which to append new control element.
+                // 'label' and 'labeltext' are optional (default label text will be used if 'labeltext' not defined)
                 .addscaleselect({
                     domcontainer : "scale",
                     addlabel : true,
                     labeltext : "Note Scale:"
                 })
+                // Add <range> element for scale randomisation, options as above
 				.addrandomrange({
                     domcontainer : "randomise",
                     addlabel : true,
                     labeltext : "Note Scale Randomise:"
                 })
+                // Add <range> element for scale shift
 				.addshiftselect({
 					domcontainer : "shift",
                     addlabel : true,
                     labeltext : "Set Scale Shift:"
 				})
+                // Add <range> element for scale flatten
 				.addflattenrange({
 					domcontainer : "flatten",
                     addlabel : true,
                     labeltext : "Set Scale Flatten:"
 				})
+                // Add <range> element for scale transpose
 				.addtransposeselect({
                     domcontainer : "transpose",
                     addlabel : true,
                     labeltext : "Note Transpose:"
                 });
+
+                ////////////////////////////
+                ////////////////////////////
+                //// MIDI OUTPUT OBJECT ////
+                ////////////////////////////
+                ////////////////////////////
+
+                // Instantiate MIDI Ouput object and call init method
+                // Pass instance ID (required) and optional options object.
+                var midiout = new TBMWMIDIOut("0", {
+                    savesettings : true    // Save to settings to local storage. Bool (default false)
+                }).init();
+
+                // Bind to 'midistatus' event emitted by MIDI Output object instance
+                // when MIDI system has been initialised (or not)
+                midiout.bind("midistatus", function(e) {
+
+                    //  MIDI system sucessfully initialised, and MIDI output port(s) found
+                    if(e === "success") {
+
+                        // Add control DOM elements for MIDI output (note, methods can be chained)
+                        midiout.addoutputselect({
+                            domcontainer : "outputselect",
+                            addlabel : true,
+                            labeltext : "MIDI Out Device:"
+                        })
+                        .addoutchannelselect({
+                            domcontainer : "outputchannel",
+                            addlabel : true,
+                            labeltext : "MIDI Out Channel:"
+                        })
+                        .addtestbutton({
+                            domcontainer : "outputtest",
+    						buttontext : "Test MIDI Output"
+                        });
+
+                        // Play a sequence of 16th MIDI notes, pre-processing each note through the note-quantiser
+                        var pan = [0, 127, 0, 127, 0, 127, 0, 127, 0, 127, 0, 127, 0, 127, 0, 127,];
+                        var notes = [63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78];
+                        divider.reset();
+                        // Bind to divider 16th notes
+                        divider.bind("1/16", function(e) {
+                            // Apply note-quantiser to notes
+                            var notenum = quantiser.applyscale(notes[e]);
+                            // Sent note-on, then after 80ms pause, send note-off
+                            midiout.send_noteon(null, notenum, 100, null);
+                            midiout.send_noteoff(null, notenum, 100, 80);
+                            //midiout.send_controller(null, 10, pan[e], null);
+                        });
+
+                    } else if(e === "fail") {
+                    // MIDI system init fail (no Web MIDI support, and/or no output devices found)
+                        alert("No MIDI output devices found");
+                    };
+                });
             });
         </script>
     </head>
     <body>
-        <h3>MIDI Setup</h3>
+        <h3>MIDI Output</h3>
         <p id="outputselect"></p>
         <p id="outputchannel"></p>
         <p id="outputtest"></p>
 
-        <h3>Quantiser Setup</h3>
+        <h3>Scale Quantiser</h3>
         <p id="scale"></p>
-        <p id="randomise"></p>
 		<p id="shift"></p>
+        <p id="randomise"></p>
 		<p id="flatten"></p>
 		<p id="transpose"></p>
+
+        <h3>Clock</h3>
+        <p id="clocktempo"></p>
+        <p id="clockplay"></p>
     </body>
 </html>

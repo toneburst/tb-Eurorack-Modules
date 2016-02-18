@@ -3,25 +3,21 @@
  *
  */
 
-function TBMWClockdivider() {
+function TBMWClockdivider(initopts) {
+    this.resetbars = null;
     this.autoreset = null;
-    this.counting = 0;  // Counts continue until reset
+    if(initopts) {
+        if(initopts.autoreset) {
+            this.resetbars = initopts.autoreset;
+            this.setautoreset(initopts.autoreset);
+        };
+    };
+    this.reset();
+    return this;
 };
 
 // Mix in Microevent object from microevent.js so our Clock object can emit events
 MicroEvent.mixin(TBMWClockdivider);
-
-TBMWClockdivider.prototype.init = function(opts) {
-    if(opts) {
-        if(opts.autoreset)
-            this.setautoreset(opts.autoreset);
-        if(opts.counting && opts.counting === 'bar')
-            this.counting = 1;
-        else if(opts.counting && opts.counting === 'continuous')
-            this.counting = 0;
-    };
-    this.reset();
-};
 
 ////////////////////
 // Reset Counters //
@@ -55,11 +51,7 @@ TBMWClockdivider.prototype.setautoreset = function(bars) {
 /////////////////////
 
 TBMWClockdivider.prototype.updatecounter = function(count, reset) {
-    if(this.counting === 0) {
-        return count + 1;
-    } else {
-        return (count === reset) ? 0 : count + 1;
-    };
+    return (this.resetbars && count === (reset + 1) * this.resetbars) ? 0 : count + 1;
 };
 
 ////////////////

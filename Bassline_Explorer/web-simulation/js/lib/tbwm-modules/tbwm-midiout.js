@@ -6,33 +6,32 @@
  * Microevent.js
  */
 
-function TBMWMIDIOut(initopts) {
+function TBMWMIDIOut(instanceid, initopts) {
 
     // Check instance ID passes when instance created
     // (Required if multiple instances created)
     this.instanceid = "0";
-    if(initopts === undefined || initopts.instanceid === undefined)
-        console.log("WARNING: You should specify a unique instance ID when instantiating the TBWMMIDIOut object.");
+    if(instanceid)
+        this.instanceid = instanceid;
     else
-        this.instanceid = initopts.instanceid;
+        console.log("WARNING: You should specify a unique instance ID when instantiating the TBWMMIDIOut object.");
 
     // Save settings to cookie true/false
-    this.savesettingstocookie = false;
+    this.savesettingslocal = false;
     if(initopts !== undefined && initopts.savesettings === true)
-        this.savesettingstocookie = true;
+        this.savesettingslocal = true;
 
     // IDs for DOM elements
     this.idprefix = "tbwm-ui-midiout";
-
+    // ID of output select element
     this.outputselectid = this.idprefix + "-" + "device";
     if(this.instanceid) this.outputselectid += "-" + this.instanceid;
-
+    // ID of channel select element
     this.channelselectid = this.idprefix + "-" + "channel";
     if(this.instanceid) this.channelselectid += "-" + this.instanceid;
-
+    // ID of ouput test button element
     this.testoutputbuttonid = this.idprefix + "-" + "testoutput";
     if(this.instanceid) this.testoutputbuttonid += "-" + this.instanceid;
-
 	// Class to add to dynamically-created DOM elements
     this.containerclass = "tbwm-ui";
 
@@ -43,11 +42,14 @@ function TBMWMIDIOut(initopts) {
     this.outputs            = {};
     this.testnotenum        = 64;
 
+    // Settings object (can be saved to/retreived from cookie if option set)
     this.outputsettings = {
         device : null,
         channel : 1
     };
-    this.cookiename = "outputprefs";
+
+    // Name of cookie to save settings to if option set
+    this.cookiename = "tbwm-midioutputprefs";
 
 	// Instantiate utility object
 	this.utils = null;
@@ -58,7 +60,7 @@ function TBMWMIDIOut(initopts) {
 			this.utils = new TBWMSharedfunctions();
     }
     catch(err) {
-        console.log("TBWM Utility object not available " + err);
+        this.errornoutils(err);
     };
 
     // Return object instance for chaining
@@ -68,53 +70,35 @@ function TBMWMIDIOut(initopts) {
 // Mix in Microevent object from microevent.js so our object can emit events
 MicroEvent.mixin(TBMWMIDIOut);
 
-//////////////////////
-//////////////////////
-// Cookie Functions //
-//////////////////////
-//////////////////////
+//////////////////////////////////////////
+// Utility function not available error //
+//////////////////////////////////////////
 
-// Set cookie (don't call directly)
-TBMWMIDIOut.prototype.setcookie = function(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+TBMWMIDIOut.prototype.errornoutils = function(err) {
+    var error = (err) ? " Error was: '" + err + "'." : "";
+    console.log("Error: No utility function available, exiting." + error);
 };
 
-// Get cookie (don't call directly)
-TBMWMIDIOut.prototype.getcookie = function(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0)
-            return c.substring(name.length, c.length);
-    };
-    return null;
-};
-
-// Delete cookie (don't call directly)
-TBMWMIDIOut.prototype.deletecookie = function(cname) {
-    var expires = "Thu, 01 Jan 1970 00:00:01 GMT";
-    document.cookie = name + "=null; " + expires;
-};
+////////////////////////////////////
+////////////////////////////////////
+// Save/Recall Settings Functions //
+////////////////////////////////////
+////////////////////////////////////
 
 // Save output settings to cookie if init option set
 TBMWMIDIOut.prototype.savesettings = function() {
-    if(this.savesettingstocookie) {
-        this.setcookie(this.cookiename, JSON.stringify(this.outputsettings), 365);
+    if(this.savesettingslocal) {
+        this.utils.savesettings(this.cookiename, JSON.stringify(this.outputsettings), 365);
     };
 };
 
 // Get output settings from cookie, and update output settings object
 // Won't update previously-set settings, so only to be called at init by instance itself
-TBMWMIDIOut.prototype.getsavedsettings = function() {
-    if(this.savesettings) {
-        var fromcookie = this.getcookie(this.cookiename);
+TBMWMIDIOut.prototype.recallsavedsettings = function() {
+    if(this.savesettingslocal) {
+        var fromcookie = this.utils.getsettings(this.cookiename);
         if(fromcookie) {
-            var savedsettings = JSON.parse(this.getcookie(this.cookiename));
+            var savedsettings = JSON.parse(fromcookie);
             if(savedsettings !== null) {
                 if(savedsettings.device)
                     this.outputsettings.device = savedsettings.device;
@@ -136,15 +120,14 @@ TBMWMIDIOut.prototype.deletesavedsettings = function() {
 //////////////////
 //////////////////
 
-///////////////////
-// No MIDI error //
-///////////////////
+//////////////////////////
+// No System MIDI error //
+//////////////////////////
 
 TBMWMIDIOut.prototype.errornomidi = function(e) {
     this.havemidi = false;
     //var error = "Error: No access to MIDI devices: browser does not support WebMIDI API, please use the WebMIDIAPIShim together with the Jazz plugin.";
-    var error = e;
-    console.log(error);
+    console.log(e);
 };
 
 /////////////////////////////////
@@ -162,6 +145,7 @@ TBMWMIDIOut.prototype.errornooutputdevice = function() {
 // based on message type and channel //
 ///////////////////////////////////////
 
+// MIDI Channel messages
 TBMWMIDIOut.prototype.channelmessage = function(messagetype, ch) {
     // List of channel messages
     // Extracted from WebMidi library
@@ -182,6 +166,7 @@ TBMWMIDIOut.prototype.channelmessage = function(messagetype, ch) {
     };
 };
 
+// MIDI System messages
 TBMWMIDIOut.prototype.systemmessage = function(messagetype) {
     var _systemmessages = {
         "sysex": 0xF0,            // 240
@@ -204,9 +189,9 @@ TBMWMIDIOut.prototype.systemmessage = function(messagetype) {
     };
 };
 
-///////////////
-// Timestamp //
-///////////////
+/////////////////////////////////////
+// Get Timestamp with option delay //
+/////////////////////////////////////
 
 TBMWMIDIOut.prototype.time = function(delay) {
     var now = window.performance.now();
@@ -221,10 +206,13 @@ TBMWMIDIOut.prototype.time = function(delay) {
 ///////////////////
 
 TBMWMIDIOut.prototype.init = function() {
-    // Request MIDI access
+
     var self = this;
+
+    // Request MIDI access
     navigator.requestMIDIAccess().then(onsuccesscallback, onerrorcallback);
     function onsuccesscallback(access) {
+
         // Set bool for MIDI access
         self.havemidi = true;
 
@@ -239,29 +227,38 @@ TBMWMIDIOut.prototype.init = function() {
 
             // Get and open first MIDI output port
             self.midiout = self.outputs.values().next().value;
-            self.outputsettings.device = self.midiout["id"];
+            self.outputsettings.device = self.midiout["name"];
             self.midiout.open();
             self.havemidiout = true;
 
             // Get and apply saved settings
-            self.getsavedsettings();
+            self.recallsavedsettings();
             self.setoutputdevice(self.outputsettings.device);
             self.setoutmidichannel(self.outputsettings.channel);
 
+        // No MIDI output ports found
         } else {
             // Send error
             self.errornooutputdevice();
 
             // Set switch false
             self.havemidiout = false;
+
+            // Emit event
+            self.trigger("midistatus", "fail");
+
+            // Return this instance for chaining
             return this;
         };
 
         // Notify MIDI system ready
         console.log("MIDI system successfully initialised.");
+
+        // Emit event
         self.trigger("midistatus", "success");
     };
 
+    // MIDI system not available
     function onerrorcallback(err) {
         self.havemidi       = false;
         self.havemidiin     = false;
@@ -269,6 +266,8 @@ TBMWMIDIOut.prototype.init = function() {
         console.log( "Uh-oh! Something went wrong! Error code: " + err.code );
         self.trigger("midistatus", "fail");
     };
+
+    // Return this instance for chaining
     return this;
 };
 
@@ -294,6 +293,8 @@ TBMWMIDIOut.prototype.setoutputdevice = function(deviceid) {
             // Set and open new port
             this.midiout = foundport;
             this.midiout.open();
+            this.outputsettings.device = foundport.name;
+            this.savesettings();
         } else {
             // Port not found
             console.log("Error: MIDI output port " + deviceid + " not available.");
@@ -336,14 +337,14 @@ TBMWMIDIOut.prototype.addoutputselect = function(opts) {
 		this.outputs.forEach(function(port) {
 			devsarray.push({
 				text : port.name,
-				value : port.id
+				value : port.name
 			});
 		});
 
 		var outputsel = this.utils.DOMaddselect({
 			id : this.outputselectid,
 			options : devsarray,
-			def : self.outputsettings.device
+			selected : self.outputsettings.device
 		});
 
         // Append select to container DOM element
@@ -354,8 +355,6 @@ TBMWMIDIOut.prototype.addoutputselect = function(opts) {
             // Set output device
             var device = this.value;
             self.setoutputdevice(device);
-            self.outputsettings.device = device;
-            self.savesettings();
         });
     } else {
         this.errornooutputdevice();
@@ -370,6 +369,7 @@ TBMWMIDIOut.prototype.addoutputselect = function(opts) {
 
 TBMWMIDIOut.prototype.setoutmidichannel = function(channel) {
     this.midichannel = parseInt(channel);
+    this.savesettings();
 };
 
 //////////////////////////////////
@@ -400,18 +400,17 @@ TBMWMIDIOut.prototype.addoutchannelselect = function(opts) {
 		var channelsel = this.utils.DOMaddselect({
 			id : this.channelselectid,
 			options : chansarray,
-			def : this.outputsettings.channel
+			selected : this.outputsettings.channel
 		});
         // Append select to container DOM element
         domcontainer.appendChild(channelsel);
 
-        // Listen for changes
+        // Listen for changes to appended <select> element
         var self = this;
         channelsel.addEventListener('change', function(){
             // Set output device
             self.outputsettings.channel = parseInt(this.value);
             self.setoutmidichannel(self.outputsettings.channel);
-            self.savesettings();
         });
 
     // No MIDI output device
