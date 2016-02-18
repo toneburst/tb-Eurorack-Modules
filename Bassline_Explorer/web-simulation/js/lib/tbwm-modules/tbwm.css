@@ -4,6 +4,13 @@
  *
  */
 
+label.tbwm-ui,
+select.tbwm-ui,
+range.tbwm-ui,
+button.tbwm-ui {
+	margin: 5px 0;
+}
+
 label.tbwm-ui {
     display: block;
 }

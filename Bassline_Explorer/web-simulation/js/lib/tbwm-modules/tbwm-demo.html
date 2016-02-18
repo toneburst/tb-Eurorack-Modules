@@ -7,7 +7,8 @@
         <script src="../jquery-2.1.4.min.js"></script>
         <script src="../microevent/microevent.js" charset="utf-8"></script>
         <script src="../webmidiapi/WebMIDIAPI.min.js" charset="utf-8"></script>
-        <script src="tbwm-clock/tbwm-clock.js" charset="utf-8"></script>
+		<script src="tbwm-sharedlib.js" charset="utf-8"></script>
+		<script src="tbwm-clock/tbwm-clock.js" charset="utf-8"></script>
         <script src="tbwm-clockdivider.js" charset="utf-8"></script>
         <script src="tbwm-midiout.js" charset="utf-8"></script>
         <script src="tbwm-notequantiser.js" charset="utf-8"></script>
@@ -48,25 +49,38 @@
                         labeltext : "MIDI Out Channel:"
                     })
                     .addtestbutton({
-                        domcontainer : "outputtest"
+                        domcontainer : "outputtest",
+						buttontext : "Test MIDI Output"
                     });
                 });
 
-                quantiser = new TBWMNotequantiser();
-                quantiser.addscaleselect({
+                quantiser = new TBWMNotequantiser({
+					instanceid : 0
+				})
+                .addscaleselect({
                     domcontainer : "scale",
                     addlabel : true,
                     labeltext : "Note Scale:"
-                });
-                quantiser.addtransposeselect({
-                    domcontainer : "transpose",
-                    addlabel : true,
-                    labeltext : "Note Transpose:"
-                });
-                quantiser.addrandomrange({
+                })
+				.addrandomrange({
                     domcontainer : "randomise",
                     addlabel : true,
                     labeltext : "Note Scale Randomise:"
+                })
+				.addshiftselect({
+					domcontainer : "shift",
+                    addlabel : true,
+                    labeltext : "Set Scale Shift:"
+				})
+				.addflattenrange({
+					domcontainer : "flatten",
+                    addlabel : true,
+                    labeltext : "Set Scale Flatten:"
+				})
+				.addtransposeselect({
+                    domcontainer : "transpose",
+                    addlabel : true,
+                    labeltext : "Note Transpose:"
                 });
             });
         </script>
@@ -79,7 +93,9 @@
 
         <h3>Quantiser Setup</h3>
         <p id="scale"></p>
-        <p id="transpose"></p>
         <p id="randomise"></p>
+		<p id="shift"></p>
+		<p id="flatten"></p>
+		<p id="transpose"></p>
     </body>
 </html>

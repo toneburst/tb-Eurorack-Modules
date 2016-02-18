@@ -4,8 +4,17 @@
  *
  */
 
-function TBWMNotequantiser(initsettings) {
-    // Scales from Mutable Instruments MIDIPal firmware
+function TBWMNotequantiser(initopts) {
+
+	// Check instance ID passes when instance created
+    // (Required if multiple instances created)
+    this.instanceid = "0";
+    if(initopts === undefined || initopts.instanceid === undefined)
+        console.log("WARNING: You should specify a unique instance ID when instantiating the TBWMMIDIOut object.");
+    else
+        this.instanceid = initopts.instanceid;
+
+	// Scales from Mutable Instruments MIDIPal firmware
     // Olivier Gillet
     // NAMES MAY BE WRONG!
     this.mpscales = Array();
@@ -33,22 +42,57 @@ function TBWMNotequantiser(initsettings) {
     this.mpscales[21] = {name:"Japanese",notes:[0,1,1,1,5,5,5,7,8,8,8,8]};
     this.mpscales[22] = {name:"Gamelan",notes:[0,1,1,3,3,3,7,7,8,8,8,8]};
     this.mpscales[23] = {name:"Whole Tones",notes:[0,0,2,2,4,4,6,6,8,8,10,10]};
-    // Scale Properties
-    this.scaleindex         = 0; // Chromatic
-    this.scale              = this.mpscales[this.scaleindex]["notes"];
-    this.transpose          = 0;
-    this.shift              = 0;
-    this.scalerandomise     = 0;
+    // Scale Settings
+	this.scalesettings = {
+		scaleindex	: 0,
+		scale		: this.mpscales[0]["notes"],
+		transpose	: 0,
+		shift		: 0,
+		randomise	: 0,
+		flatten		: 0
+	};
     // Element IDs
-    this.idprefix           = "tbwm-ui";
-    this.scalesselectid     = this.idprefix + "-scale"
-    this.transposerangeid   = this.idprefix + "-transpose"
-    this.randomiserangeid   = this.idprefix + "-random"
-    this.containerclass     = this.idprefix;
+    this.idprefix = "tbwm-ui-notequantiser";
+	this.scalesselectid = this.idprefix + "-scale";
+	if(this.instanceid) this.scalesselectid += "-" + this.instanceid;
 
-    // Load in settings if object passed in to init function
-    if(initsettings)
-        this.applysettings(initsettings);
+	this.randomiserangeid = this.idprefix + "-random";
+	if(this.instanceid) this.randomiserangeid += "-" + this.instanceid;
+
+	this.shiftrangeid = this.idprefix + "-shift";
+	if(this.instanceid) this.shiftrangeid += "-" + this.instanceid;
+
+	this.flattenrangeid = this.idprefix + "-flatten";
+	if(this.instanceid) this.flattenrangeid += "-" + this.instanceid;
+
+	this.transposerangeid = this.idprefix + "-transpose";
+	if(this.instanceid) this.transposerangeid += "-" + this.instanceid;
+
+	// Instantiate utility object
+	this.utils = null;
+	try {
+		if(typeof TBWMSharedfunctions() === undefined)
+			throw "TBWMSharedfunctions() Object not available";
+		else
+			this.utils = new TBWMSharedfunctions();
+    }
+    catch(err) {
+        console.log("TBWM Utility object not available " + err);
+    };
+
+	// Load in settings if object passed in to init function
+    if(initopts)
+        this.applysettings(initopts);
+
+	return this;
+};
+
+//////////////////////////////////////////
+// Utility function not available error //
+//////////////////////////////////////////
+
+TBWMNotequantiser.prototype.errornoutils = function() {
+	console.log("Error: No utility function available, exiting");
 };
 
 //////////////////////////
@@ -56,12 +100,7 @@ function TBWMNotequantiser(initsettings) {
 //////////////////////////
 
 TBWMNotequantiser.prototype.getsettings = function() {
-    return {
-        scaleindex:this.scaleindex,
-        transpose:this.transpose,
-        shift:this.shift,
-        scalerandomise:this.scalerandomise
-    };
+    return this.scalesettings;
 };
 
 ///////////////////
@@ -71,47 +110,18 @@ TBWMNotequantiser.prototype.getsettings = function() {
 TBWMNotequantiser.prototype.applysettings = function(settings) {
     if(settings) {
         if(settings.scaleindex)
-            this.scaleindex = settings.scaleindex;
-        if(settings.transpose)
-            this.transpose = settings.transpose;
+            this.scalesettings.scaleindex = settings.scaleindex;
         if(settings.shift)
-            this.shift = settings.shift;
+            this.scalesettings.shift = settings.shift;
         if(settings.scalerandomise)
-            this.scalerandomise = settings.scalerandomise;
+            this.scalesettings.randomise = settings.randomise;
+		if(settings.scalerandomise)
+			this.scalesettings.flatten = settings.flatten;
+		if(settings.transpose)
+            this.scalesettings.transpose = settings.transpose;
     } else {
-        console.log("Error: You need to pass in a settings object {scaleindex:[val],transpose:[val],shift:[val],scalerandomise:[val]}");
+        console.log("Error: You need to pass in a settings object {scaleindex:[val],shift:[val],randomise:[val],flatten:[val]},transpose:[val]");
     };
-};
-
-////////////////////////////////////////////
-// Check DOM ID passed and element exists //
-////////////////////////////////////////////
-
-TBWMNotequantiser.prototype.checkdomelement = function(elementid) {
-    // Check element ID passed
-    if(elementid) {
-        // Test container DOM element exists
-        var domelement = document.getElementById(elementid.replace("#", ""));
-        if(!domelement) {
-            this.errordomelement(elementid);
-            return null;
-        } else {
-            return domelement;
-        };
-    } else {
-        this.errordomelement();
-        return null;
-    };
-};
-//////////////////////////////////////////////
-// UI Container DOM element not found error //
-//////////////////////////////////////////////
-
-TBWMNotequantiser.prototype.errordomelement = function(elementid) {
-    var eid = (elementid) ? "'" + elementid + "'" : "";
-    var error = "Error: Container element " + eid + " not found. You need to specify ID of an existing element (with or without leading '#') when calling this method";
-    console.log(error);
-    return error;
 };
 
 ///////////////
@@ -119,8 +129,8 @@ TBWMNotequantiser.prototype.errordomelement = function(elementid) {
 ///////////////
 
 TBWMNotequantiser.prototype.setscale = function(index) {
-    this.scaleindex = Math.min(this.mpscales.length - 1, index);
-    this.scale = this.mpscales[this.scaleindex]["notes"];
+    this.scalesettings.scaleindex = Math.min(this.mpscales.length - 1, index);
+    this.scalesettings.scale = this.mpscales[index]["notes"];
 };
 
 ///////////////////////////////////////////////
@@ -129,91 +139,45 @@ TBWMNotequantiser.prototype.setscale = function(index) {
 
 TBWMNotequantiser.prototype.addscaleselect = function(opts) {
 
+	// Return early with error if Utils object not available
+	if(!this.utils)
+		return this;
+
     // Check DOM element exists, return early if not
-    var domcontainer = this.checkdomelement(opts.domcontainer);
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
     if(!domcontainer)
         return this;
 
-    // Check option to add label element and add if set
-    if(opts.addlabel === true) {
-        var label = document.createElement("label");
-        label.setAttribute("for", this.outputselectid);
-        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Select Scale";
-        label.setAttribute("class", this.containerclass);
-        domcontainer.appendChild(label);
-    };
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.scalesselectid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Select Scale"
+		}));
+	};
 
     // Create new <select> element
-    var sel = document.createElement("select");
-    sel.setAttribute("id", this.scalesselectid);
-
-    // Add options to select
-    for(var i = 0; i < this.mpscales.length; i++) {
-        var opt = document.createElement("option");
-        opt.text = this.mpscales[i]["name"];
-        opt.value = i;
-        sel.add(opt);
+	var optsarray = [];
+	for(var i = 0; i < this.mpscales.length; i++) {
+		optsarray.push({
+			text : this.mpscales[i]["name"],
+			value : i
+		});
     };
+	var select = this.utils.DOMaddselect({
+		id : this.scalesselectid,
+		options : optsarray,
+		def : this.scalesettings.scaleindex
+	});
 
     // Append Select to container element
-    domcontainer.appendChild(sel);
+    domcontainer.appendChild(select);
 
     // Listen for changes
     var self = this;
-    sel.addEventListener('change', function(){
+    select.addEventListener('change', function(){
         // Set scale
         self.setscale(parseInt(this.value));
-    });
-
-    // Return object for chaining
-    return this;
-};
-
-//////////////////////////
-// Set transpose amount //
-//////////////////////////
-
-TBWMNotequantiser.prototype.settranspose = function(amount) {
-    this.transpose = parseInt(amount);
-};
-
-//////////////////////////////////
-// Add Transpose control to DOM //
-//////////////////////////////////
-
-TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
-
-    // Check DOM element exists, return early if not
-    var domcontainer = this.checkdomelement(opts.domcontainer);
-    if(!domcontainer)
-        return this;
-
-    // Check option to add label element and add if set
-    if(opts.addlabel === true) {
-        var label = document.createElement("label");
-        label.setAttribute("for", this.transposerangeid);
-        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Transpose Amount";
-        label.setAttribute("class", this.containerclass);
-        domcontainer.appendChild(label);
-    };
-
-    // Create new <select> element
-    var range = document.createElement("input");
-    range.setAttribute("id", this.transposerangeid);
-    range.setAttribute("type", "range");
-    range.setAttribute("min", -12);
-    range.setAttribute("max", 12);
-    range.setAttribute("step", 1);
-    range.setAttribute("value", 0);
-
-    // Append Select to container element
-    domcontainer.appendChild(range);
-
-    // Listen for changes
-    var self = this;
-    range.addEventListener('change', function() {
-        // Set transpose amount
-        self.settranspose(parseInt(this.value));
     });
 
     // Return object for chaining
@@ -225,17 +189,60 @@ TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
 ///////////////////////////
 
 TBWMNotequantiser.prototype.setshift = function(amount) {
-    this.shift = Math.max(amount, 0) % 11;
+    this.scalesettings.shift = Math.max(amount, 0) % 11;
     // Return object for chaining
     return this;
 };
 
-//////////////////////////////////////
-// Set randomise note-lookup amount //
-//////////////////////////////////////
+///////////////////////////////////////////////////
+// Add shift-select amount slider element to DOM //
+///////////////////////////////////////////////////
+
+TBWMNotequantiser.prototype.addshiftselect = function(opts) {
+
+	// Return early with error if Utils object not available
+	if(!this.utils)
+		return this;
+
+	// Check DOM element exists, return early if not
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.shiftrangeid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Scale Shift Amount"
+		}));
+	};
+
+	// Create new <range> element
+	var range = this.utils.DOMaddrange({
+		id : this.shiftrangeid,
+		min : 0,
+		max : 11,
+		step : 1,
+		value : this.scalesettings.shift
+	});
+	domcontainer.appendChild(range);
+
+	// Listen for changes
+    var self = this;
+    range.addEventListener('change', function() {
+        // Set shift amount
+        self.setshift(parseInt(this.value));
+    });
+
+	return this;
+};
+
+////////////////////////////////////////////////
+// Set randomise note-lookup threshold amount //
+////////////////////////////////////////////////
 
 TBWMNotequantiser.prototype.setrandomise = function(amount) {
-    this.scalerandomise = amount;
+    this.scalesettings.scalerandomise = amount;
     // Return object for chaining
     return this;
 };
@@ -246,29 +253,31 @@ TBWMNotequantiser.prototype.setrandomise = function(amount) {
 
 TBWMNotequantiser.prototype.addrandomrange = function(opts) {
 
+	// Return early with error if Utils object not available
+	if(!this.utils)
+		return this;
+
     // Check DOM element exists, return early if not
-    var domcontainer = this.checkdomelement(opts.domcontainer);
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
     if(!domcontainer)
         return this;
 
-    // Check option to add label element and add if set
-    if(opts.addlabel === true) {
-        var label = document.createElement("label");
-        label.setAttribute("for", this.randomiserangeid);
-        label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "Scale Randomise Amount";
-        label.setAttribute("class", this.containerclass);
-        domcontainer.appendChild(label);
-    };
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.randomiserangeid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Scale Randomise Amount"
+		}));
+	};
 
-    // Create range slider element
-    var range = document.createElement("input");
-    range.setAttribute("type", "range");
-    range.setAttribute("min", 0);
-    range.setAttribute("max", 1);
-    range.setAttribute("step", 0.01);
-    range.setAttribute("value", 0);
-    range.setAttribute("id", this.randomiserangeid);
-
+	// Create new <range> element
+	var range = this.utils.DOMaddrange({
+		id : this.randomiserangeid,
+		min : 0,
+		max : 1,
+		step : 0.01,
+		value : this.scalesettings.randomise
+	});
     // Append Range element to container
     domcontainer.appendChild(range);
 
@@ -283,6 +292,116 @@ TBWMNotequantiser.prototype.addrandomrange = function(opts) {
     return this;
 };
 
+///////////////////////////////////////
+// Set note-flatten threshold amount //
+///////////////////////////////////////
+
+TBWMNotequantiser.prototype.setflatten = function(amount) {
+    this.scalesettings.scaleflatten = amount;
+    // Return object for chaining
+    return this;
+};
+
+//////////////////////////////////////////
+// Add slider for flatten amount to DOM //
+//////////////////////////////////////////
+
+TBWMNotequantiser.prototype.addflattenrange = function(opts) {
+
+	// Return early if Utils object not available
+	if(!this.utils) {
+		return this;
+	};
+
+    // Check DOM element exists, return early if not
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.flattenrangeid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Scale Flatten Amount"
+		}));
+	};
+
+	// Create new <range> element
+	var range = this.utils.DOMaddrange({
+		id : this.flattenrangeid,
+		min : 0,
+		max : 1,
+		step : 0.01,
+		value : this.scalesettings.flatten
+	});
+    // Append Range element to container
+    domcontainer.appendChild(range);
+
+    // Listen for changes
+    var self = this;
+    range.addEventListener('change', function() {
+        // Set random amount
+        self.setflatten(parseFloat(this.value));
+    });
+
+    // Return object for chaining
+    return this;
+};
+
+//////////////////////////
+// Set transpose amount //
+//////////////////////////
+
+TBWMNotequantiser.prototype.settranspose = function(amount) {
+    this.scalesettings.transpose = parseInt(amount);
+};
+
+//////////////////////////////////
+// Add Transpose control to DOM //
+//////////////////////////////////
+
+TBWMNotequantiser.prototype.addtransposeselect = function(opts) {
+
+	// Return early if Utils object not available
+	if(!this.utils) {
+		return this;
+	};
+
+    // Check DOM element exists, return early if not
+    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+    if(!domcontainer)
+        return this;
+
+	// Add <label> element to container if option set
+	if(opts.addlabel === true) {
+		domcontainer.appendChild(this.utils.DOMcreatelabel({
+			labelfor : this.transposerangeid,
+			labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "Transpose Amount"
+		}));
+	};
+
+	// Create new <range> element
+	var range = this.utils.DOMaddrange({
+		id : this.transposerangeid,
+		min : -12,
+		max : 12,
+		step : 1,
+		value : this.scalesettings.transpose
+	});
+    // Append Select to container element
+    domcontainer.appendChild(range);
+
+    // Listen for changes
+    var self = this;
+    range.addEventListener('change', function() {
+        // Set transpose amount
+        self.settranspose(parseInt(this.value));
+    });
+
+    // Return object for chaining
+    return this;
+};
+
 ////////////////////////////////////////////////
 // Apply scale to MIDI note and return result //
 ////////////////////////////////////////////////
@@ -291,12 +410,14 @@ TBWMNotequantiser.prototype.applyscale = function(note) {
     // Get octave
     var oct = Math.floor(note / 12);
     // Index of note within octave
-    var index = (note + this.shift) % 12;
-    // Randomise note-lokup index if threshold set
-    if((this.scalerandomise > 0) && (Math.random() <= this.scalerandomise))
+    var index = (note + this.scalesettings.shift) % 12;
+    // Randomise note-lookup index if threshold set
+    if((this.scalesettings.randomise > 0) && (Math.random() <= this.scalesettings.randomise))
         index = Math.round(Math.random() * 11);
+	if((this.scalesettings.flatten > 0) && (Math.random() <= this.scalesettings.flatten))
+		index = 0;
     // Return note
-    return Math.max(Math.min(12 * oct + this.scale[index] + this.transpose, 127), 0);
+    return Math.max(Math.min(12 * oct + this.scalesettings.scale[index] + this.scalesettings.transpose, 127), 0);
 };
 
 //////////////////////
@@ -324,7 +445,7 @@ TBWMNotequantiser.prototype.logscales = function() {
 TBWMNotequantiser.prototype.getscaleinfo = function() {
     // Return current scale info:
     // Scale Index (number) | Scale Name (string) | Scale Notes (array)
-    return {index:this.scaleindex, name:this.mpscales[this.scaleindex]["name"], scale:this.scale};
+    return {index:this.scalesettings.scaleindex, name:this.scalesettings.mpscales[this.scalesettings.scaleindex]["name"], scale:this.scalesettings.scale};
 };
 
 ///////////////////////////////////////////
@@ -334,5 +455,5 @@ TBWMNotequantiser.prototype.getscaleinfo = function() {
 TBWMNotequantiser.prototype.logscaleinfo = function() {
     // Return current scale info:
     // Scale Index (number) | Scale Name (string) | Scale Notes (array)
-    console.log({index:this.scaleindex, name:this.mpscales[this.scaleindex]["name"], scale:this.scale});
+    console.log({index:this.scalesettings.scaleindex, name:this.scalesettings.mpscales[this.scalesettings.scaleindex]["name"], scale:this.scalesettings.scale});
 };

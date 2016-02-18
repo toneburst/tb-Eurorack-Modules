@@ -22,21 +22,19 @@ function TBMWMIDIOut(initopts) {
         this.savesettingstocookie = true;
 
     // IDs for DOM elements
-    this.idprefix = "tbwm-ui";
+    this.idprefix = "tbwm-ui-midiout";
 
-    this.outputselectid = this.idprefix + "-" + "outputdevice";
-    if(this.instanceid)
-        this.outputselectid += "-" + this.instanceid;
+    this.outputselectid = this.idprefix + "-" + "device";
+    if(this.instanceid) this.outputselectid += "-" + this.instanceid;
 
     this.channelselectid = this.idprefix + "-" + "channel";
-    if(this.instanceid)
-        this.channelselectid += "-" + this.instanceid;
+    if(this.instanceid) this.channelselectid += "-" + this.instanceid;
 
     this.testoutputbuttonid = this.idprefix + "-" + "testoutput";
-    if(this.instanceid)
-        this.testoutputbuttonid += "-" + this.instanceid;
+    if(this.instanceid) this.testoutputbuttonid += "-" + this.instanceid;
 
-    this.containerclass = this.idprefix;
+	// Class to add to dynamically-created DOM elements
+    this.containerclass = "tbwm-ui";
 
     // MIDI system status variables
     this.havemidi           = false;
@@ -50,6 +48,18 @@ function TBMWMIDIOut(initopts) {
         channel : 1
     };
     this.cookiename = "outputprefs";
+
+	// Instantiate utility object
+	this.utils = null;
+	try {
+		if(typeof TBWMSharedfunctions() === undefined)
+			throw "TBWMSharedfunctions() Object not available";
+		else
+			this.utils = new TBWMSharedfunctions();
+    }
+    catch(err) {
+        console.log("TBWM Utility object not available " + err);
+    };
 
     // Return object instance for chaining
     return this;
@@ -118,40 +128,6 @@ TBMWMIDIOut.prototype.getsavedsettings = function() {
 // Delete saved settings cookie
 TBMWMIDIOut.prototype.deletesavedsettings = function() {
     this.deletecookie(this.cookiename);
-};
-
-//////////////////////////////
-//////////////////////////////
-// DOM-Manipulation Methods //
-//////////////////////////////
-//////////////////////////////
-
-TBMWMIDIOut.prototype.checkdomelement = function(elementid) {
-    // Check element ID passed
-    if(elementid) {
-        // Test container DOM element exists
-        var domelement = document.getElementById(elementid.replace("#", ""));
-        if(!domelement) {
-            this.errordomelement(elementid);
-            return null;
-        } else {
-            return domelement;
-        };
-    } else {
-        this.errordomelement();
-        return null;
-    };
-};
-
-//////////////////////////////////////////////
-// UI Container DOM element not found error //
-//////////////////////////////////////////////
-
-TBMWMIDIOut.prototype.errordomelement = function(elementid) {
-    var eid = (elementid) ? "'" + elementid + "'" : "";
-    var error = "Error: Container element " + eid + " not found. You need to specify ID of an existing element (with or without leading '#') when calling this method";
-    console.log(error);
-    return error;
 };
 
 //////////////////
@@ -333,22 +309,22 @@ TBMWMIDIOut.prototype.setoutputdevice = function(deviceid) {
 ////////////////////////////////////////////////////////
 
 TBMWMIDIOut.prototype.addoutputselect = function(opts) {
-    if(this.havemidi && this.havemidiout) {
-        var self = this;
+    if(this.havemidi && this.havemidiout && this.utils) {
 
-        // Check DOM element exists, return early if not
-        var domcontainer = this.checkdomelement(opts.domcontainer);
-        if(!domcontainer)
-            return this;
+		var self = this;
 
-        // Check option to add label element and add if set
-        if(opts.addlabel === true) {
-            var label = document.createElement("label");
-            label.setAttribute("for", this.outputselectid);
-            label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "MIDI Output Device";
-            label.setAttribute("class", this.containerclass);
-            domcontainer.appendChild(label);
-        };
+		// Check DOM element exists, return early if not
+	    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+	    if(!domcontainer)
+	        return this;
+
+		// Add <label> element to container if option set
+		if(opts.addlabel === true) {
+			domcontainer.appendChild(this.utils.DOMcreatelabel({
+				labelfor : this.outputselectid,
+				labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "MIDI Output Device"
+			}));
+		};
 
         // Create <select> element
         var outputsel = document.createElement("select");
@@ -356,16 +332,19 @@ TBMWMIDIOut.prototype.addoutputselect = function(opts) {
         outputsel.setAttribute("class", this.containerclass);
 
         // Add options
-        this.outputs.forEach(function(port) {
-            var opt = document.createElement("option");
-            opt.text = port.name;
-            // Try and get previous port from cookie if option set
-            if(self.outputsettings.device == port.id) {
-                opt.setAttribute("selected", "selected");
-            };
-            opt.value = port.id;
-            outputsel.add(opt);
-        });
+		var devsarray = [];
+		this.outputs.forEach(function(port) {
+			devsarray.push({
+				text : port.name,
+				value : port.id
+			});
+		});
+
+		var outputsel = this.utils.DOMaddselect({
+			id : this.outputselectid,
+			options : devsarray,
+			def : self.outputsettings.device
+		});
 
         // Append select to container DOM element
         domcontainer.appendChild(outputsel);
@@ -398,39 +377,31 @@ TBMWMIDIOut.prototype.setoutmidichannel = function(channel) {
 //////////////////////////////////
 
 TBMWMIDIOut.prototype.addoutchannelselect = function(opts) {
-    if(this.havemidi && this.havemidiout) {
+    if(this.havemidi && this.havemidiout && this.utils) {
 
-        // Check DOM element exists, return early if not
-        var domcontainer = this.checkdomelement(opts.domcontainer);
-        if(!domcontainer)
-            return this;
+		// Check DOM element exists, return early if not
+	    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+	    if(!domcontainer)
+	        return this;
 
-        // Check option to add label element and add if set
-        if(opts.addlabel === true) {
-            var label = document.createElement("label");
-            label.setAttribute("for", this.channelselectid);
-            label.innerHTML = (opts.labeltext !== undefined) ? opts.labeltext : "MIDI Output Channel";
-            label.setAttribute("class", this.containerclass);
-            domcontainer.appendChild(label);
-        };
-
-        // Create <select> element
-        var channelsel = document.createElement("select");
-        channelsel.setAttribute("id", this.channelselectid);
-        channelsel.setAttribute("class", this.containerclass);
+		// Add <label> element to container if option set
+		if(opts.addlabel === true) {
+			domcontainer.appendChild(this.utils.DOMcreatelabel({
+				labelfor : this.channelselectid,
+				labeltext : (opts.labeltext !== undefined) ? opts.labeltext : "MIDI Output Channel"
+			}));
+		};
 
         // Add options
-        for(var i = 1; i < 17; i++) {
-            var opt = document.createElement("option");
-            opt.text = i;
-            opt.value = i;
-            // Try and get previous port from cookie if option set
-            if(this.outputsettings.channel === i) {
-                opt.setAttribute("selected", "selected");
-            };
-            channelsel.add(opt);
-        };
-
+		var chansarray = [];
+		for(var i = 1; i < 17; i++) {
+			chansarray.push({text : i, value : i});
+		};
+		var channelsel = this.utils.DOMaddselect({
+			id : this.channelselectid,
+			options : chansarray,
+			def : this.outputsettings.channel
+		});
         // Append select to container DOM element
         domcontainer.appendChild(channelsel);
 
@@ -455,18 +426,18 @@ TBMWMIDIOut.prototype.addoutchannelselect = function(opts) {
 /////////////////////////////////
 
 TBMWMIDIOut.prototype.addtestbutton = function(opts) {
-    if(this.havemidi && this.havemidiout) {
+    if(this.havemidi && this.havemidiout && this.utils) {
 
-        // Check DOM element exists, return early if not
-        var domcontainer = this.checkdomelement(opts.domcontainer);
-        if(!domcontainer)
-            return this;
+		// Check DOM element exists, return early if not
+	    var domcontainer = this.utils.DOMcheckelement(opts.domcontainer);
+	    if(!domcontainer)
+	        return this;
 
         // Create <button> element
-        var testbutton = document.createElement("button");
-        testbutton.setAttribute("id", this.testoutputbuttonid);
-        testbutton.setAttribute("class", this.containerclass);
-        testbutton.innerHTML = 'Test MIDI Out';
+		var testbutton = this.utils.DOMaddbutton({
+			id : this.testoutputbuttonid,
+			text : (opts.buttontext !== undefined) ? opts.buttontext : "Test MIDI Out"
+		});
 
         // Append button to container DOM element
         domcontainer.appendChild(testbutton);
